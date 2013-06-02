@@ -4,7 +4,7 @@
 
 # Copyright 2008 Andrew Brouwers <abrouwers@gmail.com>
 # Copyright 2009-2011 Pierre Cazenave <pwcazenave {at} gmail [dot] com>
-# Copyright 2012 Roberto Neri, Palermo, Italy
+# Copyright 2012-2013 Roberto Neri, Palermo, Italy
 #
 # All rights reserved.
 #
@@ -26,7 +26,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=midori
-VERSION=${VERSION:-20120807_364345f}
+VERSION=${VERSION:-0.5.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -43,8 +43,6 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-DOCS="AUTHORS COPYING ChangeLog EXPAT HACKING INSTALL README TODO TRANSLATE"
-
 if [ "$ARCH" = "i486" ]; then
   SLKCFLAGS="-O2 -march=i486 -mtune=i686"
   LIBDIRSUFFIX=""
@@ -60,6 +58,14 @@ elif [ "$ARCH" = "x86_64" ]; then
 else
   SLKCFLAGS="-O2"
   LIBDIRSUFFIX=""
+fi
+
+# GTK3 support is disabled by default but can be enabled
+# by passing GTK3=yes to the script
+if [ "${GTK3:-no}" = "yes" ]; then
+  ENABLE_GTK3="enable"
+else
+  ENABLE_GTK3="disable"
 fi
 
 set -eu
@@ -89,8 +95,8 @@ export CXXFLAGS="$SLKCFLAGS"
    --localstatedir=/var \
    --datarootdir=/usr/share/ \
    --mandir=/usr/man \
-   --enable-unique \
-   --enable-addons
+   --$ENABLE_GTK3-gtk3 \
+   --disable-zeitgeist
 
 ./waf build
 ./waf install --destdir=$PKG
@@ -99,11 +105,12 @@ export CXXFLAGS="$SLKCFLAGS"
 mv $PKG/etc/xdg/midori/search $PKG/etc/xdg/midori/search.new
 mv $PKG/etc/xdg/midori/extensions/adblock/config $PKG/etc/xdg/midori/extensions/adblock/config.new
 
-cp -a $DOCS $PKG/usr/doc/$PRGNAM-$VERSION
+# The other doc files have already been copied into /usr/doc/$PRGNAM-$VERSION
+# by "./waf install"
+cp -a HACKING INSTALL TODO TRANSLATE \
+  $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
-cd $PKG/usr/doc
-  ln -s $PRGNAM-$VERSION $PRGNAM
-cd -
+ln -s $PRGNAM-$VERSION $PKG/usr/doc/$PRGNAM
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc

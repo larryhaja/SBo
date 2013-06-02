@@ -1,13 +1,13 @@
-		HOW TO INSTALL A SLACKWARE DOMU XEN GUEST
+		HOW TO INSTALL A SLACKWARE domU XEN GUEST
 
-After the ordeal of installing and configuring LILO/GRUB, Xen, kernel-xen
-and possibly also a new initrd, editing rc.local and rc.local_shutdown and
-finally booting on your Slackware XenLinux, you might be wondering how are
-you to load you guest OS. If you look around, you might find Xen domU
-(unprivileged) guest that you can download from the Internet, but some of
-us might want to roll their own. This MINI-HOWTO shows how to install a
-Slackware domU guest. The fastest way is to mount your Slackware DVD on
-/media/SlackDVD, normally this is the mount point chosen by HAL.
+After the ordeal of installing and configuring LILO/GRUB, Xen, kernel-xen and
+initrd, editing rc.local and rc.local_shutdown and finally booting on your
+Slackware XenLinux, you might be wondering how are you to load you guest OS.
+If you look around, you might find Xen domU (unprivileged) guest that you can
+download from the Internet, but some of us might want to roll their own. This
+MINI-HOWTO shows how to install a Slackware domU guest. The fastest way is to
+mount your Slackware DVD on /media/SlackDVD, normally this is the mount point
+chosen by HAL.
 Then run the included domU.sh script:
 
 # ./domU.sh

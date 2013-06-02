@@ -1,5 +1,12 @@
-#Files mentioned in this file will be ignored by git
+# Files mentioned in this file will be ignored by git
+*.swp
 *.tar.gz
 *.tar.gz.asc
+*.tar.bz2
+*.tar.xz
+*.tbz2
+*.tgz
+*.txz
+*.zip
 *~
 .directory

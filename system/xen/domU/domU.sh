@@ -3,9 +3,11 @@
 # Although it might work correctly, this script is intended as a template, so
 # simplicity is the priority here.
 # Written by Chris Abela <chris.abela@maltats.com>, 20100308
-# Updated by mario <mario@slackverse.org>, 2010-2011
+# Updated by mario <mario@slackverse.org>, 2010-2012
 
 set -e
+
+KERNEL=${KERNEL:-3.2.29}
 
 # Build an image for the root file system and another for the swap
 # Default values : 8GB and 500MB resepectively.
@@ -54,18 +56,18 @@ chroot mnt /usr/bin/passwd		# Set root's password
 
 # Before we could use xencons=tty and leave inittab and securetty files intact,
 # but that stopped working as of Xen-4.x, so this has to be fixed by adding hvc0.
-sed 's/^\(c[1-6]:123\)/#\1/' /etc/inittab
+sed -i 's/^\(c[1-6]:123\)/#\1/' /etc/inittab
 echo -e '\nc1:12345:respawn:/sbin/agetty 38400 hvc0 linux' >> /etc/inittab
 echo -e '\nhvc0' >> /etc/securetty
 
 # This will save us an alarming (yet harmless) warning
 (cd mnt/lib/modules
-  if [ -d 2.6.37.6-smp ]; then
+  if [ -d $KERNEL-smp ]; then
     # for Slack32
-    ln -s 2.6.37.6-smp 2.6.34.7-xen
+    ln -s $KERNEL-smp $KERNEL-xen
     else
     # for Slack64
-    ln -s 2.6.37.6 2.6.34.7-xen
+    ln -s $KERNEL $KERNEL-xen
   fi
 )
 

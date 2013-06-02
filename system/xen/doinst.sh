@@ -26,9 +26,13 @@ preserve_perms etc/rc.d/rc.xen-watchdog.new
 preserve_perms etc/rc.d/rc.xencommons.new
 preserve_perms etc/rc.d/rc.xend.new
 preserve_perms etc/rc.d/rc.xendomains.new
+config etc/xen/oxenstored.conf.new
 config etc/xen/xm-config.xml.new
 config etc/xen/xend-pci-quirks.sxp.new
 config etc/xen/xend-pci-permissive.sxp.new
 config etc/xen/xend-config.sxp.new
 config etc/xen/xl.conf.new
+config etc/qemu/target-x86_64.conf.new
+config etc/default/xencommons.new
+config etc/default/xendomains.new
 

@@ -5,4 +5,3 @@ also have the ability to call libraries of C software. Ffcall must be
 installed first in order for GForth to detect this, however.
 However, GForth can run on its own without Ffcall. For this reason, Ffcall
 is not listed as a dependency.
-

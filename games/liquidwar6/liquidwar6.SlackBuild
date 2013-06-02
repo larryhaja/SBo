@@ -4,19 +4,19 @@
 
 # Written by B. Watson (yalhcru@gmail.com)
 
+# Licensed under the WTFPL. See http://www.wtfpl.net/txt/copying/ for details.
+
 PRGNAM=liquidwar6
-VERSION=${VERSION:-0.0.9beta}
-BUILD=${BUILD:-1}
+VERSION=${VERSION:-0.0.13beta}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 
 SHORTNAM=${PRGNAM/[0-9]*/}
 
-# Automatically determine the architecture we're building on:
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
     i?86) ARCH=i486 ;;
     arm*) ARCH=arm ;;
-    # Unless $ARCH is already set, use uname -m for all other archs:
        *) ARCH=$( uname -m ) ;;
   esac
 fi
@@ -51,10 +51,6 @@ cd $PRGNAM-$VERSION
 chown -R root:root .
 chmod -R a-s,u+w,go+r-w .
 
-# liquidwar really ought to be using pkg-config to get the correct -l
-# flags for sqlite3, but it doesn't.
-patch -p1 < $CWD/sqlite_libdl.diff
-
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -71,16 +67,6 @@ CXXFLAGS="$SLKCFLAGS" \
 make
 make install-strip DESTDIR=$PKG
 
-# /usr/lib/ is hard-coded in too many places where --libdir gets
-# ignored. On 64-bit arches, the libs should live in /usr/lib64,
-# but the game will always look in /usr/lib
-if [ -n "${LIBDIRSUFFIX}" ]; then
-  ( cd $PKG/usr/lib
-    mv $PRGNAM-$VERSION ../lib${LIBDIRSUFFIX}
-    ln -s ../lib${LIBDIRSUFFIX}/$PRGNAM-$VERSION $PRGNAM-$VERSION
-  )
-fi
-
 gzip $PKG/usr/man/man6/$PRGNAM.6
 ( cd $PKG/usr/man/man6 ; ln -s $PRGNAM.6.gz $SHORTNAM.6.gz )
 ( cd $PKG/usr/games ; ln -s $PRGNAM $SHORTNAM )
@@ -96,8 +82,7 @@ rm -f $PKG/usr/info/dir
 gzip -9 $PKG/usr/info/*
 
 # The package docs are just a skeleton, completely useless
-# (the real docs are the info pages, although they're not all that
-# useful either)
+# (the real docs are the info pages)
 rm -rf $PKG/usr/share/doc
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
@@ -106,6 +91,7 @@ cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh  > $PKG/install/doinst.sh
 
 # If the extra-maps source is found, install it
 # (do this last so we can edit the slack-desc in place)

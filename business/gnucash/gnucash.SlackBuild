@@ -23,7 +23,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=gnucash
-VERSION=2.4.5
+VERSION=2.4.11
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -92,6 +92,10 @@ find . \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
  -exec chmod 644 {} \;
 
+# Starting with glib 2.32 it is now mandatory to 
+# include glib.h instead of individual headers.
+patch -p1 -i $CWD/glib-single-include.patch
+
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -108,7 +112,9 @@ CXXFLAGS="$SLKCFLAGS" \
   $OPT_ARGS \
   --build=$ARCH-slackware-linux
 
-make
+# Cut away jobs number from the MAKEFLAGS
+MAKEFLAGS=$(echo "$MAKEFLAGS" | sed "s/-j[0-999]//g")
+make -j1
 make install DESTDIR=$PKG
 
 # Create the gconf defaults directory
@@ -119,9 +125,6 @@ find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
 
 find $PKG/usr/man -type f -exec gzip -9 {} \;
 for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
-
-rm -f $PKG/usr/info/dir
-gzip -9 $PKG/usr/info/*
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \

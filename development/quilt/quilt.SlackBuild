@@ -22,8 +22,11 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Maintained by Binh Nguyen <binhvng@gmail.com>
+# from version 0.60
+
 PRGNAM=quilt
-VERSION=0.48
+VERSION=${VERSION:-0.60}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -75,7 +78,7 @@ CPPFLAGS="$SLKCFLAGS" \
   --build=$ARCH-slackware-linux
 
 make
-make install BUILD_ROOT=$PKG docdir=/usr/doc
+make install BUILD_ROOT=$PKG docdir=/usr/doc/$PRGNAM-$VERSION
 
 # Don't clobber the config file
 mv $PKG/etc/quilt.quiltrc $PKG/etc/quilt.quiltrc.new

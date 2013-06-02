@@ -4,9 +4,11 @@
 
 # Written by B. Watson (yalhcru@gmail.com)
 
+# Licensed under the WTFPL. See http://www.wtfpl.net/txt/copying/ for details.
+
 PRGNAM=jack-rack
 VERSION=${VERSION:-1.4.7}
-BUILD=${BUILD:-2}
+BUILD=${BUILD:-3}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
@@ -58,6 +60,7 @@ else
 fi
 
 # --docdir not supported
+LDFLAGS="-lm -ldl" \
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -67,6 +70,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var \
   --mandir=/usr/man \
   $LASH_OPT \
+  --disable-gnome \
   --build=$ARCH-slackware-linux
 
 make

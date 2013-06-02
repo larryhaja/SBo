@@ -2,7 +2,7 @@
 
 # Slackware build script for Miro
 
-# Copyright 2009-2011 Larry Hajali <larryhaja[at]gmail[dot]com>
+# Copyright 2009-2013 Larry Hajali <larryhaja[at]gmail[dot]com>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,7 +23,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=miro
-VERSION=${VERSION:-5.0.2}
+VERSION=${VERSION:-6.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -71,13 +71,15 @@ find . \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
  -exec chmod 644 {} \;
 
-# Patch to build against ffmpeg 0.6.x, 0.7.x and 0.8.x.
-patch -p1 < $CWD/ffmpeg-api-change.patch
 # Patch to fix the gdb call from miro.
 patch -p1 < $CWD/miro-gdb-fix.patch
+# Fix .destkop item.
+sed -i \
+  -e 's|TV;||' -e 's|P2P;News;FileTransfer;||' \
+  -e 's|ogg$|ogg;|' linux/miro.desktop
 
 cd linux
-  sed -i 's|share/man|man|' setup.py
+  sed -i -e 's|share/man|man|' -e '/miro.test/d' setup.py
   CFLAGS="$SLKCFLAGS" python setup.py install --root=$PKG
 cd -
 
@@ -85,14 +87,15 @@ find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
 # Remove unneeded files.
-PYVER=$(python -c 'import sys; print sys.version[:3]')
-rm -rf $PKG/usr/lib${LIBDIRSUFFIX}/python${PYVER}/site-packages/miro/test
 rm -rf $PKG/usr/share/${PRGNAM}/resources/testdata
+if [ "$ARCH" == "x86_64" ]; then
+  rm -f $PKG/usr/bin/codegen.Linux-i686
+else
+  rm -f $PKG/usr/bin/codegen.Linux-x86_64
+fi
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a \
-  CREDITS LAYOUT license.txt README \
-  $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a CREDITS LAYOUT license.txt README $PKG/usr/doc/$PRGNAM-$VERSION
 cat linux/README > $PKG/usr/doc/$PRGNAM-$VERSION/README.linux
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 

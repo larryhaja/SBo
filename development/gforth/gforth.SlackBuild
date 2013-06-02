@@ -2,10 +2,10 @@
 
 # Slackware build script for gforth
 
-# Written by Zbigniew Baniewski, zb@ispid.com.pl
+# Written by Zbigniew Baniewski, <Zbigniew.Baniewski@gmail.com>
 
 PRGNAM=gforth
-VERSION=0.7.0
+VERSION=0.7.2
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -43,6 +43,9 @@ mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
+
+patch -p0 < $CWD/01-Makefile.in.patch
+
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find . \

@@ -4,16 +4,14 @@
 # This script is hereby put in the public domain
 
 PRGNAM=tangogps
-VERSION=0.99.2
-BUILD=${BUILD:-1}
+VERSION=0.99.4
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 
-# Automatically determine the architecture we're building on:
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
     i?86) ARCH=i486 ;;
     arm*) ARCH=arm ;;
-    # Unless $ARCH is already set, use uname -m for all other archs:
        *) ARCH=$( uname -m ) ;;
   esac
 fi
@@ -48,6 +46,14 @@ cd $PRGNAM-$VERSION
 chown -R root:root .
 chmod -R u+w,go+r-w,a-s .
 
+# Fix for glib>=2.31
+sed -i "s|^#include\ <glib/.*||" src/map_management.c
+
+# This other is for curl>=7.24
+sed -i "s|^#include\ <curl/types\.h>||" \
+  src/tile_management.c src/util.h src/friends.c
+
+LDFLAGS="-lm" \
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
@@ -63,6 +69,7 @@ make tangogpsdocdir=/usr/doc/$PRGNAM-$VERSION install-strip DESTDIR=$PKG
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh  > $PKG/install/doinst.sh
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
