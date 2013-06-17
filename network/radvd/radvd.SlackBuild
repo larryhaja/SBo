@@ -24,7 +24,7 @@
 
 PRGNAM=radvd
 VERSION=1.9.3
-BUILD=${BUILD:-1}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 
 # Automatically determine the architecture we're building on:
@@ -94,9 +94,6 @@ mv $PKG/usr/share/man $PKG/usr/man
 mkdir -p $PKG/etc/rc.d 
 install -D -m 0644 $CWD/rc.radvd.new  $PKG/etc/rc.d/rc.radvd.new
 mv $TMP/$PRGNAM-$VERSION/radvd.conf.example $PKG/etc/radvd.conf.new
-
-mkdir -p $PKG/var/run/radvd
-chown -R daemon:daemon $PKG/var/run/radvd
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION 
 cp -a CHANGES COPYRIGHT INTRO.html README TODO VERSION \
