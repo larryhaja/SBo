@@ -1,3 +1,186 @@
+Tue Jul  2 21:09:49 UTC 2013
+academic/ImageJ: Updated for version 1.47.
+academic/aline: Added (Tk graphical interface for Perl)
+academic/mafft: Updated for version 7.047.
+academic/mkDSSP: Added (A program that calculates DSSP entries from PDB entries)
+accessibility/unclutter: Updated for version 1.09.
+audio/lmms: Updated for version 0.4.15.
+audio/qtractor: Updated for version 0.5.9.
+audio/sunvox: Updated for version 1.7.3c.
+audio/yoshimi: Added (software synthesiser)
+desktop/gtkman: Added (A simple GTK+2 manual page viewer)
+desktop/murrine-themes: Updated for version 0.98.5.
+desktop/slack-wallpapers: Updated for version 0.212.
+development/KKEdit: Added (a simple text editor)
+development/luajit: Added (just-in-time compiler for Lua)
+development/pudb: Added (A full-screen, console-based Python debugger)
+games/eduke32: Updated for version 20130620_3893.
+games/f1spirit: Added (F-1 Spirit Remake)
+games/firestorm-opensim: Updated for version 4.4.2.34167.
+games/firestorm: Updated for version 4.4.2.34167.
+games/hexalate: Added (color matching game)
+games/oblige: Updated for version 4.28b
+games/odamex: Updated for version 0.6.3.
+graphics/Pixie: Added (3D renderer)
+graphics/g3dviewer: Added (3-D model viewer)
+graphics/inkscape: Build fix on -current (harmless on 14.0)
+graphics/teighafileconverter: Updated for version 3.09.0.
+graphics/teighaviewer: Updated for version 3.09.0.
+graphics/yed: Updated for version 3.11.
+libraries/libdbi: Updated for version 0.9.0.
+libraries/libnetfilter_log: Changed header with license.
+libraries/mxml: Fix download link.
+libraries/vsqlite++: Added (SQLite Wrapper Library)
+libraries/zend-opcache: Added (PHP opcode caching and optimization)
+misc/BISP: Added (The Nexus Personal BankID client)
+misc/xbanish: Added (banish the mouse cursor when typing)
+multimedia/harmonySEQ: Added (a MIDI sequencer for Linux)
+network/bitcoin: Updated for version 0.8.3.
+network/dovecot-pigeonhole: Updated for version 0.3.5.
+network/filezilla: Updated for version 3.7.1.1.
+network/ip2location-c: Updated for version 6.0.1.
+network/ipv6calc: Updated for version 0.94.1.
+network/luakit: Added (micro-browser framework)
+network/miredo: Updated for version 1.2.6.
+network/node: Updated for version 0.10.12.
+network/qupzilla: Updated for version 1.4.3.
+network/yate: Added (Yet Another Telephony Engine)
+network/zabbix_agentd: Updated for version 2.0.6.
+network/zabbix_proxy: Updated for version 2.0.6.
+network/zabbix_server: Updated for version 2.0.6.
+office/pdfpc: Added (a GTK based presentation viewer application)
+perl/perl-Bit-Vector: Fix download link & md5sum.
+python/python-requests: Added (Requests: HTTP for Humans)
+system/clamtk: Updated for version 4.45.
+system/flexbackup: Added (a flexible backup tool)
+system/fs-uae: Updated for version 2.2.3.
+system/iotop: Updated for version 0.6.
+system/pigz: Updated for version 2.3, new maintainer.
+system/redis: Updated for version 2.6.14.
++--------------------------+
+Sat Jun 29 19:29:45 UTC 2013
+audio/caps: Updated for version 0.9.7.
+audio/ecasound: Updated for version 2.9.0.
+audio/jack-tools: Updated for version 20130616.
+audio/sooperlooper: Updated for version 1.7.0.
+audio/tap_plugins: Updated for version 0.7.2.
+audio/waon: Updated for version 0.10.
+desktop/xfce4-xkb-plugin: Updated for version 0.5.6.
+development/psycopg2: Updated for version 2.5.1.
+development/tcc: Updated for version 0.9.26.
+games/PyLotRO: Build bump.
+games/connectagram: Added (word unscrambling game)
+games/doomseeker: Updated for version 0.10b.
+games/firestorm-opensim: Added (an alternative Second Life client)
+games/firestorm: Updated for version 4.4.1.34164.
+games/pentagram: Updated for version 20130617_svn.
+games/sauerbraten: Updated for version 2013_02_03.
+games/tanglet: Added (single player word finding game)
+games/xonotic: Updated for version 0.7.0.
+games/xu4: Updated for version 20130612_svn.
+games/zdbsp: Updated for version 1.18.1.
+graphics/mirage: Fixes in SlackBuild.
+libraries/girara: Updated for version 0.1.6.
+libraries/jbig2dec: New maintainer + remove static lib.
+libraries/libnetfilter_acct: Updated for version 1.0.2.
+libraries/libnetfilter_conntrack: Updated for version 1.0.3.
+libraries/liboglappth: Fix for x86_64
+libraries/libsecret: Added (library for accessing Secret Service API)
+misc/asterixInspector: Updated for version 0.9.3.
+misc/cwiid: Updated for version 0.6.00+svn201.
+misc/zyGrib: Updated for version 6.1.4.
+network/QuiteRSS: Added (RSS/Atom feed reader)
+network/fail2ban: Updated for version 0.8.10.
+network/hipchat: Fixed download links and tarball extraction
+network/metasploit: Fixed typo.
+network/razor-agents: Update license text.
+network/uget: Updated for version 1.10.3.
+office/mupdf: Upated for version 1.2 + new maintainer.
+office/texstudio: Updated for version 2.6.0.
+office/zathura-djvu: Updated fir version 0.2.3.
+office/zathura-pdf-mupdf: Updated for version 0.2.4.
+office/zathura-ps: Updated for version 0.2.2.
+office/zathura: Updated for version 0.2.3.
+python/Pyro4: Updated for version 4.20.
+python/python-urllib3: Updated for version 1.6.
+system/gdm: Fix crypt() usage with glibc-2.17+
+system/seahorse: Updated for version 3.8.1.
++--------------------------+
+Sun Jun 23 00:45:58 UTC 2013
+academic/mapnik: Updated for version 2.2.0.
+audio/alsa-tools: Updated for version 1.0.27.
+audio/bristol: Updated for version 0.60.11.
+audio/jackmeter: Added (console peak meter for jack)
+audio/soundconverter: Updated for version 2.1.0.
+audio/transcribe: Updated for version 8.31.1.
+desktop/lxlauncher: Fixed dep info (add menu-cache)
+desktop/menulibre: Added (Menu editor with quicklist support)
+desktop/thunar-archive-plugin: Updated for version 0.3.1.
+desktop/thunar-media-tags-plugin: Updated for version 0.2.1.
+desktop/xfce4-dict: Updated for version 0.7.0.
+desktop/xfce4-mailwatch-plugin: Added (Xfce plugin for checking mails)
+desktop/xfce4-xkb-plugin: Updated for version 0.5.5.
+development/amd-app-sdk: Updated for version 2.8.
+development/anjuta: Updated for version 3.8.4.
+development/jdk: Updated for version 7u25.
+development/npm2tgz: Added (node.js module to Slackware package)
+development/rakudo: Updated for version 2013.05.
+games/alephone: Updated for version 20120514.
+games/atari++: Updated for version 1.72.
+games/dunelegacy: Updated for version 0.96.3.
+games/garden: Added (2D vertical shoot-em-up game)
+games/gzdoom: Updated for version 1.8.00.
+games/marathon-data: Updated for version 20120514.
+games/marathon-infinity-data: Updated for version 20120514.
+games/marathon2-data: Updated for version 20120514.
+games/qtsixa: Added (Sixaxis Joystick Manager)
+games/rocksndiamonds: Added (boulder dash-like arcade games)
+games/tintin: Added (console MUD client)
+games/xroar: Updated for version 0.29.5.
+graphics/SweetHome3D: Updated for version 4.1.
+graphics/exact-image: Updated for version 0.8.8.
+haskell/haskell-hxt-charproperties: Added (XML Character properties)
+haskell/haskell-hxt-regex-xmlschema: Added (XML Schema reg.exp.)
+haskell/haskell-hxt-unicode: Added (Unicode encoding and decoding)
+haskell/haskell-hxt: Added (Haskell XML Toolbox)
+libraries/ORBit2: Fix build on -current (harmless on 14.0)
+libraries/c-ares: Updated for version 1.10.0.
+libraries/gnome-media: Miscellaneous cleanup
+libraries/libbsd: Updated for version 0.5.2.
+libraries/libnfs: Updated for version 1.6.0.
+libraries/libnova: Fixed homepage link
+libraries/vte3: Updated for version 0.34.6.
+misc/dcc: Added (Distributed Checksum Clearinghouses)
+misc/nixnote: Added (Open Source Client for Evernote)
+network/etherape: Updated for version 0.9.13.
+network/frostwire: Updated for version 5.6.0.
+network/metasploit: Updated for version 4.6.0.
+network/opensmtpd: Updated for version 5.3.3p1.
+network/remmina: BUILD bump, added some patches.
+network/shorewall-core: Updated for version 4.5.17.1.
+network/shorewall6: Updated for version 4.5.17.1.
+network/shorewall: Updated for version 4.5.17.1.
+network/transmission-remote-gtk: Updated for version 1.1.1.
+network/yturl: Updated for version 20130618.
+office/ganttproject: Updated for version 2.6.1_r1499.
+perl/perl-CPANPLUS-Dist-Slackware: Updated for version 1.013.
+perl/perl-CSS-Squish: Added (Compact CSS files into one big file)
+perl/perl-DBD-SQLite: Updated for version 1.39.
+perl/perl-Text-Password-Pronounceable: Added (pronouncable passw.)
+perl/perl-Text-Quoted: Added (Extract structure of quoted message)
+perl/perl-data-dump: Updated for version 1.22.
+python/PyGreSQL: Added (Python PostgreSQL Interfaces)
+system/burp: Updated for version 1.3.32.
+system/cronie: Updated for version 1.4.9.
+system/ksh-openbsd: Updated for version 20130611.
+system/mongodb: Updated for version 2.4.4.
+system/numactl: Added (NUMA process control)
+system/reptyr: Updated for version 0.5_20130618.
+system/terminator: Updated for version 0.97.
+system/trackfs: Updated for version 0.1.0.
+system/unp: Added (unpack almost everything with one command)
+system/v86d: Added (x86 Emulation Daemon)
++--------------------------+
 Sun Jun 16 02:08:06 UTC 2013
 accessibility/espeak: Updated for version 1.47.11.
 accessibility/wgetpaste: Updated for version 2.22.
