@@ -4,7 +4,7 @@
 # Written by Diogo Leal (diogo@diogoleal.com)
 
 PRGNAM=regina-rexx
-VERSION=${VERSION:-3.5}	
+VERSION=${VERSION:-3.7}	
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -64,7 +64,8 @@ CXXFLAGS="$SLKCFLAGS" \
   --mandir=/usr/man \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --build=$ARCH-slackware-linux
-make
+
+make -j1
 make install DESTDIR=$PKG
 
 # Rename the init script to .new and handle it in the doinst.sh

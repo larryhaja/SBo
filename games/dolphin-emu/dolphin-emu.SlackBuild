@@ -98,7 +98,11 @@ for i in 16 32 48 64 128; do
 done
 
 # Remove unnecessary files/directories.
+<<<<<<< HEAD
 rm -rf $PKG/usr/share/pixmaps $PKG/usr/lib${LIBDIRSUFFIX}/libpolarssl.a
+=======
+rm -f $PKG/usr/share/pixmaps $PKG/usr/lib${LIBDIRSUFFIX}/libpolarssl.a
+>>>>>>> 9852b704c98c6b3154e7885d8e9c0f7f78969538
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a license.txt Readme.txt $PKG/usr/doc/$PRGNAM-$VERSION
