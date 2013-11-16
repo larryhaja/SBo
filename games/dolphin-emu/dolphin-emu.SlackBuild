@@ -99,10 +99,14 @@ done
 
 # Remove unnecessary files/directories.
 <<<<<<< HEAD
+<<<<<<< HEAD
 rm -rf $PKG/usr/share/pixmaps $PKG/usr/lib${LIBDIRSUFFIX}/libpolarssl.a
 =======
 rm -f $PKG/usr/share/pixmaps $PKG/usr/lib${LIBDIRSUFFIX}/libpolarssl.a
 >>>>>>> 9852b704c98c6b3154e7885d8e9c0f7f78969538
+=======
+rm -rf $PKG/usr/share/pixmaps $PKG/usr/lib${LIBDIRSUFFIX}/libpolarssl.a
+>>>>>>> b2c8f98cca1fb5b108efbb32367c9314595cef59
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a license.txt Readme.txt $PKG/usr/doc/$PRGNAM-$VERSION
