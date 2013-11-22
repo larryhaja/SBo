@@ -22,10 +22,10 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-PRGNAM=gpaint		
+PRGNAM=gpaint
 VERSION=${VERSION:-0.3.3}
 BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}	
+TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -63,8 +63,8 @@ rm -rf $PRGNAM-2-$VERSION
 tar xvf $CWD/${PRGNAM}_${VERSION}.orig.tar.gz
 cd $PRGNAM-2-$VERSION
 chown -R root:root .
-find . \
- \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
  -exec chmod 755 {} \; -o \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
  -exec chmod 644 {} \;
@@ -97,7 +97,7 @@ CXXFLAGS="$SLKCFLAGS" \
 make
 make install DESTDIR=$PKG
 
-install -D -m644 $CWD/$PRGNAM.1 $PKG/usr/man/man1/$PRGNAM.1 
+install -D -m644 $CWD/$PRGNAM.1 $PKG/usr/man/man1/$PRGNAM.1
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true

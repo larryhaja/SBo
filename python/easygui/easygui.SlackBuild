@@ -57,7 +57,7 @@ fi
 PYTHONDIR=$(python -c "import sys, os; print os.path.join('/usr/lib${LIBDIRSUFFIX}', 'python%s' % sys.version[:3], 'site-packages')")
 DOCFILES="cookbook faq epydoc pydoc tutorial"
 
-set -e  # Exit on most errors
+set -e  
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
@@ -68,7 +68,7 @@ cd $PRGNAM-$VERSION
 tar xvf $CWD/${PRGNAM}_${SRC_VERSION}.tar.gz
 chown -R root:root .
 find -L . \
- \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
  -exec chmod 755 {} \; -o \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
