@@ -1,3 +1,176 @@
+Mon Dec  2 06:59:33 UTC 2013
+academic/Fiona: Added (Python interface for OGR)
+academic/OWSLib: Added (OGC Web Service utility library)
+academic/Shapely: Added (geometric objects, predicates, and operations in Python)
+academic/geoserver-css: Added (CSS styling support for GeoServer)
+academic/geoserver-wps: Added (WPS support for GeoServer)
+academic/geoserver: Added (geospatial server)
+academic/osm2pgrouting: Added (import OSM data into pgRouting database)
+academic/pdal: Added (point data abstraction library)
+academic/pointcloud: Added (PostgreSQL extension for storing LiDAR data)
+academic/pyproj: Added (Python interface to the PROJ.4 library)
+audio/kradio: Updated for version 4.0.7 + New Maintainer.
+desktop/cairo-dock-plugins: Updated for version 3.3.2.
+desktop/cairo-dock: Updated for version 3.3.2.
+desktop/kdeconnect: Added (KDE integration with Android)
+desktop/murrine: Fixed Homepage link.
+desktop/razercfg: Added (Razer device configuration tool)
+desktop/xfce4-places-plugin: Updated for version 1.6.0.
+desktop/xfce4-whiskermenu-plugin: Added (alternate application launcher for Xfce)
+development/apache-maven: Updated for version 3.1.1.
+development/chicken: Updated for version 4.8.0.5.
+development/cunit: Added (Unit Testing Framework for C).
+development/fossil: Added (Distributed Version Control System).
+development/gnuradio: Added (toolkit for building SDRs).
+games/desmume: Updated for version 0.9.10.
+games/fceux: Fixed validation warnings in .desktop file
+games/ioquake3: Updated for version r20131127, added a license.
+games/megaglest: Updated for version 3.9.0.4, added a license.
+games/openttd: Updated for version 1.3.3.
+games/pcsxr: Updated for version 1.9.93, added a license.
+games/qxw: Added (advanced interactive crossword construction tool).
+graphics/GPS: Script cleanup and Source Update.
+graphics/entangle: Updated for version 0.5.3.
+graphics/gimagereader: Added (GUI for tesseract).
+libraries/gnome-media: New maintainer
+libraries/iniparser: Updated for version 3.1.
+libraries/laszip: Added (Free and Lossless LiDAR Compression).
+libraries/libasyncns: New maintainer
+libraries/libedit: Updated for version 20130712_3.1.
+libraries/log4c: Updated for version 1.2.4.
+libraries/tre: Build python bindings
+libraries/wjelement: Added (JSON manipulation, JSON-schema validation, CLI/script tool)
+misc/cups-windows: New maintainer
+misc/gprename: Updated for version 5.
+multimedia/dvdbackup: Updated for version 0.4.2.
+multimedia/flowblade: Updated for version 0.10.0.
+multimedia/mythplugins: Added (plugins for mythtv).
+multimedia/mythtv: Added (mythical home media convergence PVR/DVR).
+multimedia/totem: Added (GNOME Movie Player)
+network/dovecot-pigeonhole: Updated for version 0.4.2.
+network/dovecot: Updated for version 2.2.9.
+network/httping: Updated for version 2.3.3.
+network/netsniff-ng: Fixed Homepage Link.
+network/nload: Updated for version 0.7.4.
+network/postfix: Updated for version 2.10.2.
+network/quassel: Updated for version 0.9.2 + New Maintainer.
+network/siege: Updated for version 3.0.5, added a license.
+network/tornado: Added (Web Framework and Asynchronous Networking Library).
+network/webalizer: Updated for version 2.23_08.
+office/calibre: Updated for version 1.13.0.
+perl/perl-Gtk2-Unique: Added (use single instance applications).
+perl/perl-Readonly: Updated for version 1.04.
+perl/perl-Test-Harness: Updated for version 3.30.
+python/gnome-python-desktop: New maintainer
+python/pygtkspell: Added (Python bindings for the GtkSpell library).
+python/pyicu: Updated for version 1.5.
+python/pytz: Updated for version 2013.8.
+python/pyzmq: Added (Python bindings for ØMQ)
+system/TLP: Added (Advanced Power Management Tool).
+system/apache-tomcat: Updated for version 7.0.47.
+system/commons-daemon: Updated for version 1.0.15.
+system/glances: Added (curses-based monitoring tool).
+system/haveged: Updated for version 1.7c.
+system/kc: Updated for version 2.3.1.
+system/ksh-openbsd: Updated for version 20131129.
+system/lirc: Forced a single make job.
+system/nilfs-utils: Updated for version 2.1.5.
+system/rxvt-unicode: Updated for version 9.19.
+system/sakura: Updated for version 3.1.1.
+system/sbotools: Added (ports-like interface to slackbuilds.org).
+system/uhd: Added (USRP Hardware Driver).
+system/unrar: Remove libunrar directory.
+system/wacomtablet: Updated for version 2.0.
++--------------------------+
+Sat Nov 30 06:16:29 UTC 2013
+academic/convertall: Fixed file ending with no newline.
+audio/audtty: Fixed file ending with no newline.
+audio/pithos: Added (Pandora Radio client)
+desktop/Vanilla-DMZ: Fixed download link.
+desktop/cheser-icon-theme: Fixed download link.
+desktop/clearlooks-phenix-theme: Updated to version 20131129.
+desktop/gtk1-industrial-engine: Fixed download link.
+desktop/murrine-themes: Fixed download link.
+development/dejagnu: Fixed download link.
+development/device-tree-compiler: Added (Device Tree Compiler for Flat Device Trees)
+development/guile1.8: Fixed file ending with no newline.
+development/kforth: Fixed file ending with no newline.
+development/nant: Fixed file ending with no newline.
+development/sublime_text: Updated for version 2.0.2 (New Maintainer).
+games/UrbanTerror: Fixed download link.
+games/adom: Updated for version 1.2.0_pre20.
+graphics/entangle: Fixed file ending with no newline.
+libraries/Impacket: Fixed download link.
+libraries/iniparser: Fixed file ending with no newline.
+libraries/libsmi: Fixed download link.
+libraries/libtxc_dxtn: Fixed file ending with no newline.
+libraries/liburcu: Fixed file ending with no newline.
+libraries/mysql-connector-c++: Fixed file ending with no newline.
+libraries/mysql-connector-python: Fixed file ending with no newline.
+libraries/nacl: Fixed file ending with no newline.
+libraries/ocaml-bisect: Fixed file ending with no newline.
+libraries/rest: Fixed file ending with no newline.
+libraries/vigra: Fixed download link.
+misc/ophcrack: Fixed file ending with no newline.
+network/netsniff-ng: Fixed file ending with no newline.
+network/teamviewer: Fixed file ending with no newline.
+perl/perl-Capture-Tiny: Fixed file ending with no newline.
+perl/perl-Class-Method-Modifiers: Fixed file ending with no newline.
+perl/perl-Devel-GlobalDestruction: Fixed file with no newline.
+perl/perl-ExtUtils-Helpers: Fixed file ending with no newline.
+perl/perl-ExtUtils-InstallPaths: Fixed file ending with no newline.
+perl/perl-File-Tail: Fixed file ending with no newline.
+perl/perl-LockFile-Simple: Fixed file ending with no newline.
+perl/perl-Module-Build-Tiny: Fixed file ending with no newline.
+perl/perl-Role-Tiny: Fixed file ending with no newline.
+perl/perl-Test-Harness: Fixed file ending with no newline.
+perl/perl-strictures: Fixed file ending with no newline.
+python/virtualenv-clone: Fixed PRGNAM in .info file
+system/brasero: Updated for version 2.32.1.
+system/linkchecker: Added (Website Validator).
+system/mysql-utilities: Fixed file ending with no newline.
+system/netatop: Fixed file ending with no newline.
+system/numlockx: Fixed download link.
+system/nvidia-legacy304-driver: Fixed file ending with no newline.
+system/qemu: Optionally use device-tree-compiler if installed
+system/scanmem: Fixed file ending with no newline.
+system/winetricks: Fixed VERSION in .info file.
++--------------------------+
+Thu Nov 28 06:14:07 UTC 2013
+audio/Pd-extended: Fixed dep info.
+audio/cmus: Updated for version 20131125_a854f85.
+audio/pavucontrol: New maintainer
+audio/pulseaudio: New maintainer
+desktop/i3: Update EMAIL for Marcin Herda
+desktop/i3status: Fixed VERSION in .info.
+desktop/quickaccess: Fixed VERSION in .info.
+desktop/wmmon: Fixed VERSION in .info.
+desktop/xmms-status-plugin: Use system-provided libtool binary
+development/couchdb: Updated for version 1.5.0.
+development/ipython: Updated for version 1.1.0 (+ new maintainer)
+development/mysql-workbench: Respect $LIBDIRSUFFIX.
+development/pyenchant: Update EMAIL for vvoody
+graphics/FreeCAD: Install the qt plugin.
+graphics/brlcad: Fix tcl/tk build
+graphics/dia: Applied patches from upstream.
+graphics/digikam: Noted brokeness of the opt dep lensfun.
+libraries/yajl: Update EMAIL for Marcin Herda
+multimedia/HandBrake: Fixed VERSION in .info.
+multimedia/gpac: Noted brokeness of the opt dep xulrunner.
+multimedia/spotify: Updated for version 0.9.4.183.g644e24e.428.
+network/ekiga: Quiet an error about missing X11 in gconf update
+network/ekiga: Removed erroneous comment re libsoup
+network/luakit: Fixed for git tarball.
+office/evince: Updated README
+office/kbibtex: Updated for version 0.4.1.
+office/texlive: Use a mirror for texlive-texmf download
+python/geopy: Updated for version 0.96.2.
+python/stevedore: Added (Manage dynamic plugins for Python applications)
+python/virtualenv-clone: Added (virtualenv cloning script)
+python/virtualenvwrapper: Updated for version 4.1.1.
+system/detox: Update EMAIL for Marcin Herda
+system/epson-inkjet-printer-escpr: Updated for version 1.3.0.
+system/fbterm: Update EMAIL for vvoody
 +--------------------------+
 Tue Nov 26 06:41:27 UTC 2013
 Here it is! The launch of the SlackBuilds.org repository into the 14.1 era.
