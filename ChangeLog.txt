@@ -1,3 +1,244 @@
+Wed Dec 25 21:07:28 UTC 2013
+academic/gcompris: New maintainer and script cleanups.
+academic/osm2pgsql: Updated for version 0.84.0.
+academic/rasterio: Added (direct raster I/O for numpy coders).
+academic/sage: Updated for version 6.0 and changed maintainer.
+audio/soundkonverter: Updated for version 2.0.5.
+audio/spandsp: Added (A DSP library for telephony).
+desktop/awesome: Updated for version 3.5.2.
+desktop/kpartsplugin: Added (KParts plugin for browsers).
+desktop/plasma-runner-browsefirefoxbookmarks: Added (FF bookmark).
+desktop/slack-wallpapers: Updated for version 0.284.
+desktop/vim-qt: Added (Qt gui for Vim).
+desktop/wmmon: New download link.
+desktop/xmms-skins-almond: Added more extra skins.
+desktop/xtitle: Added (print title of active X window).
+development/Sphinx: Updated for version 1.2.
+development/arduino: Updated for version 1.0.5 + New Maintainer.
+development/fpc: Updated for version 2.6.2.
+graphics/draftsight: Updated for version 1.2.285.
+graphics/entangle: Updated for version 0.5.4.
+graphics/librecad: Updated for version 1.0.4.
+graphics/pinta: New Maintainer.
+graphics/shutter: Updated for version 0.87.2.
+graphics/teighafileconverter: Updated for version 3.09.1.
+graphics/teighaviewer: Updated for version 3.09.1.
+libraries/LibRaw: Update MD5SUM.
+libraries/libbluray: Updated for version 0.5.0.
+libraries/libeatmydata: Added (library designed to disable fsync).
+libraries/physfs: Updated for version 2.0.3.
+libraries/poppler-qt5: Added (Qt5 bindings for poppler).
+misc/hashkill: Added (multithreaded password recovery tool).
+misc/sutils: Added (small command-line utilities).
+multimedia/mplayer-codecs32: Added (32-bit Codecs for MPlayer)
+multimedia/mplayer-codecs64: Added (64-bit Codecs for MPlayer)
+multimedia/mplayer-codecs: Removed (Replaced by -codecs32/-codecs64)
+network/etherpad-lite: Added alternate tar-uncompress command.
+network/hipchat: Updated for version 2.1.982.
+network/libcapi20: Added (CAPI support libraries).
+network/phpmyadmin: Updated for version 4.1.1.
+network/policyd2: Upgraded for version 2.0.4.
+network/qupzilla: Updated for version 1.4.4.
+network/roger-router: Added (former FFGTK Router Manager).
+network/sipp: Updated for version 3.3.
+network/tor: Updated for version 0.2.4.20.
+office/myrulib: Updated for version 0.29.16.
+office/qpdfview: Updated for version 0.4.7.
+perl/perl-Archive-Extract: Added (Generic archive extracting).
+perl/perl-CPANPLUS-Dist-Build: Added (CPANPLUS with Build.PL).
+perl/perl-CPANPLUS-Dist-Slackware: Updated for version 1.016.
+perl/perl-CPANPLUS: Added (API and CLI access to the CPAN mirrors).
+perl/perl-DBIx-Simple: Added (Easy-to-use OO interface to DBI).
+perl/perl-JSON-XS: Added (JSON serialising/deserialising).
+perl/perl-Log-Message-Simple: Added (Interface to Log::Message).
+perl/perl-Log-Message: Added (Powerful message storage mechanism).
+perl/perl-Module-Pluggable: Added (Pluggable Plugin for Perl).
+perl/perl-Object-Accessor: Added (Create object getters/setters).
+perl/perl-Path-Class: Added (Cross-platform path spec manipulation).
+perl/perl-Term-ReadLine-Gnu: Added (line-edit/history capabilities).
+perl/perl-Term-UI: Added (Interfaces via Term::ReadLine made easy).
+perl/perl-common-sense: Added (perl common defaults).
+python/python-vatnumber: Renamed from vatnumber
+python/python-xlwt: Added (Python package to work with MS Excel ™).
+python/werkzeug: Added (WSGI utility library for Python).
+system/bacula-client: Documentation and script updates.
+system/bacula: Documentation and script updates.
+system/bindfs: Updated for version 1.12.3.
+system/dfc: Updated for version 3.0.4.
+system/goaccess: Updated for version 0.7.
+system/ksh-openbsd: Updated for version 20131221.
+system/mysql-utilities: Updated for version 1.4.1.
+system/nss_ldap: Rebuilt to fix segfaults.
+system/password-store: Added (Password manager using GnuPG)
+system/vagrant: Updated for version 1.4.1.
+system/worker: Updated for version 3.2.1.
+system/xfsudo: Updated for version 0.2.
++--------------------------+
+Tue Dec 17 17:03:59 UTC 2013
+academic/gwyddion: Updated for version 2.34.
+academic/horao: Added (visualisation tool for 3D GIS data).
+audio/mp3splt-gtk: New Maintainer.
+audio/mp3splt: New Maintainer.
+audio/soundkonverter: New Maintainer.
+desktop/bspwm: Added (Binary space partitioning window manager).
+desktop/lxmed: Changed maintainer.
+desktop/menulibre: New Maintainer.
+desktop/sxhkd: Added (Simple X hotkey daemon).
+development/amaya: Removed (not compatible with gcc-4.8.x).
+development/squirrel-sql: Updated for version 3.5.0.
+libraries/libmp3splt: New Maintainer.
+libraries/libpst: New Maintainer.
+libraries/qt5: Added (multi-platform C++ GUI toolkit).
+libraries/zend-opcache: Updated for version 7.0.2.
+multimedia/w_scan: New Maintainer.
+network/hydra: Updated for version 7.5.
+network/icecat: Updated for version 24.0.
+network/midori: Updated for version 0.5.6.
+network/smcroute: Added (Static Multicast Routing Daemon).
+network/sstp-client: Added (SSTP client for Linux).
+office/calibre: Updated for version 1.15.0.
+office/hevea: Updated for version 2.09.
+perl/perl-Class-Method-Modifiers: Updated for version 2.09.
+perl/perl-Date-Manip: Fix download link.
+perl/perl-strictures: Updated for version 1.005002.
+python/python-ldap: Added (Python modules for LDAP clients).
+python/vatnumber: Added (Python module to validate VAT numbers).
+system/linuxconsoletools: New Maintainer.
+system/nvidia-driver: Updated for version 331.20.
+system/nvidia-kernel: Updated for version 331.20, cleanups.
+system/sdl-jstest: New Maintainer.
+system/udevil: Updated for version 0.4.3.
+system/xboxdrv-linux: New maintainer.
+system/zerofree: New Maintainer.
++--------------------------+
+Sat Dec 14 17:01:37 UTC 2013
+academic/EMBASSY: Updated for version 6.6.0.
+academic/EMBOSS: Updated for version 6.6.0.
+academic/PhyML: Updated for version 20131112.
+academic/bowtie2: Added (A tool for aligning sequencing reads).
+academic/bowtie: Updated for version 1.0.0.
+academic/cistrome-CEAS: Added (Cis-regulatory Element Annotation).
+academic/cistrome-MACS: Added (Model-based Analysis of ChIP-Seq).
+academic/cufflinks: Added (reference-guided assembler for RNA-Seq).
+academic/geoserver-control-flow: Added (request rate limitation)
+academic/geoserver-pyramid: Added (pyramid data store support)
+academic/mafft: Updated for version 7.130.
+academic/mkDSSP: Updated for version 2.2.1.
+academic/mrbayes: Updated for version 3.2.2.
+academic/paml: Added (Phylogenetic Analysis by Maximum Likelihood).
+academic/pamlX: Added (A GUI for PAML).
+academic/primer3: Updated for version 2.3.6.
+academic/samtools: Added (Sequence Alignment/Map Tools).
+academic/t_coffee: Updated for version 10.00.r1613.
+academic/tabix: Added (Generic indexer).
+academic/topdraw: Added (A sketchpad for protein topology diagrams).
+academic/tophat: Added (Splice junction mapper for RNA-Seq reads).
+academic/ugene: Updated for version 1.13.0.
+academic/vcftools: Added (A program designed for working with VCF).
+audio/mpd: Added optional deps + New Maintainer.
+audio/opus-tools: Added (utilities for opus)
+audio/opus: Updated for version 1.1.
+audio/opusfile: Added (opus decoding API)
+desktop/awesome: Removed note from the README
+desktop/copyq: Added (clipboard manager with advanced features).
+desktop/murrine-themes: Updated for version 0.98.6.
+desktop/screenfetch: Updated for version 3.2.2.
+desktop/thunar-sendto-clamtk: Updated for version 0.04.
+desktop/yawp: Updated for version 0.4.5.
+development/Cython: Updated for version 0.19.2.
+development/MySQL-python: Avoid downloading distribute during build.
+development/acpica: Updated for version 20131115.
+development/avra: Added (Atmel AVR Microcontrollers Assembler).
+development/geany-plugins: New Maintainer.
+development/mono-addins: Updated for version 20131127.
+development/mono: Updated for version 3.2.3.
+development/monodevelop-database: Updated for version 4.2.1.
+development/monodevelop-debugger-gdb: Updated for version 4.2.1.
+development/monodevelop: Updated for version 4.2.1.
+development/trac: New maintainer.
+games/Scorched3D: Updated for version 43.3d.
+games/angband: Added license.
+games/fortune_doctor_who: Added (quotes from Doctor Who).
+games/supertux2: Updated for version 0.3.4.
+games/xonotic: New maintainer, small clean up.
+graphics/digikam: Cleanup + added additional optional deps.
+graphics/goocanvas: Changed homepage.
+graphics/luxblend25: Added (LuxRender's interface for Blender 2.6x).
+graphics/luxrender: Added (rendering engine).
+graphics/pinta: Updated for version 20131027.
+graphics/shotwell: Added (Open source photo manager for GNOME)
+libraries/SFCGAL: Added (C++ wrapper around CGAL).
+libraries/dbus-sharp-glib: Added (a C# implementation of dbus-glib).
+libraries/dbus-sharp: Added (C# implementation of D-Bus).
+libraries/elementary: Added (toolkit set).
+libraries/emotion: Added (video library).
+libraries/ethumb: Added (thumbnail lib).
+libraries/genshi: Updated for version 0.7, new maintainer.
+libraries/goffice: Updated for version 0.10.9 + New Maintainer.
+libraries/gtk-sharp: Updated for version 2.12.22.
+libraries/lensfun: Switching to cmake, New maintainer.
+libraries/libburn: Updated for version 1.3.4.
+libraries/libgee1: Added (GObject-based interfaces and classes)
+libraries/libgee: Updated for version 0.12.0.
+libraries/libisoburn: Updated for version 1.3.4.
+libraries/libisofs: Updated for version 1.3.4.
+libraries/libquvi-scripts: Updated for version 0.4.21.
+libraries/libskk: Update deps to libgee1.
+libraries/libsuinput: Added (Thin userspace library)
+libraries/libx86emu: Updated for version 1.4.
+libraries/mysql-connector-python: Fix download link.
+libraries/ndesk-dbus-glib: Removed (Replaced by dbus-sharp-glib).
+libraries/ndesk-dbus: Removed (Replaced by dbus-sharp).
+libraries/notify-sharp: Updated for version 0.4.1.
+libraries/squish: Added (open-source DXT compression library).
+misc/WhatPulse: Removed (no SBo maintainer).
+misc/ibus-fbterm: Removed (no SBo maintainer)
+misc/ibus-hangul: Removed (no SBo maintainer)
+multimedia/guvcview: Updated for version 1.7.2.
+multimedia/plexmediaserver: Added (media center server).
+network/aoetools: Added (ATA Over Ethernet).
+network/bitcoin: Updated for version 0.8.6.
+network/cclive: Updated for version 0.7.16 + New Maintainer.
+network/libquvi: Use Shared Libs + New Maintainer.
+network/mangler: Removed (no SBo maintainer).
+network/mumble: New Maintainer.
+network/murmur: New Maintainer.
+network/opensmtpd: Updated for version 5.4.1p1.
+network/phpmyadmin: Updated for version 4.1.0.
+network/quvi: New Maintainer.
+network/weechat: Updated for version 0.4.2.
+office/gnumeric: Updated for version 1.12.9.
+office/pdfpc: Update deps to libgee1.
+perl/perl-Scalar-List-Utils: Added (Scalar and List Subroutines).
+perl/perl-Text-CSV: Added (Perl Text::CSV module).
+perl/perl-Time-Piece: Added (Perl Time::Piece module).
+python/psutil: Updated for version 1.2.1.
+python/pygoocanvas: Changed homepage.
+system/apache-tomcat: Fix location of tomcat-juli.jar.
+system/clamtk: Updated for version 5.01.
+system/eventlog: Updated for version 0.2.12+20120504+1700.
+system/gparted: Updated for version 0.17.0.
+system/hermit-font: Added (monospace font for programming).
+system/hwinfo: Updated for version 20.1.
+system/kc: Updated for version 2.3.2.
+system/libscrypt: Added (library that implements scrypt()).
+system/postgis: Add SFCGAL as an optional dependency.
+system/rsyslog: Updated for version 7.4.6.
+system/scrypt: Use SLKCFLAGS.
+system/spl-solaris: Added (solaris kernel API for linux).
+system/syslog-ng: Updated for version 3.5.2.
+system/tagainijisho: Added (Japanese dictionary and kanji lookup).
+system/terminology: Added (terminal emulator).
+system/thermal_daemon: Added (Linux Thermal Daemon).
+system/vagrant: Added (virtual development environments).
+system/vbindiff: Added (visual binary diff).
+system/virtualbox-addons: Updated for version 4.3.4.
+system/virtualbox-kernel-addons: Updated for version 4.3.4.
+system/virtualbox-kernel: Updated for version 4.3.4.
+system/virtualbox: Updated for version 4.3.4.
+system/xfsudo: Added (run graphical apps as root using sudo).
+system/zfs-on-linux: Added (native linux port of ZFS).
++--------------------------+
 Fri Dec  6 06:07:53 UTC 2013
 academic/geogit: Updated for version 0.6.0.
 audio/milkytracker: Updated for version 0.90.86.
