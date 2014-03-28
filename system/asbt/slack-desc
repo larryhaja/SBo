@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
     |-----handy-ruler------------------------------------------------------|
-asbt: asbt (a tool for managing packages in slackbuilds local repository)
+asbt: asbt (tool for managing packages in slackbuilds local repository)
 asbt:
-asbt: asbt acts like a package manager for your local copy of slackbuilds.
-asbt:
+asbt: asbt acts like a package manager for your local copy of slackbuilds,
+asbt: usually obtained from slackbuilds.org (SBo).
 asbt: 
 asbt: It supports searching, displaying info, getting, building,
 asbt: and installing/removing/upgrading packages. 
 asbt: 
-asbt: URL- https://github.com/aadityabagga/asbt
+asbt: URL- http://github.com/aadityabagga/asbt
 asbt:
 asbt: 
