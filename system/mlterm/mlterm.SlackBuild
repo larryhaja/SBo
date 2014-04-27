@@ -23,8 +23,8 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=mlterm
-VERSION=${VERSION:-3.3.3}
-BUILD=${BUILD:-1}
+VERSION=${VERSION:-3.3.5}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
@@ -79,6 +79,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --mandir=/usr/man \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --disable-static \
+  --with-x \
   --build=$ARCH-slackware-linux
 
 make

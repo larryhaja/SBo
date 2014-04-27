@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=thermal_daemon
-VERSION=${VERSION:-1.1}
+VERSION=${VERSION:-1.2.01}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -54,13 +54,17 @@ else
   LIBDIRSUFFIX=""
 fi
 
-set -e
+set -e	 
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/v$VERSION.tar.gz || tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
+if [ -e $CWD/"v"$VERSION.tar.gz ]; then
+ tar xvf $CWD/"v"$VERSION.tar.gz
+else
+ tar xvf $CWD/$PRGNAM-"v"$VERSION.tar.gz
+fi
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
@@ -82,9 +86,12 @@ find -L . \
 make
 make install DESTDIR=$PKG
 
-#Remove /etc/init and systemd stuff
+# Remove /etc/init but keep dbus config
 rm -r $PKG/etc/init
-rm -r $PKG/etc/dbus-1
+
+# Don't clobber configs
+mv $PKG/etc/thermald/thermal-conf.xml $PKG/etc/thermald/thermal-conf.xml.new
+mv $PKG/etc/thermald/thermal-cpu-cdev-order.xml $PKG/etc/thermald/thermal-cpu-cdev-order.xml.new
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
@@ -93,13 +100,12 @@ find $PKG/usr/man -type f -exec gzip -9 {} \;
 for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a \
-  COPYING README.txt thermal_daemon_usage.txt \
-  $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a COPYING README.txt $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
