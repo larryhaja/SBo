@@ -1,3 +1,563 @@
+Wed Jun  4 23:23:05 UTC 2014
+academic/calc: Updated for version 2.12.4.13 + new maintainer.
+academic/gretl: Added (Econometric Analysis Software).
+academic/mendeleydesktop: Updated for version 1.11.
+desktop/dwm: Update README.CONFIG.
+desktop/ee: Added (easyedit ee editor).
+desktop/gtk-engines: Fix checksum.
+desktop/notion: Updated for version 3_2014052800.
+desktop/ratpoison: New maintainer.
+desktop/slack-wallpapers: Updated for version 0.341.
+development/apache-ivy: Updated for version 2.3.0.
+development/brackets: Fix build on x86.
+development/gprolog: Updated for version 1.4.4 + new maintainer.
+development/ipython: Updated for version 2.1.0.
+development/mit-scheme: Updated for version 9.2.
+development/openjdk: Added (Open Implementation of JDK).
+development/poedit: Updated for version 1.6.5, new maintainer.
+development/qt-creator3: Added (Cross-Platform Qt IDE).
+games/chromium-bsu: Updated for version 0.9.15.1 + new maintainer.
+games/ufoai: Fixed typo + new maintainer.
+gis/geogit: Updated for version 0.9.0.
+graphics/mcomix: Updated for version 1.00 + new maintainer.
+graphics/pdf2svg: Added (convert PDF to SVG).
+graphics/textext: Added (Equations extension of inkscape).
+libraries/LucenePlusPlus: Added (text search engine)
+libraries/botocore: Updated for version 0.47.0.
+libraries/gtkspell3: Added (GTK3 spell checker interface library)
+libraries/qt5: Updated for version 5.3.0.
+libraries/wxGTK3: Added --enable-stl parameter.
+libraries/wxPython: Enable building of tools.
+libraries/xawplus: Update source URL.
+misc/gourmet: Updated for version 0.17.3.
+multimedia/HandBrake: Fixed CHECKSUM.
+multimedia/avidemux: New maintainer.
+multimedia/google-talkplugin: Updated for version 5.4.1.0.
+multimedia/musique: Updated for version 1.3 + new maintainer.
+multimedia/pitivi: New maintainer.
+multimedia/ripit: New maintainer.
+network/awscli: Updated for version 1.3.13.
+network/filezilla: Updated for version 3.8.1.
+network/flexget: Updated for version 1.2.136.
+network/hexchat: Updated for version 2.10.0.
+network/licq: Patched to allow qt4-gui plugin to be built.
+network/livestreamer: Updated for version 1.8.2.
+network/offlineimap: Updated for version 6.5.6.
+network/otter: Updated for version 0.9.01.
+network/socat: Updated for version 1.7.2.4 + new maintainer.
+network/surfraw: Updated for version 2.2.9 + new maintainer.
+office/CherryTree: Updated for version 0.33.4.
+office/texmaker: Updated for version 4.2.
+perl/perl-Try-Tiny: Fixed download link.
+perl/perl-test-warn: Fixed download link.
+python/gst-python: Script cleanup + new maintainer.
+python/piprot: Updated for version 0.6.0.
+system/asbt: Updated for version 0.9.4.
+system/dosemu: Script cleanup + new maintainer.
+system/duplicity: Add missing dep.
+system/phoronix-test-suite: Added (benchmarking suite)
+system/slpkg: Updated for version 1.3.9.
+system/testdisk: Updated for version 6.14 + new maintainer.
+system/trachet: Updated for version 1.0.7.
+system/ttf-ubuntu-font-family: New maintainer.
+system/usermin: Added (web-based interface for system administration)
+system/vagrant: Updated for version 1.6.3.
++--------------------------+
+Wed May 28 23:33:31 UTC 2014
+academic/ImageJ: Updated for version 1.48.
+academic/avogadro: Remove %README%.
+academic/cholmod: Remove %README%.
+academic/cufflinks: Updated for version 2.2.1.
+academic/fet: Updated for version 5.21.3.
+academic/gaw3: Added (A Free Gtk Analog Wave viewer).
+academic/gchemutils: Updated for version 0.14.8.
+academic/gtypist: Updated for version 2.9.4 + new maintainer.
+academic/ij-plugins-LOCI: Updated for version 5.0.1.
+academic/klu: Remove %README%.
+academic/ldl: Remove %README%.
+academic/mafft: Updated for version 7.154.
+academic/maxima: Updated for version 5.33.0.
+academic/root: Remove %README%.
+academic/seaview: Updated for version 4.5.1.
+academic/ugene: Updated for version 1.13.3.
+academic/zotero: Added (Manage and  share research sources).
+audio/TiMidity++: Remove %README%.
+audio/google-musicmanager: Updated for version 1.0.117.4968.
+audio/klick: Remove %README%.
+audio/kradio: Remove %README%.
+desktop/avant-window-navigator: Updated for version 0.4.2.
+desktop/awn-extras: New maintainer + script cleanup.
+desktop/copyq: Updated for version 2.2.0.
+desktop/gmrun: New maintainer + script cleanup.
+desktop/gtk-engines: Remove patch and cleanup + new maintainer.
+desktop/wbar: Updated for version 2.3.4 + new maintainer.
+development/Bottleneck: Remove %README%.
+development/atom: Updated for version 0.99.0.
+development/colordiff: Updated for version 1.0.13 + new maintainer.
+development/monodevelop: Remove %README%.
+development/ninja-ide: Updated for version 2.3 + new maintainer.
+development/ocaml: Updated for version 4.01.0 + new maintainer.
+development/pandas: Remove %README%.
+development/pyside-tools: Updated for version 0.2.15.
+development/shiboken: Updated for version 1.2.2.
+development/smartgithg: Added (Desktop Git Client).
+development/smartsvn: Added (Desktop SVN Client).
+development/spyder: Remove %README%.
+development/sqlitebrowser: Updated for version 3.1.0.
+development/texi2html: Added %README% to the info file.
+development/uemacs: Updated for version 20130222 + new maintainer.
+games/darkplaces: Updated for version 20140513.
+games/desmume: Remove %README%.
+games/doomsday: Updated for version 1.14.4.
+games/dustrac: Remove %README%.
+games/golly: Updated for version 2.6.
+gis/Fiona: Updated for version 1.1.5.
+gis/foxtrotgps: Remove %README%.
+gis/gdal: Remove %README%.
+gis/geoserver-control-flow: Updated for version 2.5.1.
+gis/geoserver-css: Updated for version 2.5.1.
+gis/geoserver-oracle: Updated for version 2.5.1.
+gis/geoserver-pyramid: Updated for version 2.5.1.
+gis/geoserver-wps: Updated for version 2.5.1.
+gis/geoserver: Updated for version 2.5.1.
+gis/grass: Remove %README%.
+graphics/CreateCloudMap: Remove %README%.
+graphics/darktable: Remove %README%.
+graphics/gthumb: Updated for version 3.2.8.
+graphics/lilypond: Remove %README%.
+graphics/phototonic: Updated for version 0.99.
+graphics/pinta: Updated for version 1.5.
+graphics/qelectrotech: Added (A Free Electrical Drawing Program).
+graphics/scrot: New maintainer + script cleanup.
+graphics/shutter: Remove %README%.
+graphics/vuescan: Remove %README%.
+libraries/CEGUI: Remove %README%.
+libraries/aqbanking: Remove %README%.
+libraries/bullet: Updated for version 2.82, new maintainer.
+libraries/enca: Remove %README%.
+libraries/giblib: New maintainer + script cleanup.
+libraries/gwenhywfar: Remove %README%.
+libraries/lablgtk: Updated for version 2.18.0 + new maintainer.
+libraries/libbluray: Remove %README%.
+libraries/libdesktop-agnostic: Updated for version 0.3.94.
+libraries/libetpan: Updated for version 1.5.
+libraries/libvirt-python: Updated for version 1.2.4.
+libraries/libvirt: Updated for version 1.2.4.
+libraries/lvtk: Remove %README%.
+libraries/miniupnpc: Remove %README%.
+libraries/motif: Added %README% to the info file.
+libraries/ocaml-findlib: Updated for version 1.4.1 + new maintainer.
+libraries/ocaml-ounit: Updated for version 2.0.0 + new maintainer.
+libraries/openmotif: Added %README% to the info file.
+libraries/pyftpdlib: Remove %README%.
+libraries/serf: Added (asynchronous HTTP client library).
+libraries/vte3: Updated for version 0.36.2.
+misc/brewtarget: Added (free brewing software).
+misc/glogg: Added (fast, smart log explorer).
+misc/jstock: Added (Stock Market Software).
+multimedia/HandBrake: Fix segfault when encoding to x264.
+multimedia/gnash: Remove %README%.
+multimedia/gtick: Added (A Metronome Application for GNU Linux).
+multimedia/kdenlive: Updated for version 0.9.8 + new maintainer.
+multimedia/miro: Remove %README%.
+multimedia/schroedinger: Update DOWNLOAD URL.
+multimedia/xvst: Remove %README%.
+network/Flootty: Updated for version 2.1.4.
+network/Pafy: Updated for version 0.3.44.
+network/QuiteRSS: Updated for version 0.16.0.
+network/bwm-ng: Script cleanup + new maintainer.
+network/claws-mail: Updated for version 3.10.0.
+network/dovecot: Remove %README%.
+network/dropbox: Updated for version 2.8.2.
+network/etherpad-lite: Remove %README%.
+network/exim: Updated for version 4.82.1.
+network/flexget: Updated for version 1.132.
+network/hexchat: Updated for version 2.9.6.1.
+network/kasp_updater: Remove %README%.
+network/libnftnl: Remove %README%.
+network/mps-youtube: Updated for version 0.01.46.
+network/putty: Added %README% to the info file.
+network/quagga: Remove %README%.
+network/roger-router: Remove %README%.
+network/skype4pidgin: Updated for version r664 + new maintainer.
+network/squidanalyzer: Remove %README%.
+network/synergy: Updated for version 1.5.0.
+network/tor: Remove %README%.
+office/Ted: Updated for version 2.23, new maintainer.
+office/full-pack: Remove %README%.
+office/grisbi: Remove %README%.
+office/homebank: Remove %README%.
+office/kbgoffice: Remove %README%.
+office/leafpad: New maintainer + script cleanup.
+office/pyspread: Remove %README%.
+office/sigil: Remove %README%.
+office/texlive: Added %README% to the info file.
+office/texmaker: Remove %README%.
+office/xtrkcad: Remove %README%.
+office/zim: Remove %README%.
+perl/perl-Encode-ISO2022: Remove %README%.
+perl/perl-Text-CharWidth: Remove %README%.
+python/apsw: Remove %README%.
+python/cssselect: Remove %README%.
+python/dnspython: Remove %README%.
+python/netifaces: Updated for version 0.10.4.
+python/pip: Updated for version 1.5.6.
+python/psutil: Remove %README%.
+python/pyinotify: Remove %README%.
+python/pyside: Updated for version qt4.8+1.2.2.
+python/python-musicbrainz2: Remove %README%.
+python/python3: Updated for version 3.4.1.
+python/rope: Remove %README%.
+python/s3cmd: Remove %README%.
+python/six: Remove %README%.
+python/virtualenv: Updated for version 1.11.6.
+system/acpi: Updated for version 1.7 + new maintainer.
+system/amanda: Remove %README%.
+system/clamav: Remove %README%.
+system/clamtk: Updated for version 5.06.
+system/cronie: Added %README% to the info file.
+system/csh: Added %README% to the info file.
+system/duplicity: Updated for version 0.6.24 + new maintainer.
+system/gnu-unifont: Moved to system category.
+system/google-droid-fonts: Updated for version 20140228.
+system/inxi: Updated for version 2.1.28 + new maintainer.
+system/lshw: Updated for version B.02.17.
+system/mlterm: Updated for version 3.3.6.
+system/mongodb: Updated for version 2.6.1.
+system/passwdqc: Added (password/passphrase strength checking).
+system/password-store: Remove %README%.
+system/pgsanity: Added (SQL syntax checker for PostgreSQL).
+system/plan9port: Updated for version 20140306.
+system/rsyslog: Added %README% to the info file.
+system/slpkg: Updated for version 1.2.9.
+system/spl-solaris: Remove %README%.
+system/syslog-ng: Added %README% to the info file.
+system/tamsyn-font: Moved to system category.
+system/tarsnap: Updated for version 1.0.35 + new maintainer.
+system/un-fonts-core: Moved to system category.
+system/univga-font: Added (unicode terminal font).
+system/virt-manager: Updated for version 1.0.1.
+system/virt-viewer: Remove %README%.
+system/xfsudo: Remove %README%.
++--------------------------+
+Tue May 20 16:55:35 UTC 2014
+audio/mpc: Updated for version 0.25 + new maintainer.
+audio/mpd: Updated for version 0.18.11.
+audio/ncmpc: Updated for version 0.21 + new maintainer.
+desktop/parcellite: Updated for version 1.1.7 + new maintainer.
+development/brackets: Updated for version 39.
+development/complexity: Added (Measure complexity of C source).
+development/egypt: Added (call graphs creator).
+development/tig: Updated for version 2.0.2.
+games/dolphin-emu: Updated for version 4.0.2.
+games/doomsday: Updated for version 1.14.3.
+games/jezzball-kazzmir: Added (2d arcade/puzzle game).
+games/solarwolf: Added (2d arcade game).
+games/yamagi-quake2: Updated for version 5.23.
+gis/Shapely: Updated for version 1.3.2.
+graphics/PyMOL: Updated for version 1.7.1.3.
+graphics/feh: Updated for version 2.12 + new maintainer.
+ham/chirp: Added (amateur radio programming tool).
+libraries/botocore: Updated for version 0.45.0.
+libraries/cdk: Updated for version 5.0_20140118.
+libraries/lua-zlib: Updated for version 20140201_c0014bc.
+libraries/luaexpat: Updated for version 1.3.0.
+libraries/luasec: Updated for version 20140421_903efaf.
+libraries/luasocket: Updated for version 20130909_6d5e40c.
+libraries/webkitgtk: Updated for version 2.4.2.
+libraries/yajl: Updated for version 2.1.0.
+misc/dvtm: Updated for version 0.11.
+multimedia/cantata: Updated for version 1.3.4.
+multimedia/ffmpeg2theora: Applied upstream fix for ffmpeg.
+multimedia/xbmc: Updated for version 13.0_r2.
+network/ClusterSSH: Updated for version 4.02_04.
+network/Flootty: Updated for version 2.1.3.
+network/awscli: Updated for version 1.3.11.
+network/claws-mail: New download URL.
+network/hydra: Updated for version 8.0.
+network/netsniff-ng: Updated for version 0.5.8.
+network/nginx: Fix temp directory path.
+network/shorewall-core: Updated for version 4.6.0.
+network/shorewall6: Updated for version 4.6.0.
+network/shorewall: Updated for version 4.6.0.
+network/you-get: Updated for version 0.3.28.3.
+network/zabbix_agentd: Updated for version 2.2.3.
+network/zabbix_proxy: Updated for version 2.2.3.
+network/zabbix_server: Updated for version 2.2.3.
+office/Ted: Update README.
+office/kbibtex: Updated for version 0.5.1.
+perl/perl-AnyEvent-Handle: Added (Perl Module).
+perl/perl-AnyEvent-I3: Added (Perl Module).
+perl/perl-CPAN-Changes: Added (Perl Module).
+perl/perl-CPANPLUS-Dist-Build: Update DEPS.
+perl/perl-CPANPLUS-Dist-Slackware: Update DEPS.
+perl/perl-CPANPLUS: Update DEPS.
+python/cov-core: Added (lib for pytest-cov).
+python/pygpgme: Added (GPGME library wrapper).
+python/pymysql: Added (python-mysql library).
+python/pytest-cov: Added (Coverage plugin for pytest).
+python/waitress: Updated for version 0.8.9.
+system/GentiumPlus: Added (typeface font).
+system/asbt: Updated for version 0.9.2.
+system/betty: Added (command-line helper).
+system/butterfly: Updated for version 1.5.2.
+system/clamav: Updated for version 0.98.3.
+system/hermit-font: Removed (replaced by otf-hermit).
+system/newrelic-sysmond: Updated for version 1.4.0.471.
+system/otf-hermit: Added (monospace font).
+system/slpkg: Updated for version 1.1.3.
+system/the_silver_searcher: Updated for version 0.22.0.
+system/trachet: Updated for version 1.0.6.
+system/vagrant: Updated for version 1.6.2.
++--------------------------+
+Wed May 14 01:04:28 UTC 2014
+audio/eawpats: Add missing package.
+audio/qtractor: Updated for version 0.6.1.
+desktop/catfish: Updated for version 1.0.2.
+desktop/cellwriter: New maintainer.
+desktop/homerun: Updated for version 1.2.4.
+desktop/spectrwm: Updated for version 2.5.1.
+desktop/xfce4-whiskermenu-plugin: Updated for version 1.3.2.
+development/Editra: Script cleanup.
+development/acpica: Updated for version 20140424.
+development/atom: Added (Chrome-based and Hackable text editor).
+development/coccinelle: Updated for version 1.0.0_rc21.
+development/fpc-source: Updated for version 2.6.4.
+development/gambas3: Updated for version 3.5.3.
+development/geany-plugins: Updated for version 1.24.
+development/geany: Updated for version 1.24.1.
+development/google-go-lang: Updated for version 1.2.2.
+development/groovy: Updated for version 2.3.0.
+development/leo: Script cleanup.
+development/mcrl2: Updated for version 201310.0. + new maintainer.
+development/menhir: Updated for version 20140422.
+development/mit-scheme: New maintainer.
+development/mlton: Updated for version 20130715 + new maintainer.
+development/smalltalk: New maintainer.
+development/spin: Updated for version 6.3.0 + new maintainer.
+development/tstoolbox: Updated for version 0.8.3.
+development/wxHexEditor: New maintainer + script cleanup.
+games/angband: Update README.
+games/arnold-cpc: Added (Amstrad CPC emulator).
+games/darkplaces: Updated for version 20140430.
+games/dice: Added (Discrete Integrated Circuit Emulator).
+games/doomsday: Updated for version 1.14.2.
+games/fuse-emulator: Added (the Free Unix Spectrum Emulator).
+games/hexglass: Added (Tetris-like puzzle game).
+games/javacpc: Added (Amstrad CPC-Emulator).
+games/mars: Update DEPS.
+games/stone_soup: Updated for version 0.14.1.
+games/stratagus: Added (RTS game engine).
+games/wargus: Added (Warcraft II data game set).
+games/xcpc: Added (Amstrad CPC emulator).
+graphics/CairoSVG: Added (SVG Converter).
+graphics/converseen: Updated for version 0.7.1.
+graphics/digikam: Updated for version 4.0.0.
+libraries/IMAPClient: Updated for version 0.11.
+libraries/allegro: BUILD bump, add MIDI playback support.
+libraries/botocore: Updated for version 0.43.0.
+libraries/enum34: Updated for version 1.0.
+libraries/libavc1394: Update MAINTAINER.
+libraries/libiec61883: Update MAINTAINER.
+libraries/libpgf: Add SlackBuild script to doc.
+libraries/libscrypt: Updated for version 1.19.
+libraries/libspectrum: Added (emulator support library).
+libraries/libvdpau: Update MAINTAINER.
+misc/recode: Fix MAN and INFO dir.
+misc/vdpauinfo: Update MAINTAINER.
+multimedia/beets: Updated for version 1.3.6.
+multimedia/ffmpeg2theora: Fixed build against ffmpeg 2.1.
+multimedia/mjpegtools: Update MAINTAINER.
+multimedia/wxcam: Update MAINTAINER.
+multimedia/x265: Updated for version 1.0.
+network/Flootty: Updated for version 2.1.1.
+network/awscli: Updated for version 1.3.9.
+network/bitlbee: Updated for version 3.2.1.
+network/dillo: Updated for version 3.0.4.
+network/elinks: Added gopher protocol.
+network/frostwire: Update MAINTAINER.
+network/konversation: Updated for version 1.5.
+network/licq: Updated for version 1.8.1 + new maintainer.
+network/mps: Updated for version 0.20.14.
+network/node: Updated for version 0.10.28.
+network/phpmyadmin: Updated for version 4.2.0.
+network/wildfly: Fix port number.
+network/wireshark: Updated for version 1.10.7.
+office/ProjectLibre: Updated for version 1.5.9.
+office/evince: Updated for version 3.12.1.
+office/libreoffice-helppack: Updated for version 4.2.4.
+office/libreoffice-langpack: Updated for version 4.2.4.
+office/libreoffice: Updated for version 4.2.4.
+office/texlive: Fix setting LD_LIBRARY_PATH during build
+perl/perl-Devel-StackTrace: Updated for version 1.32.
+perl/perl-Exception-Class: Updated for version 1.38.
+perl/perl-IPC-Run: Added (Perl Module).
+perl/perl-Net-Patricia: Added (Perl Module).
+perl/perl-NetAddr-IP: Updated for version 4.073.
+perl/perl-String-ShellQuote: Added (Perl Module).
+perl/perl-Test-SharedFork: Added (Perl Module).
+perl/perl-Test-TCP: Added (Perl Module).
+perl/perl-Time-Out: Added (Perl Module).
+perl/perl-ZMQ-Constants: Added (Perl Module).
+perl/perl-xml-twig: Updated for version 3.48.
+python/PyGithub: Updated for version 1.25.0.
+python/dulwich: Updated for version 0.9.6.
+python/jmespath: Updated for version 0.4.1.
+python/pbr: Added (managing setuptools packaging).
+python/pep8: Updated for version 1.5.6.
+python/pip: Updated for version 1.5.5.
+python/psutil: Updated for version 2.1.1.
+python/py3cairo: Fixed build with Python 3.4.0.
+python/pygobject3: Added Python3 detection + Update README.
+python/pysetuptools: Updated for version 3.6.
+python/virtualenv: Updated for version 1.11.5.
+system/TermRecord: Updated for version 1.1.3.
+system/asbt: Updated for version 0.9.0.
+system/dar: Updated for version 2.4.13.
+system/docker: Updated for version 0.11.1.
+system/gnome-vfs: BUILD bump, add Samba support.
+system/hh: Updated for version 1.12.
+system/komparator4: Updated for version 1.0 + new maintainer.
+system/nvidia-driver: Update MAINTAINER.
+system/nvidia-kernel: Update MAINTAINER.
+system/nvidia-legacy173-driver: Update MAINTAINER.
+system/nvidia-legacy173-kernel: Update MAINTAINER.
+system/nvidia-legacy304-driver: Update MAINTAINER.
+system/nvidia-legacy304-kernel: Update MAINTAINER.
+system/nvidia-legacy96-driver: Update MAINTAINER.
+system/nvidia-legacy96-kernel: Update MAINTAINER.
+system/pce: Added (PC emulator).
+system/qemu: Fix Typo.
+system/slpkg: Added (Slackware tool in Python).
+system/trmaid: Updated for version 0.1.9.
+system/ttop: Updated for version 0.8.1.
+system/udiskie: Updated for version 0.8.0.
+system/vagrant: Updated for version 1.6.0.
+system/virtualbox-addons: Updated for version 4.3.10.
+system/virtualbox-extension-pack: Updated for version 4.3.10.
+system/virtualbox-kernel-addons: Updated for version 4.3.10.
+system/virtualbox-kernel: Updated for version 4.3.10.
+system/virtualbox: Updated for version 4.3.10.
+system/xarchiver: Updated for version 0.5.3.
+system/xfburn: Updated for version 0.5.2 + new maintainer.
++--------------------------+
+Mon May  5 01:27:05 UTC 2014
+academic/bibus: Updated for version 1.5.2 + new maintainer.
+academic/fet: Added (academic timetable).
+academic/iTest: Added (computer-based tests software).
+audio/Pd-extended: Fix build on x86.
+audio/volume.app: Fix mute/unmute in ALSA.
+desktop/anki: Updated for version 2.0.26.
+desktop/pdfsam: Added (complete pdf editor).
+desktop/py3status: Updated for version 1.5.
+desktop/quickswitch-i3: Added (utility for i3 wm).
+development/SDL2_gfx: Added (addon library for the SDL2).
+development/alloy: Updated for version 4.2 + new maintainer.
+development/anjuta: Updated for version 3.12.0.
+development/bigloo: Updated for version 4.1a_2 + new maintainer.
+development/eclipse-cpp: Updated for version 4.3.2.
+development/eclipse: Updated for version 4.3.2.
+development/fpc: Updated for version 2.6.4.
+development/gauche: Updated for version 0.9.3.3 + new maintainer.
+development/groovy: Updated for version 2.2.2 + new maintainer.
+development/lazarus: Updated for version 1.2.2.
+development/love-legacy072: Moved to development category.
+development/love-legacy080: Added (2D game development framework).
+development/netbeans: Updated for version 8.0.
+development/tig: Updated for version 2.0.1; New maintainer.
+development/unifdef: Added (processes C conditional compilation).
+games/asc: Added (turn based strategy game).
+games/ceferino: Added (2d balloon-breaking game).
+games/doomsday: Added (portable game engine).
+games/koules: Use ALSA instead of OSS.
+games/mari0: Fix DEPS.
+games/mrrescue: Added (2d platform game).
+games/notpacman: Fix ARCH.
+games/nottetris2: Added (tetris clone with physics).
+games/openmortal: Added (2D fighting game).
+games/opentyrian: Added (arcade-style vertical scrolling shooter).
+games/smashbattle: Script cleanup.
+games/tome4: Remove icon.
+games/yar: Added (2d shooting game).
+graphics/advancecomp: Updated for version 1.19.
+graphics/kamerka: Updated for version 0.8.5.
+graphics/phototonic: Updated for version 0.98.
+ham/qrq: Fixup man and doc installation
+libraries/Kivy: Update Source and README.
+libraries/MyGUI: Added (fast, simple and flexible GUI).
+libraries/PyODE: Added (object-orientated Python-ODE bindings).
+libraries/gdl: Updated for version 3.12.0.
+libraries/libdsk: Added (library for accessing discs).
+libraries/libearth: Updated for version 0.2.0.
+libraries/libgda: Compress man page.
+libraries/libvirt-python: Updated for version 1.2.3.
+libraries/libvirt: Updated for version 1.2.3.
+libraries/poco: Updated for version 1.4.6p4.
+libraries/python-librtmp: Updated for version 0.2.0.
+misc/par2cmdline: Updated for version 0.6.6.
+misc/recode: Updated for version 3.7_beta2.
+multimedia/gtkpod: BUILD bump, don't include static libraries.
+network/EarthReader-Web: Updated for version 0.2.0.
+network/FireWorks: Updated for version 0.83.
+network/Pafy: Updated for version 0.3.42.
+network/aldryn-client: Updated for version 0.8.3.
+network/claws-mail: Updated for version 3.9.3.
+network/flexget: Updated for version 1.2.127.
+network/livestreamer: Updated for version 1.8.0.
+network/otter: Updated for version 0.5.01.
+network/pidgin-whatsapp: Added (WhatsApp Plugin for Pidgin).
+network/remmina: Fixed empty BUILD variable.
+network/sshuttle: Added (SSH proxy server).
+network/translate: README update.
+office/CherryTree: Added (hierarchical note taking application).
+office/MasterPDFEditor: Added (PDF Editor)
+office/moneydance: Updated for version 2014.967.
+office/openoffice.org: Updated for version 4.1.0.
+python/PySDL2: Added (Python wrapper around the SDL2).
+python/astroid: Updated for version 1.1.1.
+python/clint: Updated for version 0.3.7.
+python/itsdangerous: Updated for version 0.24.
+python/pygobject3: Updated for version 3.10.2.
+python/python-libsass: Added (SASS for Python).
+python/requirements-detector: Updated for version 0.2.2.
+python/sge-pygame: Updated for version 0.9.1.
+system/TermRecord: Added (Terminal session recorder).
+system/autoarchive: Updated for version 1.1.1.
+system/barman: Updated for version 1.3.2.
+system/crunch: Updated for version 3.5.
+system/kexec-tools: Updated for version 2.0.6.
+system/midisport-firmware: Added udev patch.
+system/qemu: Adjust README.
+system/sakura: Updated for version 3.1.3.
+system/yelp-tools: Added (documentation checker)
+system/yelp-xsl: Added (stylesheet for Yelp)
+system/yelp: Added (Yelp Help Browser)
++--------------------------+
+Tue Apr 29 11:45:42 UTC 2014
+development/FreeBASIC: Added (BASIC compiler).
+games/game_1945: Added (simple top-down shooter)
+games/openyahtzee: Added (dice game).
+games/pacman-arena: Added (3D maze game).
+games/scid_vs_pc: Updated for version 4.12.
+games/simplesok: Added (a simple Sokoban game).
+games/tome4: Script cleanup.
+games/yahtzee: Added (well-known dice game).
+gis/geogit-py: Updated for version 0.8.
+libraries/botocore: Updated for version 0.42.0.
+libraries/tbb: Updated for version 4.2u3.
+libraries/vte3: Updated for version 0.36.1.
+multimedia/flashplayer-plugin: Updated for version 11.2.202.356.
+network/awscli: Updated for version 1.3.8.
+network/nft: Added (nftables command-line interface).
+network/prosody: Updated for version 0.9.4.
+network/translate: Added (command line translator).
+network/weetwit: Updated for version 0.10.2.
+office/python-gcalcli: Updated for version git20140429.
+python/PyGithub: Added (Library to use Github API v3).
+system/graphterm: Updated for version 0.52.0.
+system/patool: Updated for version 1.5.
+system/qemu: Updated for version 2.0.0.
++--------------------------+
 Sun Apr 27 17:21:26 UTC 2014
 audio/volume.app: Added (windowmaker volume control dockapp).
 desktop/homerun: Moved from System category.
