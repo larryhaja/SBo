@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+     |-----handy-ruler------------------------------------------------------|
+pysed: pysed (sed like utility)
+pysed:
+pysed: Pysed is a Python stream editor, is used to perform basic text
+pysed: ransformations from a file. It reads text, line by line, from
+pysed: a file and replace, insert or print all text or specific area.
+pysed: One of the elements of distinction is the use of colors.
+pysed:
+pysed: Homepage: https://github.com/dslackw/pysed
+pysed:
+pysed:
+pysed:
