@@ -2,10 +2,10 @@
 
 # Slackware build script for libvirt
 # Written by Michal Bialozor <bialyy@o2.pl>
-# Maintained by Bogdan Radulescu <bogdan@nimblex.net>
+# Maintained by Robby Workman <rworkman@slackbuilds.org>
 
 PRGNAM=libvirt
-VERSION=${VERSION:-1.2.6}
+VERSION=${VERSION:-1.2.8}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 

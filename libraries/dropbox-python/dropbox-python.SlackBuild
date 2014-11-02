@@ -23,8 +23,8 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=dropbox-python
-SCRNAM=dropbox
-VERSION=${VERSION:-2.0.0}
+SCRNAM=$(printf $PRGNAM | cut -c1-7)
+VERSION=${VERSION:-2.2.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -89,4 +89,3 @@ cat $CWD/slack-desc > $PKG/install/slack-desc
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
-

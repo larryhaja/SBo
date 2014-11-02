@@ -6,13 +6,20 @@
 
 # Licensed under the WTFPL. See http://www.wtfpl.net/txt/copying/ for details.
 
+# 20140916 bkw: bump BUILD to 2.
+# add man page.
+
+# 20140827 bkw: version bump, reset BUILD to 1.
+# oblige 6.10 is nice, but it *only* supports the Doom games, so I'll
+# add an oblige-legacy4 build for the old version.
+
 # 20140213 bkw: bump BUILD to 2.
 # Makefile.unixy updated so it installs data/doom[12]_boss (thanks to Black
 # Rider for the bug report). Also get rid of +x permissions on the data files
 # in /usr/share.
 
 PRGNAM=oblige
-VERSION=${VERSION:-4.28b}
+VERSION=${VERSION:-6.10}
 BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 
@@ -45,7 +52,7 @@ fi
 
 set -e
 
-SRCVER=$( echo $VERSION | sed 's/\.//g' )
+SRCVER=${VERSION//./}
 SRCNAM="Oblige" # grrrr!
 
 rm -rf $PKG
@@ -62,7 +69,7 @@ find -L . \
  -exec chmod 644 {} \;
 
 # Makefile.unixy originally came from the oblige author, I've hacked
-# it up to make it work with oblige 4.x and SBo's fltk13.
+# it up to make it work with oblige 6.x and SBo's fltk13.
 cp $CWD/Makefile.unixy Makefile
 
 # Fix a missing include
@@ -70,6 +77,10 @@ sed -i '1i#include <unistd.h>' gui/lib_util.cc
 
 make INSTALL_PREFIX=/usr OPTIMISE="$SLKCFLAGS" FLTK_CONFIG=fltk13-config
 make install INSTALL_PREFIX=$PKG/usr
+
+# man page written for this build (based on --help output)
+mkdir -p $PKG/usr/man/man6
+gzip -9c < $CWD/$PRGNAM.6 > $PKG/usr/man/man6/$PRGNAM.6.gz
 
 mkdir -p $PKG/usr/share/pixmaps $PKG/usr/share/applications
 cat $CWD/$PRGNAM.png > $PKG/usr/share/pixmaps/$PRGNAM.png

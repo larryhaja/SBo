@@ -6,8 +6,11 @@
 
 # Licensed under the WTFPL. See http://www.wtfpl.net/txt/copying/ for details.
 
+# 20141030 bkw: take the tiny little patches out of DOWNLOAD= since
+# they were included in the script tarball all along.
+
 PRGNAM=xa
-VERSION=${VERSION:-2.3.5}
+VERSION=${VERSION:-2.3.6}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
