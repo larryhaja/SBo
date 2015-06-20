@@ -3,6 +3,7 @@
 # Slackware build script for vcmi
 
 # Copyright 2014 Dimitris Zlatanidis Greece-Orestiada
+# Copyright 2015 Petar Petrov, petar.petrov@student.oulu.fi
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,7 +24,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=vcmi
-VERSION=${VERSION:-0.96}
+VERSION=${VERSION:-0.98}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -60,7 +61,7 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
+tar xvf $CWD/$VERSION.tar.gz
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
@@ -68,9 +69,6 @@ find -L . \
   -o -perm 511 \) -exec chmod 755 {} \; -o \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
-
-# install vcmi engine in /usr/share/games
-patch -p1 < $CWD/vcmi_share.patch
 
 mkdir -p build
 cd build

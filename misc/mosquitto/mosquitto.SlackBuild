@@ -23,7 +23,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=mosquitto
-VERSION=${VERSION:-1.3.2}
+VERSION=${VERSION:-1.4.2}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -76,7 +76,6 @@ cd build
     -DLIB_SUFFIX=${LIBDIRSUFFIX}
   make
   make install DESTDIR=$PKG
-  make -C ../lib/python install DESTDIR=$PKG prefix=/usr
 cd ..
 
 # Preserve existing mosquitto.conf during package installation
@@ -91,7 +90,7 @@ for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; r
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
-  LICENSE.txt LICENSE-3rd-party.txt compiling.txt mosquitto.conf *.example readme.txt \
+  LICENSE.txt CONTRIBUTING.md compiling.txt mosquitto.conf *.example examples readme.txt \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 

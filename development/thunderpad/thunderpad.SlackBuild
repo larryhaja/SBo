@@ -24,12 +24,12 @@
 
 PRGNAM=thunderpad
 SRCNAM=Thunderpad
-VERSION=${VERSION:-0.9.3}
-SRCVERSION=${SRCVERSION:-3f463d714d38b32a06b84808a0338fd273b2e3f7}
+VERSION=${VERSION:-20150313}
+SRCVERSION=${SRCVERSION:-ea28d165ab8872ce722f1638a80d8d4942609024}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
-DOCS="authors.txt license.txt readme.md"
+DOCS="contributors.txt license.txt readme.md"
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in

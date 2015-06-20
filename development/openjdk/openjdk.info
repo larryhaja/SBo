@@ -1,22 +1,22 @@
 PRGNAM="openjdk"
-VERSION="7u71b14"
+VERSION="7u79b14"
 HOMEPAGE="http://openjdk.java.net"
-DOWNLOAD="http://icedtea.classpath.org/download/source/icedtea-2.5.3.tar.gz \
-  http://icedtea.classpath.org/download/drops/icedtea7/2.5.3/openjdk.tar.bz2 \
-  http://icedtea.classpath.org/download/drops/icedtea7/2.5.3/corba.tar.bz2 \
-  http://icedtea.classpath.org/download/drops/icedtea7/2.5.3/jaxp.tar.bz2 \
-  http://icedtea.classpath.org/download/drops/icedtea7/2.5.3/jaxws.tar.bz2 \
-  http://icedtea.classpath.org/download/drops/icedtea7/2.5.3/jdk.tar.bz2 \
-  http://icedtea.classpath.org/download/drops/icedtea7/2.5.3/hotspot.tar.bz2 \
-  http://icedtea.classpath.org/download/drops/icedtea7/2.5.3/langtools.tar.bz2"
-MD5SUM="dfd8f5f356a5fc05e63bb38e7c4c030a \
-  730679eec8f645c05c0c518ae73a6f6d \
-  b7dbab5f1ca314d613a9e7cf0a5939e1 \
-  40e6d2e0e6b35a671bf1b0908c63ef9d \
-  1615b1c82ac6a189d6805eedb8692402 \
-  7cc129b8ff8f195583cf40620588e013 \
-  e58128728b81b99bf94d9cac39015975 \
-  fd28b781a95a609cd966c7048486e4ca"
+DOWNLOAD="http://icedtea.classpath.org/download/source/icedtea-2.5.5.tar.xz \
+  http://icedtea.classpath.org/download/drops/icedtea7/2.5.5/openjdk.tar.bz2 \
+  http://icedtea.classpath.org/download/drops/icedtea7/2.5.5/corba.tar.bz2 \
+  http://icedtea.classpath.org/download/drops/icedtea7/2.5.5/jaxp.tar.bz2 \
+  http://icedtea.classpath.org/download/drops/icedtea7/2.5.5/jaxws.tar.bz2 \
+  http://icedtea.classpath.org/download/drops/icedtea7/2.5.5/jdk.tar.bz2 \
+  http://icedtea.classpath.org/download/drops/icedtea7/2.5.5/langtools.tar.bz2 \
+  http://icedtea.classpath.org/download/drops/icedtea7/2.5.5/hotspot.tar.bz2"
+MD5SUM="362ab805f8da0f85fa826e76a11e1727 \
+  6edc6aa04cb261ebc382d53e7072d946 \
+  999fa486ab1eaddaba220c19d24d1b33 \
+  139a569cf9d78ae7354fd407750a6fe2 \
+  7bc5e8735d9db574caf1c658d248f69a \
+  81ee4210f1c4315af9069f8153a8e7a1 \
+  117ae9e846a00e287060035b930c299d \
+  51b6547c4a27c4cf6a134dca0f59e3ae"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
 REQUIRES="apache-ant"

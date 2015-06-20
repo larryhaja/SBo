@@ -1,10 +1,10 @@
 PRGNAM="makemkv"
-VERSION="1.9.1"
+VERSION="1.9.3"
 HOMEPAGE="http://www.makemkv.com/"
-DOWNLOAD="http://www.makemkv.com/download/makemkv-oss-1.9.1.tar.gz \
-          http://www.makemkv.com/download/makemkv-bin-1.9.1.tar.gz"
-MD5SUM="523c44d21877b780504f63ac2a963d2c \
-        10ba0469a4a2e6df6b8be3d76c526c30"
+DOWNLOAD="http://www.makemkv.com/download/makemkv-oss-1.9.3.tar.gz \
+          http://www.makemkv.com/download/makemkv-bin-1.9.3.tar.gz"
+MD5SUM="8e93c75748ce1460ac96c86cb838f144 \
+        a865be4b09eab415667722bdf84aa083"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
 REQUIRES="ffmpeg"
