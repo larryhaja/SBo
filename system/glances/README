@@ -1,17 +1,30 @@
-Glances is a free (LGPL) cross-platform curses-based monitoring tool,
-which aims to present a maximum of information in a minimum of space
-and ideally fits in a classical 80x24 terminal, or larger for additional
-information.
+Glances is a free (LGPL) cross-platform curses-based system monitoring tool
+which aims to present a maximum of information in a minimum of space, ideally
+to fit in a classical 80x24 terminal, or larger for additional data as it can
+adapt the displayed information dynamically, depending on the terminal size.
 
-Glances can adapt dynamically the displayed information depending on
-the terminal size. It can also work in a client/server mode for remote
-monitoring.
+This tool can also work in client/server mode. Remote monitoring can be done
+via terminal or web interface.
 
-This tool is written in Python and uses the psutil library to fetch the
-statistical values from key elements, like CPU, load average, memory,
-network, disks, file systems, processes, etc.
+Glances is written in Python and uses the psutil library to fetch statistical
+values from key elements, like CPU, load average, memory, network, disks,
+file systems, processes, etc.
 
-Optional dependencies are Jinja2 (for HTML output), hddtemp (for HHD
-temperature monitoring support) and python3. Others not available on SBo
-are pysensors (for HW monitoring support) and batinfo (for battery
-monitoring support).
+OPTIONAL DEPENDENCIES
+
+Available on SBo: batinfo (battery monitoring support), bottle (Web server
+mode), hddtemp (HHD temperature monitoring support), matplotlib (generation
+of graphs from history data), netifaces (auto discoverer mode), py3sensors
+(HW monitoring support), pymdstat (RAID support), python3, statsd (StatsD
+export module), ysnmp (SNMP support).
+
+Not available on SBo: docker-py (Docker monitoring support), influxdb (InfluxDB
+export module), pika (RabbitMQ/ActiveMQ export module), pystache (action script
+feature), zeroconf (auto discoverer mode).
+
+NOTES
+
+1) When launching Glances in a terminal with a bright background, the option
+'--theme-white' is recommended.
+
+2) For optional auto discoverer mode, both zeroconf and netifaces are needed.

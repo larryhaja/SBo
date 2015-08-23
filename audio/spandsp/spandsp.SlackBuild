@@ -2,7 +2,7 @@
 #
 # Slackware build script for spandsp
 #
-# Copyright 2013 slacksam (sam_web@yahoo.de)
+# Written 2014 by Marek Srejma <sam_web@yahoo.de>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -24,7 +24,7 @@
 
 PRGNAM=spandsp
 VERSION=${VERSION:-0.0.6}
-SUBVERSION=${SUBVERSION:-pre21}
+SUBVERSION=${SUBVERSION:-""}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -58,32 +58,31 @@ fi
 set -eu
 
 rm -rf $PKG
-mkdir -p $TMP $PKG
+mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION$SUBVERSION.tgz
-cd $PRGNAM-$VERSION
-chown -R root:root .
+tar xvf $CWD/$PRGNAM-$VERSION$SUBVERSION.tar.gz
+chown -R root:root $PRGNAM-$VERSION
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
   -o -perm 511 \) -exec chmod 755 {} \; -o \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
- -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+cd $PRGNAM-$VERSION
 
 CXXFLAGS="$SLKCFLAGS" \
 CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
-  --disable-static \
+  --enable-static=no \
   --build=$ARCH-slackware-linux
 
 make
 make install DESTDIR=$PKG
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a \
-  AUTHORS COPYING ChangeLog DueDiligence INSTALL NEWS README README.testdata \
+cp -a AUTHORS COPYING ChangeLog DueDiligence INSTALL NEWS README README.testdata \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 

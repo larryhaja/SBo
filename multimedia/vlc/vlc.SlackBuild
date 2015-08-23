@@ -28,8 +28,8 @@
 # -----------------------------------------------------------------------------
 
 PRGNAM=vlc
-VERSION=${VERSION:-2.1.5}
-BUILD=${BUILD:-1}
+VERSION=${VERSION:-2.1.6}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
@@ -86,7 +86,12 @@ unzip -o $CWD/$DECKLINKSDK
 cp -p Blackmagic\ DeckLink\ SDK\ ${DECKLINK_SDK_VERSION}/Linux/include/* decklink/include/
 
 patch -p0 < $CWD/patch-freerdp.diff
+patch -p0 < $CWD/patch-freerdp_1_2.diff
 patch -p0 < $CWD/patch-projectM-fontpath.diff
+
+patch -p0 < $CWD/patch_libavcodec_version.diff
+patch -p0 < $CWD/patch_vlc_cache_gen.diff
+autoreconf -f
 
 chown -R root:root .
 find -L . \
@@ -110,7 +115,7 @@ LDFLAGS="$SLKLDFLAGS" \
   --with-kde-solid=no \
   --with-decklink-sdk=$TMP/$PRGNAM-$VERSION/decklink
 
-make -j4
+make
 make DESTDIR=$PKG install
 
 mkdir -p $PKG/usr/man/man1

@@ -1,0 +1,14 @@
+PRGNAM="kodi"
+VERSION="14.2"
+HOMEPAGE="http://xbmc.org/"
+DOWNLOAD="https://github.com/xbmc/xbmc/archive/14.2-Helix.tar.gz \
+          https://github.com/opdenkamp/xbmc-pvr-addons/archive/Helix_rc3.tar.gz \
+          https://github.com/xbmc/FFmpeg/archive/2.4.6-Helix.tar.gz"
+MD5SUM="aa534c483cdd6cda71e5350c2094175b \
+        5fd7b09f11e0fb6c3a8874d4ed20a694 \
+        92f6208f6908ef1586bf34764ebeb073"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES="jdk libass libmpeg2 libmodplug yajl tinyxml"
+MAINTAINER="Larry Hajali"
+EMAIL="larryhaja[at]gmail[dot]com"

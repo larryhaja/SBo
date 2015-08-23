@@ -1,0 +1,11 @@
+PRGNAM="keybase-client"
+VERSION="0.8.14"
+HOMEPAGE="https://keybase.io"
+DOWNLOAD="https://github.com/keybase/node-client/archive/v0.8.14.tar.gz"
+MD5SUM="be9b061c0807815eba28a73f9b7b6f87"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES="node"
+MAINTAINER="Navigium"
+EMAIL="beni.nospam@sdf.org"
+

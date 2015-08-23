@@ -1,9 +1,9 @@
---- jail.conf.new.orig	2014-04-17 22:24:50.833320465 -0500
-+++ jail.conf.new	2014-04-17 22:25:12.317055028 -0500
+--- jail.conf.orig	2015-06-06 21:28:47.750986224 -0500
++++ jail.conf.new	2015-06-06 21:29:11.158336003 -0500
 @@ -33,7 +33,7 @@
  [INCLUDES]
  
- #before = paths-disto.conf
+ #before = paths-distro.conf
 -before = paths-debian.conf
 +before = paths-slackware.conf
  

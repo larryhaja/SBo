@@ -24,8 +24,10 @@
 
 PRGNAM=brackets
 SRCNAM=Brackets
-RELEASE=Release
-VERSION=${VERSION:-0.44}
+RELEASE=Extract
+VERSION=${VERSION:-1.4}
+BUILD=${BUILD:-1}
+TAG=${TAG:-_SBo}
 
 # Allow $ARCH to be preset before running the script.  This is useful in the
 # case where someone is running a 32-bit chroot environment under an x86_64
@@ -38,9 +40,6 @@ case "$ARCH" in
   *) echo "Package for $(uname -m) architecture is not available." ; exit 1 ;;
 esac
 
-BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}
-
 set -e
 
 CWD=$(pwd)
@@ -51,7 +50,7 @@ OUTPUT=${OUTPUT:-/tmp}
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $PKG
-ar p $CWD/${SRCNAM}.${RELEASE}.${VERSION}.${DEBARCH}.deb data.tar.xz | tar xJv
+ar p $CWD/${SRCNAM}.${VERSION}.${RELEASE}.${DEBARCH}.deb data.tar.xz | tar xJv
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \

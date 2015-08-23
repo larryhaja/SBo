@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# Slackware build script for nagios:
-# IT infrastructure monitoring system
+# Slackware build script for nagios
 
 # Copyright 2009-2013 Niels Horn, Rio de Janeiro, RJ, Brazil
+# Copyright 2014, 2015  Mario Preksavec, Zagreb, Croatia
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -12,7 +12,7 @@
 # 1. Redistributions of this script must retain the above copyright
 #    notice, this list of conditions and the following disclaimer.
 #
-# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ''AS IS'' AND ANY EXPRESS OR IMPLIED
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
 # WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 # MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
 # EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
@@ -23,11 +23,9 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# revision date 2013/03/24
-
 PRGNAM=nagios
-VERSION=${VERSION:-3.5.0}
-BUILD=${BUILD:-1}
+VERSION=${VERSION:-4.0.8}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
@@ -80,7 +78,7 @@ mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM
 tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
-cd $PRGNAM
+cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
@@ -129,6 +127,10 @@ make install-exfoliation
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+# Use monitoring-plugins instead of nagios-plugins
+sed -i 's#\($USER1$=/usr/libexec/\)nagios#\1monitoring-plugins#' \
+  $PKG/etc/nagios/resource.cfg
 
 # Change configuration files to .new
 find $PKG/etc/$PRGNAM/ -name *.cfg | while read cfg ; do mv $cfg $cfg.new ; done

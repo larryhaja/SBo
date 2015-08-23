@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright 2010-2014  Robby Workman, Northport, Alabama, USA
+# Copyright 2010-2015  Robby Workman, Tuscaloosa, Alabama, USA
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -21,7 +21,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=flashplayer-plugin
-VERSION=${VERSION:-11.2.202.411}
+VERSION=${VERSION:-11.2.202.508}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -71,8 +71,9 @@ if [ "$ARCH" = "x86_64" ]; then
 fi
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-mv $PKG/readme.txt $PKG/usr/doc/$PRGNAM-$VERSION
+mv $PKG/readme.txt $PKG/LGPL/* $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+rm -rf $PKG/LGPL
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc

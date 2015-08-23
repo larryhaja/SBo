@@ -23,6 +23,45 @@
 
 # Public changelog: https://www.dropbox.com/release_notes
 # Changelog:
+# 26/Jul/2015 * Updated to latest version 3.8.5
+#             * Non-Linux users get to use gmail integration.
+#             * Most DEs I have tested have working tray icons, XFCE's
+#               tray still does not work, though the engine runs well.
+# 19/Jul/2015 * Updated to latest version 3.6.9
+# 05/Jul/2015 * Updated to latest version 3.6.8
+# 11/Jun/2015 * Updated to latest version 3.6.7
+#             * Compiled with gcc 4.8.1, QT 5.4 and python 2.7.9
+#             * Minor fixes all around
+# 25/May/2015 * Updated to latest version 3.4.6
+# 15/Mar/2015 * Updated to latest version 3.2.9
+# 11/Feb/2015 * Updated to latest version 3.2.6
+#             * Finally working tray icons (for me at least).
+#             * Some legal docs were updated. Check the documentation
+#               folder.
+# 10/Feb/2015 * Updated to latest version 3.2.4
+#             * Fixed ARCH tag, thanks whomever mailed Willy Sudiarto
+#               Raharjo about it.
+#             * The package is now much larger.
+#             * Still no full support for some DEs 'tray' area.
+# 08/Jan/2015 * Updated to latest version 3.0.5
+#               Tray icons will only work with compositing off.
+# 18/Dec/2014 * Updated to latest version 3.0.4
+#               Still no working tray icons.
+#               Client RAM usage grew to more then 4GB after a week.
+#               Maybe 3.1.X will be better...
+# 09/Dec/2014 * Updated to latest version 3.0.3
+#               There is a working tray icon but QT5 issues makes the icon's
+#               background a hard black instead of transparent. I will wait
+#               for a fix. Also note that the previous bug is not 100% solved.
+#               https://bugreports.qt-project.org/browse/QTBUG-35832
+# 08/Dec/2014 * Updated to latest version 3.0.2
+#               This is still rough, though everything seems to sync, there
+#               are no systray icons. The new interface is pure QT5 and this
+#               have introduced some new issues:
+#               https://bugreports.qt-project.org/browse/QTBUG-31762
+#               Not sure this version will be added to SBo until its fixed.
+# 16/Nov/2014 * Updated to latest version 2.10.52
+# 11/Nov/2014 * Updated to latest version 2.10.50
 # 14/Oct/2014 * Updated to latest version 2.10.41
 # 16/Sep/2014 * Updated to latest version 2.10.30
 # 20/Aug/2014 * Updated to latest version 2.10.29
@@ -50,13 +89,13 @@
 PRGNAM=dropbox
 PACKNAM=dropbox-lnx
 
-VERSION=${VERSION:-2.10.41}
+VERSION=${VERSION:-3.8.5}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=x86 ;;
+    i?86) ARCH=i486 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -67,13 +106,23 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
+if [ "$ARCH" = "i486" ]; then
+  SOURCE="x86"
+elif [ "$ARCH" = "i686" ]; then
+  SOURCE="x86"
+elif [ "$ARCH" = "x86_64" ]; then
+  SOURCE="x86_64"
+else
+  SOURCE="x86"
+fi
+
 set -e
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf .$PRGNAM-dist
-tar xvf $CWD/$PACKNAM.$ARCH-$VERSION.tar.gz
+tar xvf $CWD/$PACKNAM.$SOURCE-$VERSION.tar.gz
 cd .$PRGNAM-dist
 chown -R root:root .
 find -L . \

@@ -1,5 +1,5 @@
 #!/bin/sh
-#
+
 # Slackware build script for connman
 
 # Ryan P.C. McQuen | Everett, WA | ryan.q@linux.com
@@ -24,7 +24,7 @@
 
 
 PRGNAM=connman
-VERSION=1.26
+VERSION=${VERSION:-1.29}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -64,20 +64,18 @@ rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.?z
 cd $PRGNAM-$VERSION
 
-# use correct group for Slackware
-patch -p1 -i ${CWD}/netdev.patch
-
-# Configure
+# configure
 CFLAGS=${SCFLAGS} CXXFLAGS=${SCXXFLAGS} LIBS=-lncurses \
   ./configure \
     --prefix=/usr \
-    --libdir=/usr/${LIBDIRSUFFIX} \
+    --libdir=/usr/lib${LIBDIRSUFFIX} \
     --mandir=/usr/man \
     --sysconfdir=/etc \
     --localstatedir=/var \
     --enable-nmcompat \
     --enable-polkit \
     --enable-openvpn \
+    --enable-client \
     --build=${ARCH}-slackware-linux
 
 make OPTS="$SLKCFLAGS"
@@ -89,11 +87,13 @@ install -m 644 ${CWD}/rc.connmand ${PKG}/etc/rc.d/
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-mkdir -p ${PKG}/usr/doc/${NAME}-${VERSION}
+mkdir -p ${PKG}/usr/doc/${PRGNAM}-${VERSION}
 install -m644 AUTHORS COPYING ChangeLog INSTALL README TODO doc/*.txt \
-  ${PKG}/usr/doc/${NAME}-${VERSION}/
-mkdir -p ${PKG}/usr/doc/${NAME}-${VERSION}/api
-mv ${PKG}/usr/doc/${NAME}-${VERSION}/{*-api.txt,api/}
+  ${PKG}/usr/doc/${PRGNAM}-${VERSION}/
+mkdir -p ${PKG}/usr/doc/${PRGNAM}-${VERSION}/api
+mv ${PKG}/usr/doc/${PRGNAM}-${VERSION}/{*-api.txt,api/}
+
+cp -av $PWD/client/connmanctl $PKG/usr/sbin/
 
 find $PKG/usr/man -type f -exec gzip -9 {} \;
 for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done

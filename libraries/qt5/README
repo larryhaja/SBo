@@ -6,3 +6,15 @@ OpenAL, libwebp and postgresql
 
 Optional dependencies: wayland, openvg and firebird (not available at
 slackbuilds.org)
+
+Note: To build Qt5 with Pulseadio then pass USEPULSE=yes to the slackbuild.
+
+  USEPULSE=yes ./qt5.SlackBuild
+
+Note2: To build documentation pass DOCS=yes to the slackbuild.
+
+  DOCS=yes ./qt5.SlackBuild
+
+Note3: To build examples pass EXAMPLES=yes to the slackbuild
+
+  EXAMPLES=yes ./qt5.SlackBuild

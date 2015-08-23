@@ -24,8 +24,8 @@
 # Updated and maintained by Donald Cooley
 
 PRGNAM=qpdfview
-VERSION=${VERSION:-0.4.9}
-BUILD=${BUILD:-1}
+VERSION=${VERSION:-0.4.15}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
@@ -74,6 +74,9 @@ find -L . \
 
 sed -i "s|/usr/lib/qpdfview|/usr/lib${LIBDIRSUFFIX}/qpdfview|" qpdfview.pri
 
+# Add localizations
+lrelease qpdfview.pro
+
 #Configure qpdfview. Installation paths are correctly set in qpdfview.pri
 qmake QMAKE_CFLAGS="$SLKCFLAGS" QMAKE_CXXFLAGS="$SLKCFLAGS" qpdfview.pro
 
@@ -88,6 +91,8 @@ find $PKG/usr/man -type f -exec gzip -9 {} \;
 for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a CHANGES CONTRIBUTORS COPYING README TODO $PKG/usr/doc/$PRGNAM-$VERSION
+find $PKG/usr/doc/$PRGNAM-$VERSION -type f -exec chmod 644 {} \;
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install

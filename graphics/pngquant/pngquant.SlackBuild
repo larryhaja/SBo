@@ -2,28 +2,28 @@
 
 # Slackware build script for pngquant
 
-# Copyright 2013-2014 Kyle Guinn <elyk03@gmail.com>, USA
+# Copyright 2013-2015 Kyle Guinn <elyk03@gmail.com>, USA
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
 # permitted provided that the following conditions are met:
 #
 # 1. Redistributions of this script must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
+#    notice, this list of conditions and the following disclaimer.
 #
-# THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
-# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
-# EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#  THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+#  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO
+#  EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+#  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+#  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+#  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+#  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+#  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=pngquant
-VERSION=${VERSION:-2.1.0}
+VERSION=${VERSION:-2.5.1}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -62,18 +62,24 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION-src.tar.bz2
+tar xvf $CWD/$VERSION.tar.gz || tar xvf $CWD/$PRGNAM-$VERSION.tar.gz || tar xvf $CWD/$PRGNAM-$VERSION-src.tar.bz2
 cd $PRGNAM-$VERSION
 chown -R root:root .
 chmod -R u+w,go-w,a+rX-st .
 
-make CFLAGSADD="$SLKCFLAGS"
+./configure \
+  --prefix=/usr \
+  CFLAGS="$SLKCFLAGS"
+
+make -C lib shared
+make
 install -D -m0755 -s pngquant $PKG/usr/bin/pngquant
+install -D -m0755 lib/libimagequant.so.0 $PKG/usr/lib${LIBDIRSUFFIX}/libimagequant.so.0
 install -D -m0644 lib/libimagequant.a $PKG/usr/lib${LIBDIRSUFFIX}/libimagequant.a
 install -D -m0644 lib/libimagequant.h $PKG/usr/include/libimagequant.h
 install -D -m0644 pngquant.1 $PKG/usr/man/man1/pngquant.1
 
-find $PKG/usr/man -type f -exec gzip -9 {} \;
+find $PKG/usr/man -type f -exec gzip -9 {} +
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a $DOCS $PKG/usr/doc/$PRGNAM-$VERSION

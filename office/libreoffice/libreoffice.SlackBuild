@@ -4,7 +4,7 @@
 
 # Copyright 2006,2007,2008,2009,2010  Robby Workman, Northport, Alabama, USA
 # Copyright 2010-2014 Niels Horn, Rio de Janeiro, RJ, Brazil
-# Copyright 2014 Willy Sudiarto Raharjo <willysr@slackbuilds.org>
+# Copyright 2014-2015 Willy Sudiarto Raharjo <willysr@slackbuilds.org>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -25,7 +25,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=libreoffice
-VERSION=${VERSION:-"4.3.3"}
+VERSION=${VERSION:-"5.0.0"}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -147,7 +147,7 @@ cp $CWD/open-libre-together.sh $PKG/usr/doc/$PRGNAM-$VERSION/
 
 # Disable Java support if desired (see above)
 if [ "$DISABLE_JAVA" = "YES" ]; then
-  chmod -x $PKG/opt/libreoffice$SRCSHORT/ure/bin/javaldx
+  chmod -x $PKG/opt/libreoffice$SRCSHORT/program/javaldx
 fi
 
 mkdir -p $PKG/install
@@ -162,4 +162,8 @@ find -L . \
   -o -perm 511 \) -exec chmod 755 {} \; -o \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-${VERSION}-$PKGARCH-$BUILD$TAG.${PKGTYPE:-tgz}
