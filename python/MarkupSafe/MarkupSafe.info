@@ -12,6 +12,6 @@ MD5SUM="f5ab3deee4c37cd6a922fb81e730da6e"
 >>>>>>> dc185c68f7b45ab08aafd6357414f0b140efb3c4
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES="pysetuptools"
+REQUIRES=""
 MAINTAINER="Larry Hajali"
 EMAIL="larryhaja[at]gmail[dot]com"
