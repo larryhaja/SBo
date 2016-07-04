@@ -22,7 +22,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=monodevelop
-VERSION=${VERSION:-5.10.1.1}
+VERSION=${VERSION:-5.10.3.26}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -71,7 +71,7 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 pushd main
-
+autoreconf -vif
 ./configure \
   --prefix=/usr \
   --libdir=/usr/lib${LIBDIRSUFFIX} \

@@ -46,7 +46,7 @@
 # tailored to Qt 5. Modified by Larry Hajali.
 
 PRGNAM=qt5
-VERSION=${VERSION:-5.5.1}
+VERSION=${VERSION:-5.6.1}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -83,13 +83,17 @@ else
   LIBDIRSUFFIX=""
 fi
 
+# http://doc.qt.io/qt-5/qtwebengine-platform-notes.html#audio-and-video-codec-support
+PRCOD=""
+[ "$PROPRIETARY_CODECS" = "yes" ] && PRCOD="WEBENGINE_CONFIG += use_proprietary_codecs"
+
 set -e
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf ${PRGNAM/5/}-everywhere-opensource-src-$VERSION
-tar xvf $CWD/${PRGNAM/5/}-everywhere-opensource-src-$VERSION.tar.xz
+tar xvf $CWD/${PRGNAM/5/}-everywhere-opensource-src-$VERSION-1.tar.xz
 cd ${PRGNAM/5/}-everywhere-opensource-src-$VERSION
 chown -R root:root .
 find -L . \
@@ -101,9 +105,8 @@ find -L . \
 # Slackware patch to build against MySQL/MariaDB.
 patch -p1 < $CWD/patches/qt5.mysql.h.diff
 
-# Install path fix for libplatformplugin.so.
-# https://bugs.webkit.org/show_bug.cgi?id=117077
-patch -p1 < $CWD/patches/platformplugin-install-path-fix.patch
+# Patch for the newer mozilla-nss
+patch -p1 < $CWD/patches/nss-update-sslv3-nonce.patch
 
 # Limit -reduce-relocations to ix86 and x86_64.
 # https://bugreports.qt-project.org/browse/QTBUG-36129
@@ -121,6 +124,8 @@ if [ "${EXAMPLES:-no}" == "yes" ]; then
 else
   BUILD_EXAMPLES="-nomake examples"
 fi
+
+echo "$PRCOD" >> qtwebengine/.qmake.conf
 
 export CFLAGS="$SLKCFLAGS"
 export CXXFLAGS="$SLKCFLAGS"
@@ -221,16 +226,7 @@ Description: Qt5 Configuration
 Version: $VERSION
 EOF
 
-# Fix internal linking for Qt5WebKit.pc and Qt5WebEngineCore.pc.
-sed -i \
-  -e "s|-Wl,-whole-archive -lWebKit1 -Wl,-no-whole-archive -L${PWD}/qtwebkit/Source/WebKit[^ ]* ||" \
-  -e "s|-Wl,-whole-archive -lWebKit2 -Wl,-no-whole-archive -L${PWD}/qtwebkit/Source/WebKit2[^ ]* ||" \
-  -e "s|-Wl,-whole-archive -lWebCore -Wl,-no-whole-archive -L${PWD}/qtwebkit/Source/WebCore[^ ]* ||" \
-  -e "s|-Wl,-whole-archive -lANGLE -Wl,-no-whole-archive -L${PWD}/qtwebkit/Source/ThirdParty/ANGLE[^ ]* ||" \
-  -e "s|-Wl,-whole-archive -lJavaScriptCore -Wl,-no-whole-archive -L${PWD}/qtwebkit/Source/JavaScriptCore[^ ]* ||" \
-  -e "s|-Wl,-whole-archive -lWTF -Wl,-no-whole-archive -L${PWD}/qtwebkit/Source/WTF[^ ]* ||" \
-  -e "s|-Wl,-whole-archive -lleveldb -Wl,-no-whole-archive -L${PWD}/qtwebkit/Source/ThirdParty/leveldb[^ ]* ||" \
-  $PKG/usr/lib${LIBDIRSUFFIX}/pkgconfig/Qt5WebKit.pc
+# Fix internal linking for Qt5WebEngineCore.pc.
 
 sed -i 's|-Wl,--whole-archive.*-Wl,--no-whole-archive||' $PKG/usr/lib${LIBDIRSUFFIX}/pkgconfig/Qt5WebEngineCore.pc
 

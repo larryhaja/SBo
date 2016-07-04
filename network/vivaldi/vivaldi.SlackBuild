@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Slackware build script for Vivaldi Snapshot.
+# Slackware build script for Vivaldi stable.
 #
 # Copyright 2015 Edinaldo P. Silva, Rio de Janeiro, Brazil.
 # All rights reserved.
@@ -22,10 +22,8 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-PRGNAM="vivaldi"
-VERSION=${VERSION:-1.0.365.3}
-SRCNAM="vivaldi-snapshot"
-SRCVER=${SRCVER:-1.0.365.3-1}
+PRGNAM=vivaldi
+VERSION=${VERSION:-1.2.490.39}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -59,6 +57,9 @@ else
   LIBDIRSUFFIX=""
 fi
 
+SRCNAM=$PRGNAM-stable
+SRCVER=$VERSION-1
+
 set -e
 
 rm -rf $PKG $TMP/$PRGNAM
@@ -73,28 +74,32 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-rm -r opt/vivaldi-snapshot/cron
+rm -r opt/vivaldi/cron
 mv opt usr $PKG/
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-(
-ln -sf /opt/vivaldi-snapshot/vivaldi-snapshot $PKG/usr/bin/vivaldi-snapshot
-ln -sf /opt/vivaldi-snapshot/vivaldi-snapshot $PKG/opt/vivaldi-snapshot/vivaldi
-)
+ln -sf /opt/vivaldi/vivaldi $PKG/usr/bin/vivaldi
 
-chown root:root $PKG/opt/vivaldi-snapshot/vivaldi-sandbox
-chmod 4755 $PKG/opt/vivaldi-snapshot/vivaldi-sandbox
+chown root:root $PKG/opt/vivaldi/vivaldi-sandbox
+chmod 4755 $PKG/opt/vivaldi/vivaldi-sandbox
 
 for res in 16 22 24 32 48 64 128 256; do
-   install -Dm644 "$PKG/opt/vivaldi-snapshot/product_logo_${res}.png" \
-"$PKG/usr/share/icons/hicolor/${res}x${res}/apps/vivaldi-snapshot.png"
+   install -Dm644 "$PKG/opt/vivaldi/product_logo_${res}.png" \
+"$PKG/usr/share/icons/hicolor/${res}x${res}/apps/vivaldi.png"
 done
 
+sed \
+  -e "s|vivaldi-stable|vivaldi|" \
+  $PKG/usr/share/applications/vivaldi-stable.desktop \
+  > $PKG/usr/share/applications/vivaldi.desktop
+rm $PKG/usr/share/applications/vivaldi-stable.desktop
+
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-gzip -dc $PKG/usr/share/doc/vivaldi-snapshot/changelog.gz > \
-$PKG/usr/doc/$PRGNAM-$VERSION/ChangeLog; rm -rf $PKG/usr/share/doc
+gzip -dc $PKG/usr/share/doc/vivaldi-stable/changelog.gz > \
+  $PKG/usr/doc/$PRGNAM-$VERSION/ChangeLog
+rm -rf $PKG/usr/share/doc
 cat $CWD/README > $PKG/usr/doc/$PRGNAM-$VERSION/README
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 

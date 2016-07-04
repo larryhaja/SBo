@@ -1,17 +1,32 @@
 #!/bin/sh
+
 # Slackware build script for SciTE
+
+# Ryan P.C. McQuen | Everett, WA | ryan.q@linux.com
+
 # Written by Iskar Enev <iskar.enev[@]gmail.com>
-# v2.27: Some modifications by Jens Weber <jens@tuxane.com>
-# v3.02: (jw) Some more changes, see README.Slackware and changelog
-# v3.20: (jw) little changes, see README.Slackware and changelog
-# v3.23: (jw) version bump to 3.23
-# v3.24: (jw) version bump to 3.24
-# v3.41: (jw) version bump to 3.41
-# v3.52: (jw) version bump to 3.52
-# v3.54: (jw) version bump to 3.54
+# Some modifications by Jens Weber <jens@tuxane.com>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version, with the following exception:
+# the text of the GPL license may be omitted.
+
+# This program is distributed in the hope that it will be useful, but
+# without any warranty; without even the implied warranty of
+# merchantability or fitness for a particular purpose. Compiling,
+# interpreting, executing or merely reading the text of the program
+# may result in lapses of consciousness and/or very being, up to and
+# including the end of all existence and the Universe as we know it.
+# See the GNU General Public License for more details.
+
+# You may have received a copy of the GNU General Public License along
+# with this program (most likely, a file named COPYING).  If not, see
+# <https://www.gnu.org/licenses/>.
 
 PRGNAM=scite
-VERSION=${VERSION:-3.54}
+VERSION=${VERSION:-3.6.6}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -31,13 +46,13 @@ HELPBROWSER=mozilla
 
 
 if [ "$ARCH" = "i486" ]; then
-   LIBDIRSUFFIX=""
+ LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
-    LIBDIRSUFFIX=""
+  LIBDIRSUFFIX=""
 elif [ "$ARCH" = "x86_64" ]; then
-    LIBDIRSUFFIX="64"
+  LIBDIRSUFFIX="64"
 else
-    LIBDIRSUFFIX=""
+  LIBDIRSUFFIX=""
 fi
 
 set -eu
@@ -70,14 +85,11 @@ cat doc/scite.1 | gzip -9c > $PKG/usr/man/man1/scite.1.gz
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION/html
 cp -a README License.txt  $PKG/usr/doc/$PRGNAM-$VERSION
-cat $CWD/config/SciTEGlobal.properties.new >> $PKG/usr/doc/$PRGNAM-$VERSION/SciTEGlobal.properties.new
-cat $CWD/config/SciTEUser.properties.new >> $PKG/usr/doc/$PRGNAM-$VERSION/SciTEUser.properties.new
-cat $CWD/config/changelog >> $PKG/usr/doc/$PRGNAM-$VERSION/changelog
-cat $CWD/config/README.Slackware >> $PKG/usr/doc/$PRGNAM-$VERSION/README.Slackware
+cat src/SciTEGlobal.properties >> $PKG/usr/doc/$PRGNAM-$VERSION/SciTEGlobal.properties.new
 
 for i in $PKG/usr/share/scite/*.html $PKG/usr/share/scite/*.png ; do
   ln -s /usr/share/scite/$(basename $i) \
-        $PKG/usr/doc/$PRGNAM-$VERSION/html/$(basename $i) ;
+    $PKG/usr/doc/$PRGNAM-$VERSION/html/$(basename $i) ;
 done
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 

@@ -24,8 +24,8 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=qgis
-VERSION=${VERSION:-2.12.3}
-BUILD=${BUILD:-2}
+VERSION=${VERSION:-2.14.3}
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
@@ -75,10 +75,10 @@ if pkg-config --exists grass; then
   WITHGRASS="-DGRASS_PREFIX=$(pkg-config --variable=prefix grass)"
 fi
 
-WITHSERVER="-DWITH_MAPSERVER=FALSE"
+WITHSERVER="-DWITH_SERVER=FALSE"
 CGIBINDIR="${CGIBINDIR:-/var/www/cgi-bin/qgis}"
 if [ "${SERVER:-no}" = "yes" ]; then
-  WITHSERVER="-DWITH_MAPSERVER=TRUE -DQGIS_CGIBIN_SUBDIR=$CGIBINDIR"
+  WITHSERVER="-DWITH_SERVER=TRUE -DQGIS_CGIBIN_SUBDIR=$CGIBINDIR"
 fi
 
 cmake . \
@@ -113,9 +113,9 @@ ln -s /usr/share/qgis/images/icons/qgis-mime-icon.png $PKG/usr/share/pixmaps/qgi
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
-  doc/AUTHORS BUGS CODING doc/CONTRIBUTORS COPYING ChangeLog \
+  doc/AUTHORS BUGS doc/CONTRIBUTORS COPYING ChangeLog \
   doc/DONORS Exception_to_GPL_for_Qt.txt INSTALL NEWS \
-  PROVENANCE README.md doc/SPONSORS TODO doc/TRANSLATORS \
+  PROVENANCE README.md doc/SPONSORS doc/TRANSLATORS \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 cat $CWD/README.server > $PKG/usr/doc/$PRGNAM-$VERSION/README.server

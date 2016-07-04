@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=neovim
-VERSION=${VERSION:-0.1.1}
+VERSION=${VERSION:-0.1.4}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -79,7 +79,6 @@ cd build
     -DCMAKE_INSTALL_MANDIR=/usr/man \
     -DLUAJIT_LIBRARY=/usr/lib${LIBDIRSUFFIX} \
     -DLIBUV_LIBRARY=/usr/lib${LIBDIRSUFFIX}/libuv.so \
-    -DMSGPACK_LIBRARY=/usr/lib${LIBDIRSUFFIX}/libmsgpack.so \
      ..
   make
   make install DESTDIR=$PKG
