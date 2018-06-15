@@ -2,7 +2,7 @@
 
 # Slackware build script for python3
 
-# Copyright 2012-2015 Audrius Kažukauskas <audrius@neutrino.lt>
+# Copyright 2012-2018 Audrius Kažukauskas <audrius@neutrino.lt>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,13 +23,15 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=python3
-VERSION=${VERSION:-3.5.2}
+SRCNAM=Python
+VERSION=${VERSION:-3.6.5}
+BRANCH_VERSION=$(echo $VERSION | cut -f 1,2 -d . )
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -42,7 +44,7 @@ OUTPUT=${OUTPUT:-/tmp}
 
 # Don't set any SLKCFLAGS here, or OPT="$SLKCFLAGS" before the ./configure.
 # Python gets the compile options right without any help.
-if [ "$ARCH" = "i486" ]; then
+if [ "$ARCH" = "i586" ]; then
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   LIBDIRSUFFIX=""
@@ -52,21 +54,19 @@ else
   LIBDIRSUFFIX=""
 fi
 
-PYVER=$(cut -d. -f1,2 <<< "$VERSION")
-
-set -eu
+set -e
 
 # Location for Python site-packages.
-SITEPK=$PKG/usr/lib${LIBDIRSUFFIX}/python${PYVER}/site-packages
+SITEPK=$PKG/usr/lib${LIBDIRSUFFIX}/python${BRANCH_VERSION}/site-packages
 # Same as above without $PKG.
-TOOLSDIR=/usr/lib${LIBDIRSUFFIX}/python${PYVER}/site-packages
+TOOLSDIR=/usr/lib${LIBDIRSUFFIX}/python${BRANCH_VERSION}/site-packages
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf Python-$VERSION
-tar xvf $CWD/Python-$VERSION.tar.xz
-cd Python-$VERSION
+rm -rf $SRCNAM-$VERSION
+tar xvf $CWD/$SRCNAM-$VERSION.tar.xz
+cd $SRCNAM-$VERSION
 
 patch -p1 -i $CWD/patches/python3.readline.set_pre_input_hook.diff
 # We don't want a large libpython*.a.
@@ -80,8 +80,8 @@ fi
 # Fix python3 path in cgi.py.
 sed -i '1s|^#.*/usr/local/bin/python|#!/usr/bin/python3|' Lib/cgi.py
 
-# If this system already has Python3 with pip in site-packages, ignore it and
-# install pip anyway.
+# If system we're building on already has Python3 with pip in site-packages,
+# ignore it and install pip anyway.
 sed -i 's|\("install",\)|\1 "--ignore-installed",|' Lib/ensurepip/__init__.py
 
 chown -R root:root .
@@ -101,14 +101,15 @@ find -L . \
   --enable-shared \
   --with-system-expat \
   --with-system-ffi \
+  --enable-loadable-sqlite-extensions \
   --build=$ARCH-slackware-linux
 
 make
 make install DESTDIR=$PKG
 
 # Restore original ensurepip behaviour.
-sed -i 's|\("install",\) "--ignore-installed",|\1|' \
-  $PKG/usr/lib${LIBDIRSUFFIX}/python${PYVER}/ensurepip/__init__.py
+sed -i 's| "--ignore-installed",||' \
+  $PKG/usr/lib${LIBDIRSUFFIX}/python${BRANCH_VERSION}/ensurepip/__init__.py
 
 # Remove to avoid overwriting a copy from Python2.
 rm -f $PKG/usr/bin/2to3
@@ -125,7 +126,7 @@ find $PKG -type f -perm 555 -exec chmod 755 '{}' \;
 
 # Install docs.
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a README LICENSE Misc $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a README.rst LICENSE Misc $PKG/usr/doc/$PRGNAM-$VERSION
 mv $SITEPK/README $PKG/usr/doc/$PRGNAM-$VERSION/README.python-tools
 ( cd $PKG/usr/doc/$PRGNAM-$VERSION ; ln -sf $TOOLSDIR Tools )
 if [ -e "$CWD/python-$VERSION-docs-html.tar.bz2" ]; then
@@ -133,6 +134,13 @@ if [ -e "$CWD/python-$VERSION-docs-html.tar.bz2" ]; then
   mv python-$VERSION-docs-html $PKG/usr/doc/$PRGNAM-$VERSION/html
   chown -R root:root $PKG/usr/doc/$PRGNAM-$VERSION/html
 fi
+
+# Fix possible incorrect permissions.
+( cd $PKG
+  find . -type d -exec chmod 755 "{}" \;
+  find . -perm 640 -exec chmod 644 "{}" \;
+  find . -perm 750 -exec chmod 755 "{}" \;
+)
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true

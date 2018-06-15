@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
      |-----handy-ruler------------------------------------------------------|
-tkdnd: TkDnD (Tk Drag and Drop Interface)
+tkdnd: tkdnd (Tk Drag and Drop Interface)
 tkdnd:
 tkdnd: The tkdnd family commands provide a Tcl interface to native, platform
 tkdnd: specific drag and drop mechanism. Under unix the drag&drop protocol in
 tkdnd: use is the XDND protocol version 5 (also used by the Qt toolkit, and
 tkdnd: the KDE and GNOME desktops).
 tkdnd:
-tkdnd: http://tkdnd.sourceforge.net/
+tkdnd: https://tkdnd.sourceforge.net/
 tkdnd:
 tkdnd:
 tkdnd:

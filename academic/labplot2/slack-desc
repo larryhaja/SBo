@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
         |-----handy-ruler------------------------------------------------------|
-labplot2: labplot2 - (interactive graphing and analysis of scientific data)
+labplot2: labplot2 (interactive graphing and analysis of scientific data)
 labplot2:
 labplot2: LabPlot is a KDE-application for interactive graphing and analysis of
 labplot2: scientific data. LabPlot provides an easy way to create, manage and

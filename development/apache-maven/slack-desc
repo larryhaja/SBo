@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
             |-----handy-ruler------------------------------------------------------|
-apache-maven: Apache Maven (Software project management)
+apache-maven: apache-maven (Software project management)
 apache-maven:
 apache-maven: Maven is a software project management and comprehension tool.
 apache-maven: Based on the concept of a Project Object Model (POM), Maven
 apache-maven: can manage a project's build, reporting and documentation from
 apache-maven: a central piece of information.
 apache-maven:
-apache-maven: Homepage: http://maven.apache.org/
+apache-maven: Homepage: https://maven.apache.org/
 apache-maven:
 apache-maven:
 apache-maven:

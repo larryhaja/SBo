@@ -8,14 +8,19 @@
 
 # Licensed under the WTFPL. See http://www.wtfpl.net/txt/copying/ for details.
 
+# 20180611 bkw: update for v1.2.3
+# 20171214 bkw: update for v1.2.2
+# 20170614 bkw: update for v1.2.1
+# 20170302 bkw: use long-format github URL
+
 PRGNAM=isomd5sum
-VERSION=${VERSION:-1.1.0}
+VERSION=${VERSION:-1.2.3}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -29,8 +34,8 @@ OUTPUT=${OUTPUT:-/tmp}
 # The Makefile is smart enough to use lib or lib64 as appropriate,
 # no LIBDIRSUFFIX needed here.
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
 elif [ "$ARCH" = "x86_64" ]; then
@@ -45,7 +50,7 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tar.gz || tar xvf $CWD/$VERSION.tar.gz
+tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
@@ -54,8 +59,11 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-sed -i 's,/usr/share/man,/usr/man,' Makefile
-sed -i -e 's/-Werror/ /' Makefile
+sed -i \
+  -e 's,/usr/share/man,/usr/man,' \
+  -e 's/-Werror/ /' \
+  -e "s,-O3,$SLKCFLAGS", \
+  Makefile
 
 # Build & install binaries, libs, and python2 support:
 make -j1 \
@@ -76,11 +84,12 @@ if python3 --version >/dev/null 2>&1; then
     clean all install-python
 fi
 
+# fix .pc file stupidity:
+sed -i '/^\(libdir\|includedir\)/s,=.*usr,=/usr,' $PKG/usr/share/pkgconfig/$PRGNAM.pc
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-find $PKG/usr/man -type f -exec gzip -9 {} \;
-for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
+gzip -9 $PKG/usr/man/man?/*.?
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a README COPYING testpyisomd5sum.py $PKG/usr/doc/$PRGNAM-$VERSION

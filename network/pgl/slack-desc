@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
    |-----handy-ruler------------------------------------------------------|
-pgl: PeerGuardian (Privacy-oriented Firewall Application)
+pgl: pgl (Privacy-oriented Firewall Application)
 pgl:
 pgl: PeerGuardian actively blocks connections to and from hosts specified
 pgl: in huge, frequently updated blocklists, spanning millions of IP
 pgl: ranges.  Its origin lays in targeting aggressive IPs while using
 pgl: P2P services.
 pgl:
-pgl: homepage: http://sourceforge.net/projects/peerguardian/
+pgl: homepage: https://sourceforge.net/projects/peerguardian/
 pgl:
 pgl:
 pgl:

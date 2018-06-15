@@ -4,12 +4,12 @@ Once you install the package, you can start using fail2ban by:
 
 Additionally, you can add the following to rc.local for automatic startup
 if [ -x /etc/rc.d/rc.fail2ban ]; then
-	/etc/rc.d/rc.fail2ban start
+        /etc/rc.d/rc.fail2ban start
 fi
 
 and add the following to rc.local_shutdown to stop fail2ban at shutdown
 if [ -x /etc/rc.d/rc.fail2ban ]; then
-	/etc/rc.d/rc.fail2ban stop
+        /etc/rc.d/rc.fail2ban stop
 fi
 
 The package contains logrotate script copied from fail2ban manual,
@@ -54,3 +54,21 @@ Upgraded to version 0.8.11
 Upgraded to version 0.9.0
 7/5/2015
 Upgraded to version 0.9.2
+1/31/2016
+Upgraded to version 0.9.3
+5/6/2016
+upgraded to version 0.9.4
+7/17/2016
+upgraded to version 0.9.5
+2/5/2017
+upgraded to version 0.9.6
+5/20/2017
+upgraded to version 0.9.7
+9/23/2017
+upgraded to version 0.10.0, added upstream bash completion script.
+11/5/2017
+upgraded to version 0.10.1
+2/2/2018
+upgraded to version 0.10.2
+4/10/2018
+upgraded to version 0.10.3.1

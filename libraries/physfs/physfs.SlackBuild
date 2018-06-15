@@ -2,8 +2,9 @@
 #
 # Slackware build script for physfs
 #
-# Copyright 2009-2013  Erik W. Hanson, Minneapolis, MN, USA
-# Copyright 2015 Andrew Strong, Blue Mountains Australia
+# Copyright 2009 - 2013  Erik W. Hanson, Minneapolis, MN, USA
+# Copyright 2015  Andrew Strong, Blue Mountains Australia
+# Copyright 2017 - 2018  Johannes Schoepfer, Germany
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -24,13 +25,13 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=physfs
-VERSION=2.0.3
+VERSION=${VERSION:-3.0.1}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -41,8 +42,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -73,11 +74,9 @@ find -L . \
 cmake \
   -DCMAKE_C_FLAGS:STRING="$SLKCFLAGS" \
   -DCMAKE_CXX_FLAGS:STRING="$SLKCFLAGS" \
-  -DPHYSFS_ARCHIVE_7Z=OFF \
   -DPHYSFS_BUILD_SHARED=ON \
+  -DPHYSFS_BUILD_STATIC=OFF \
   -DPHYSFS_BUILD_TEST=OFF \
-  -DPHYSFS_BUILD_WX_TEST=OFF \
-  -DPHYSFS_INTERNAL_ZLIB=OFF \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX=/usr \
   -DLIB_SUFFIX:STRING=${LIBDIRSUFFIX}
@@ -85,11 +84,12 @@ cmake \
 make
 make install DESTDIR=$PKG
 
-find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a CHANGELOG.txt CREDITS.txt INSTALL.txt LICENSE.txt TODO.txt \
+cp -a LICENSE.txt README.txt docs/CHANGELOG.txt docs/CREDITS.txt docs/Doxyfile \
+      docs/INSTALL.txt docs/README-API-documentation.txt docs/TODO.txt \
       $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 

@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
        |-----handy-ruler------------------------------------------------------|
-photivo: Photivo (photo processor)
+photivo: photivo (photo processor)
 photivo:
 photivo: Photivo is a free and open source (GPL3) photo processor.
 photivo: It handles your RAW files as well as your bitmap files
@@ -14,6 +14,6 @@ photivo: (TIFF, JPEG, BMP, PNG and many more) in a non-destructive
 photivo: 16 bit processing pipe with gimp workflow integration
 photivo: and batch mode.
 photivo:
-photivo: Homepage http://photivo.org/photivo/
+photivo: Homepage http://photivo.org/
 photivo:
 photivo:

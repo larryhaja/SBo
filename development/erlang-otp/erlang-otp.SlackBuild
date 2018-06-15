@@ -16,8 +16,12 @@
 # Package adaptation in order to rename it from otp-R11B
 # to erlang-otp, by LukenShiro <Lukenshiro@ngi.it>
 
+# Modified by Ryan S. Northrup <northrup@yellowapple.us> on
+# 28 November 2016 to reflect the use of README.md instead
+# of README in upstream
+
 PRGNAM=erlang-otp
-VERSION=${VERSION:-17.4}
+VERSION=${VERSION:-19.3}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -26,7 +30,7 @@ DOC_NAME_VERSION=otp_doc_man_${VERSION}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -37,8 +41,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=${PKG:-$TMP/package-$PRGNAM}
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -92,7 +96,7 @@ chmod -R u+w,go+r-w,a-s $PKG/usr/lib${LIBDIRSUFFIX}/erlang
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 ( cd $PKG/usr/lib${LIBDIRSUFFIX}/erlang
-  mv COPYRIGHT README $PKG/usr/doc/$PRGNAM-$VERSION )
+  mv COPYRIGHT README.md $PKG/usr/doc/$PRGNAM-$VERSION )
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mv $PKG/usr/lib${LIBDIRSUFFIX}/erlang/man $PKG/usr

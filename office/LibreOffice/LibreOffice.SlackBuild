@@ -4,7 +4,7 @@
 
 # Slackware build script for LibreOffice
 
-# Copyright 2015-2016 Christoph Willing Brisbane, Australia
+# Copyright 2015-2018 Christoph Willing Brisbane, Australia
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -26,7 +26,7 @@
 
 PRGNAM=LibreOffice
 SRCNAM=libreoffice
-VERSION=${VERSION:-5.2.0.4}
+VERSION=${VERSION:-6.0.4.2}
 SHORT_VERSION=${VERSION%.*.*}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -82,12 +82,33 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 # Options
-avahi=""    ; [ "${AVAHI:-yes}" != "no" ]      && avahi="--enable-avahi"
-vlc=""      ; [ "${VLC:-no}" != "no" ]         && vlc="--enable-vlc"
+avahi=""             ; [ "${AVAHI:-no}" != "no" ]      && avahi="--enable-avahi"
+vlc=""               ; [ "${VLC:-no}" != "no" ]        && vlc="--enable-vlc"
+kde4="--enable-kde4" ; [ "${KDE4:-yes}" != "yes" ]     && kde4="--disable-kde4"
 LOLANGS=${LOLANGS:-"de es fr id it ja nl vi zh-CN"}
+use_ccache="--disable-ccache" ; [ "${USE_CCACHE:-no}" != "no" ] && use_ccache=""
 
-# LibreOffice.info REQUIRES jdk
-[ -z $JAVA_HOME ] && . /etc/profile.d/jdk.sh
+# By default, LibreOffice ignores MAKEFLAGS -j option and uses all available cpu cores.
+parallel=""
+# If MAKEFLAGS contains -j option, we extract its value to override the default.
+jval="$(echo $MAKEFLAGS |grep -o "\-j *[0-9]*" | grep -o "[0-9]*")" || true
+[ -n "$jval" ] && parallel="--with-parallelism=$jval"
+# If PARALLEL environment variable is set, use that to override everything.
+[ "${PARALLEL:-0}" != "0" ] && parallel="--with-parallelism=$PARALLEL"
+
+JAVA=${JAVA:-openjdk}
+if [ "$JAVA" = "openjdk" ]; then
+  . /etc/profile.d/openjdk.sh
+  use_java="--with-java=java"
+elif [ "$JAVA" = "openjdk8" ]; then
+  . /etc/profile.d/openjdk8.sh
+  use_java="--with-java=java"
+elif [ "$JAVA" = "jdk" ]; then
+  . /etc/profile.d/jdk.sh
+  use_java="--with-java=java"
+elif [ "$JAVA" = "no" ]; then
+  use_java="--with-java=no"
+fi
 
 ./configure \
     CFLAGS="$SLKCFLAGS" \
@@ -105,24 +126,24 @@ LOLANGS=${LOLANGS:-"de es fr id it ja nl vi zh-CN"}
     --enable-release-build=yes  \
     --enable-python="system" \
     --enable-gio \
-    --enable-kde4 \
     --enable-ext-mariadb-connector \
     $avahi \
     $vlc \
+    $kde4 \
+    $use_ccache \
+    $use_java \
+    $parallel \
     --with-x \
     --with-tls="nss" \
     --without-krb5 \
     --without-gssapi \
     --without-junit \
-    --with-ant-home=lib$LIBDIRSUFFIX/apache-ant \
-    --with-help=common \
+    --with-help \
     --with-system-boost \
     --with-system-cairo \
     --with-system-curl \
     --with-system-dicts \
     --with-system-expat \
-    --with-system-glew \
-    --with-system-harfbuzz \
     --with-system-hunspell \
     --with-system-icu \
     --with-system-jpeg \
@@ -150,6 +171,8 @@ if [ "$HAVE_SRCS_TARBALL" = "0" ]; then
   echo ; echo "Run build script again with HAVE_SRCS_TARBALL=1"
   exit 0
 fi
+
+patch -p0 < $CWD/no-check-if-root.diff
 
 export LDFLAGS="-lboost_system"
 make build-nocheck
@@ -189,7 +212,7 @@ EOF
 cat <<EOF >$PKG/etc/profile.d/libreoffice.csh
 setenv UNO_PATH $sd_prog
 setenv URE_BOOTSTRAP vnd.sun.star.pathname:$sd_prog/fundamentalrc
-setenv PATH \$PATH:$sd_prog
+setenv PATH \${PATH}:$sd_prog
 EOF
 chmod 0755 $PKG/etc/profile.d/libreoffice.{csh,sh}
 

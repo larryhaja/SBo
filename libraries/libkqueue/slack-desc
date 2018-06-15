@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
          |-----handy-ruler------------------------------------------------------|
-libkqueue: libkqueue (portable userspace implementation of kqueue(2))
+libkqueue: libkqueue (portable userspace implementation of kqueue(2)
 libkqueue:
 libkqueue: libkqueue is a portable userspace implementation of the kqueue(2)
 libkqueue: kernel event notification mechanism. It acts as a translator
 libkqueue: between the kevent structure and the native kernel facilities of
 libkqueue: the host machine.
 libkqueue:
-libkqueue: homepage: http://mark.heily.com/project/libkqueue
+libkqueue: homepage: https://github.com/mheily/libkqueue
 libkqueue:
 libkqueue:
 libkqueue:

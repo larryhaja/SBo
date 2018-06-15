@@ -2,7 +2,7 @@
 #
 # Slackware build script for Android Studio
 
-# Copyright 2009-2016  Roberto Metere, Cagliari (CA), Italy <roberto@metere.it>
+# Copyright 2012-2018  Roberto Metere, Cagliari (CA), Italy <roberto@metere.it>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,7 +23,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=android-studio
-VERSION=${VERSION:-2.1.2.0_143_2915827}
+VERSION=${VERSION:-3.1.2.0_173_4720617}
 SRCVER=$(echo ${VERSION#*_} | sed 's/_/./')
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -43,26 +43,35 @@ set -eu
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
-mkdir -p $PKG/usr/share
-cd $PKG/usr/share/
+mkdir -p $PKG/opt
+cd $PKG/opt/
 unzip $CWD/$PRGNAM-ide-${SRCVER}-linux.zip
+cd $PKG
 
 #
 # Make and install launchers
 #
 mkdir -p $PKG/usr/share/applications
+install -D -m 644 $PKG/opt/android-studio/bin/studio.png $PKG/usr/share/pixmaps/android-studio.png
 install -D -m 644 $CWD/android-studio.desktop $PKG/usr/share/applications/android-studio.desktop
 mkdir -p $PKG/usr/bin
-for i in $(find $PWD -executable -type f | grep -v -e "\.sh$")
-do
-  ln -s /usr/share/$PRGNAM/bin/$(basename $i) ../bin/.
-done
-ln -s /usr/share/$PRGNAM/bin/studio.sh ../bin/$PRGNAM
-ln -s /usr/share/$PRGNAM/bin/inspect.sh ../bin/$PRGNAM-inspect
+(
+  cd $PKG/usr/bin
+  for i in $(find $PKG/opt/ -executable -type f | grep -v -e "\.sh$")
+  do
+    if [ ! -e "$PKG/usr/bin/$(basename $i)" -a ! -h "$PKG/usr/bin/$(basename $i)" ]
+    then
+      ln -s ../../opt/$PRGNAM/bin/$(basename $i) .
+    fi
+  done
+  ln -s ../../opt/$PRGNAM/bin/studio.sh $PRGNAM
+  ln -s ../../opt/$PRGNAM/bin/inspect.sh $PRGNAM-inspect
+)
 
 # Adjust ownerships and permissions
 chown -R root:root .
 chmod -R u+w,go+r-w,a-s .
+chmod +x opt/$PRGNAM/bin/studio.sh opt/$PRGNAM/bin/inspect.sh
 
 cd
 
@@ -71,6 +80,7 @@ cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-${VERSION}/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-${VERSION}-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}

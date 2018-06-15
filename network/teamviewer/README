@@ -16,12 +16,8 @@ NOTE:
 to older version (version 3 and above), but not in the opposite direction.
 The same things goes to meetings (version 7 and above).
 
-2. Always stop teamviewerd service before attempting to upgrade as the path
-may change on each major release.
+2. Always stop teamviewerd service and remove the old version before
+attempting to upgrade as the path and configs may change on each major release.
 
-3. To fix missing buttons, you *may* need to install libpng from Slackware 14.1.
-Please note that it *will* overwrite some files from Slackware 14.2's libpng, so
-it's suggested to reinstall Slackware 14.2's libpng after installing
-Slackware 14.1's libpng.
-
-4. For multilib support, please read MULTILIB
+3. Starting from Teamviewer 13, it has come up with native 64 client package, so
+no multilib is required to use. It uses Qt as a foundation.

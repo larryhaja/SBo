@@ -2,7 +2,7 @@
 
 # Slackware build script for MasterPDFEditor
 
-# Copyright 2014-2016 Willy Sudiarto Raharjo <willysr@slackbuilds.org>
+# Copyright 2014-2018 Willy Sudiarto Raharjo <willysr@slackbuilds.org>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -24,13 +24,14 @@
 
 PRGNAM=MasterPDFEditor
 SRCNAM=master-pdf-editor
-VERSION=${VERSION:-3.7.10}
+VERSION=${VERSION:-5.0.23}
+MAJVER=${MAJVER:-5}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -41,8 +42,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
   SOURCEARCH="i386"
 elif [ "$ARCH" = "i686" ]; then
@@ -52,7 +53,7 @@ elif [ "$ARCH" = "i686" ]; then
 elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2 -fPIC"
   LIBDIRSUFFIX="64"
-  SOURCEARCH="amd64"
+  SOURCEARCH="qt4.amd64"
 else
   SLKCFLAGS="-O2"
   LIBDIRSUFFIX=""
@@ -63,27 +64,27 @@ set -e
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT $PKG/opt
 cd $TMP
-rm -rf $SRCNAM-3
+rm -rf $SRCNAM-$MAJVER
 tar xvf $CWD/${SRCNAM}-${VERSION}_${SOURCEARCH}.tar.gz
-chown -R root:root .
-find -L . \
+chown -R root:root $SRCNAM-$MAJVER
+find -L $SRCNAM-$MAJVER \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
   -o -perm 511 \) -exec chmod 755 {} \; -o \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-mv $SRCNAM-3 $PKG/opt
-cd $PKG/opt/$SRCNAM-3
+mv $SRCNAM-$MAJVER $PKG/opt
+cd $PKG/opt/$SRCNAM-$MAJVER
 
 mkdir -p $PKG/usr/bin
-( ln -s /opt/$SRCNAM-3/masterpdfeditor3 $PKG/usr/bin/ )
+( ln -s /opt/$SRCNAM-$MAJVER/masterpdfeditor${MAJVER} $PKG/usr/bin/ )
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 mv license.txt $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/usr/share/applications/
-mv $PKG/opt/master-pdf-editor-3/masterpdfeditor3.desktop $PKG/usr/share/applications/$PRGNAM.desktop
+cp $CWD/$PRGNAM.desktop $PKG/usr/share/applications/$PRGNAM.desktop
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc

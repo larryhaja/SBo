@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/sh
 
 # Slackware build script for cgdb
 
@@ -23,8 +23,8 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=cppcheck
-VERSION=${VERSION:-1.75}
-BUILD=${BUILD:-1}
+VERSION=${VERSION:-1.76}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 
 MAKEMAN=${MAKEMAN:-yes}
@@ -56,6 +56,8 @@ else
    LIBDIRSUFFIX=""
 fi
 
+set -e
+
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
@@ -69,10 +71,10 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-make \
+make install \
   CFLAGS="$SLKCFLAGS -Wall -Wextra -pedantic -Wno-long-long -DNDEBUG" \
-  CXXFLAGS="$SLKCFLAGS -Wall -Wextra -pedantic -Wno-long-long -DNDEBUG"
-make install DESTDIR=$PKG
+  CXXFLAGS="$SLKCFLAGS -Wall -Wextra -pedantic -Wno-long-long -DNDEBUG" \
+  SRCDIR=build HAVE_RULES=yes CFGDIR=/usr/share/cppcheck/cfg DESTDIR=$PKG
 
 if [ x"$MAKEMAN" == "xyes" ]; then
   xsltproc \

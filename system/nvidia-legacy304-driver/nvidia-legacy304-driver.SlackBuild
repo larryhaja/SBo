@@ -3,7 +3,7 @@
 # Slackware build script for nvidia-driver
 
 # Copyright 2007-2011 Heinz Wiesinger, Amsterdam, The Netherlands
-# Copyright 2011-2016 Edward W. koenig, Vancouver, WA, USA
+# Copyright 2011-2017 Edward W. koenig, Vancouver, WA, USA
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -28,7 +28,7 @@
 # See changelog.txt
 
 PRGNAM=nvidia-legacy304-driver
-VERSION=${VERSION:-304.131}
+VERSION=${VERSION:-304.137}
 MVERS=304
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -36,7 +36,7 @@ CPROXY=${CPROXY:-no}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -47,8 +47,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   TARGET="x86"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
@@ -73,6 +73,8 @@ set -e
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
+rm -rf nvidia-installer-$VERSION
+tar xvf $CWD/nvidia-installer-$VERSION.tar.bz2
 rm -rf nvidia-settings-$VERSION
 tar xvf $CWD/nvidia-settings-$VERSION.tar.bz2
 rm -rf nvidia-xconfig-$VERSION
@@ -106,12 +108,12 @@ install -m 755 libnvidia-ml.so.$VERSION $PKG/usr/lib$LIBDIRSUFFIX/
 install -m 755 libnvidia-opencl.so.$VERSION $PKG/usr/lib$LIBDIRSUFFIX/
 install -m 755 tls/libnvidia-tls.so.$VERSION $PKG/usr/lib$LIBDIRSUFFIX/tls/
 install -m 755 libOpenCL.so.1.0.0 $PKG/usr/lib$LIBDIRSUFFIX/
+install -m 755 libXvMCNVIDIA.a $PKG/usr/lib$LIBDIRSUFFIX/
+install -m 755 libXvMCNVIDIA.so.$VERSION $PKG/usr/lib$LIBDIRSUFFIX/
+install -m 755 libvdpau_nvidia.so.$VERSION $PKG/usr/lib$LIBDIRSUFFIX/
 
 # For 8-series GPU if libwfb.so is missing (ie older X servers).
 install -m 755 libnvidia-wfb.so.$VERSION $PKG/usr/lib$LIBDIRSUFFIX/xorg/modules/libnvidia-wfb.so.$VERSION-nvidia
-
-# Don't forget separate libvdpau package on SBo.
-install -m 755 libvdpau_nvidia.so.$VERSION $PKG/usr/lib$LIBDIRSUFFIX/
 
 install -m 644 nvidia.icd $PKG/etc/OpenCL/vendors/
 
@@ -124,10 +126,9 @@ if [ "$ARCH" = "x86_64" -a "${COMPAT32}" = "yes" ]; then
   install -m 755 32/libGL.la $PKG/usr/lib/libGL.la-nvidia
   install -m 755 32/libnvidia-compiler.so.$VERSION $PKG/usr/lib/
   install -m 755 32/libnvidia-glcore.so.$VERSION $PKG/usr/lib/
+  install -m 755 32/libnvidia-ml.so.$VERSION $PKG/usr/lib/
   install -m 755 32/libnvidia-opencl.so.$VERSION $PKG/usr/lib/
   install -m 755 32/tls/libnvidia-tls.so.$VERSION $PKG/usr/lib/tls/
-  install -m 755 32/libnvidia-opencl.so.$VERSION $PKG/usr/lib/
-  install -m 755 32/libnvidia-ml.so.$VERSION $PKG/usr/lib/
   install -m 755 32/libOpenCL.so.1.0.0 $PKG/usr/lib/
   install -m 755 32/libvdpau_nvidia.so.$VERSION $PKG/usr/lib/
 fi
@@ -172,6 +173,22 @@ if [ "$ARCH" = "x86_64" -a "${CPROXY}" = "yes" ]; then
    install -m 755 nvidia-cuda-mps-server $PKG/usr/bin/
    install -m 644 nvidia-cuda-mps-control.1.gz $PKG/usr/man/man1/
 fi
+
+# Compiling nvidia-installer from source
+# Not really needed for this SBo package...yet!
+cd $TMP/nvidia-installer-$VERSION
+  chown -R root:root .
+  find -L . \
+   \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+    -o -perm 511 \) -exec chmod 755 {} \; -o \
+   \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+    -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+  CFLAGS="$SLKCFLAGS" LDFLAGS="-lz" make
+
+  install -m 755 _out/Linux_$TARGET/nvidia-installer $PKG/usr/bin/
+  install -m 644 _out/Linux_$TARGET/nvidia-installer.1.gz $PKG/usr/man/man1/
+cd -
 
 # Compiling nvidia-settings from source
 cd $TMP/nvidia-settings-$VERSION

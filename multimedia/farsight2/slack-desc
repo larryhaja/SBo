@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
          |-----handy-ruler------------------------------------------------------|
-farsight2: Farsight (Audio/Video Communications Framework)
+farsight2: farsight2 (Audio/Video Communications Framework)
 farsight2:
 farsight2: The Farsight project is an effort to create a framework to deal
 farsight2: with all known audio/video conferencing protocols. On one side
@@ -14,6 +14,6 @@ farsight2: it offers a generic API that makes it possible to write plugins
 farsight2: for different streaming protocols, on the other side it offers
 farsight2: an API for clients to use those plugins.
 farsight2:
-farsight2: Homepage: http://farsight.freedesktop.org/wiki/
+farsight2: Homepage: https://www.freedesktop.org/wiki/Software/Farstream/
 farsight2:
 farsight2:

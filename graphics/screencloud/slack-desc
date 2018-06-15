@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
            |-----handy-ruler------------------------------------------------------|
-screencloud: ScreenCloud (Easy to use screenshot tool)
+screencloud: screencloud (Easy to use screenshot tool)
 screencloud:
 screencloud: Take a screenshot using one of the 3 hotkeys or simply click the
 screencloud: ScreenCloud tray icon.  You can choose where you want to save your
@@ -16,4 +16,4 @@ screencloud: share this link with your friends or colleagues via email or in an
 screencloud: IM conversation.  ScreenCloud also offers FTP and SFTP uploading if
 screencloud: you want to use your own server.
 screencloud:
-screencloud: Homepage: http://screencloud.net
+screencloud: Homepage: https://screencloud.net

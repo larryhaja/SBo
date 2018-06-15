@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
      |-----handy-ruler------------------------------------------------------|
-ekiga: Ekiga (an open source VoIP and video conferencing application)
+ekiga: ekiga (an open source VoIP and video conferencing application)
 ekiga:
 ekiga: Ekiga (formely known as GnomeMeeting) is an open source VoIP and
 ekiga: video conferencing application for GNOME. Ekiga uses both the H.323
@@ -14,6 +14,6 @@ ekiga: and SIP protocols. It supports many audio and video codecs, and is
 ekiga: interoperable with other SIP compliant software and also with
 ekiga: Microsoft NetMeeting.
 ekiga:
-ekiga: Homepage: http://www.ekiga.org/
+ekiga: Homepage: https://www.ekiga.org/
 ekiga:
 ekiga:

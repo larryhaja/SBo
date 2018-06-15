@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
                       |-----handy-ruler------------------------------------------------------|
-perl-Scalar-List-Utils: perl-Scalar-List-Utils (common Scalar and List utility subroutines)
+perl-Scalar-List-Utils: perl-Scalar-List-Utils (General-utility scalar subroutines)
 perl-Scalar-List-Utils:
-perl-Scalar-List-Utils: List::Util and Scalar::Util contains a selection of subroutines that
-perl-Scalar-List-Utils: people have expressed would be nice to have in the perl core, but the
-perl-Scalar-List-Utils: usage and/or the size would not warrant the use of a keyword and an
-perl-Scalar-List-Utils: individual extension would be wasteful.
+perl-Scalar-List-Utils: Scalar::Util contains a selection of subroutines that people have
+perl-Scalar-List-Utils: expressed would be nice to have in the perl core, but the usage would
+perl-Scalar-List-Utils: not really be high enough to warrant the use of a keyword, and the
+perl-Scalar-List-Utils: size would be so small that being individual extensions would be
+perl-Scalar-List-Utils: wasteful.
 perl-Scalar-List-Utils:
-perl-Scalar-List-Utils: Homepage: http://search.cpan.org/dist/Scalar-List-Utils/
-perl-Scalar-List-Utils:
+perl-Scalar-List-Utils: Homepage: https://metacpan.org/pod/Scalar::Util
 perl-Scalar-List-Utils:
 perl-Scalar-List-Utils:

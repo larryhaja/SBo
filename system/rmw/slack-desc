@@ -8,12 +8,12 @@
    |-----handy-ruler------------------------------------------------------|
 rmw: rmw (command line trash can/recycle bin)
 rmw:
-rmw: rmw (ReMove to Waste) functions
-rmw: as a command line recycle bin/trash can utility. Optionally,
-rmw: it can ReMove files to Desktop trash and has been tested
-rmw: on GNOME, KDE, and Xfce. It features quick and easy restoration
-rmw: from the command line, duplication protection, and can purge
-rmw: files after x amount of days.
+rmw: rmw is an OS portable cli trash can utility written in C. It can send
+rmw: files to your "Desktop" trash, or a completely separate folder. It
+rmw: can rmw: also: restore files; permanently delete files that were
+rmw: rmw'ed more than xx number of days ago; skip files or directories
+rmw: that have a "PROTECT" directive in the configuration file; and append
+rmw: a unique string to the filenames so they won't be overwritten
+rmw: (duplication protection).
 rmw:
-rmw: Homepage: http://rmw.sf.net/
-rmw:
+rmw: Homepage: https://github.com/andy5995/rmw/wiki

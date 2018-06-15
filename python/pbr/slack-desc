@@ -6,10 +6,10 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
    |-----handy-ruler------------------------------------------------------|
-pbr: pbr (managing setuptools packaging)
+pbr: pbr (managing setuptools packaging in python)
 pbr:
 pbr: A library for managing setuptools packaging in a consistent manner.
-pbr: 
+pbr:
 pbr: pbr reads and then filters the setup.cfg data through a setup hook
 pbr: to fill in default values and provide more sensible behaviors,
 pbr: and then feeds the results in as the arguments to a call to setup.py

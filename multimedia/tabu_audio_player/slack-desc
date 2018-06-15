@@ -6,12 +6,12 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
                  |-----handy-ruler------------------------------------------------------|
-tabu_audio_player: Tabu Audio Player (gstreamer audio player)
+tabu_audio_player: tabu_audio_player (gstreamer audio player)
 tabu_audio_player:
 tabu_audio_player: Simple gstreamer audio player with client-side decorations and
 tabu_audio_player: playback controls drawn with cairo.
 tabu_audio_player:
-tabu_audio_player: Homepage: http://www.kalmbach.com.ar/?page_id=7
+tabu_audio_player: Homepage: https://github.com/kalmbach/tabu_audio_player
 tabu_audio_player:
 tabu_audio_player:
 tabu_audio_player:

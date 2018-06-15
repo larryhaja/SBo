@@ -2,7 +2,7 @@
 #
 # Slackware build script for webkit2gtk
 #
-# Copyright 2016 Willy Sudiarto Raharjo <willysr@slackbuilds.org>
+# Copyright 2016-2017 Willy Sudiarto Raharjo <willysr@slackbuilds.org>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -24,7 +24,7 @@
 
 PRGNAM=webkit2gtk
 SRCNAM=webkitgtk
-VERSION=${VERSION:-2.12.3}
+VERSION=${VERSION:-2.20.3}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -35,14 +35,14 @@ OUTPUT=${OUTPUT:-/tmp}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
 fi
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -54,6 +54,10 @@ else
   SLKCFLAGS="-O2"
   LIBDIRSUFFIX=""
 fi
+
+# This is needed to fix build issue on single make job
+# Thanks to ponce for investigating this issue.
+export MAKEFLAGS=${MAKEFLAGS:--j2}
 
 set -eu
 
@@ -78,6 +82,8 @@ cd build
 	-DCMAKE_INSTALL_PREFIX=/usr \
         -DLIB_INSTALL_DIR=/usr/lib${LIBDIRSUFFIX} \
 	-DLIBEXEC_INSTALL_DIR=/usr/lib${LIBDIRSUFFIX}/webkit2gtk-4.0 \
+        -DENABLE_MEDIA_SOURCE=NO \
+        -DUSE_GSTREAMER_GL=NO \
         ..
 make
 make install DESTDIR=$PKG

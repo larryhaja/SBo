@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
        |-----handy-ruler------------------------------------------------------|
-calibre: Calibre (Ebook library manager)
+calibre: calibre (Ebook library manager)
 calibre:
 calibre: Calibre is a one stop solution to all your e-book needs. It is free,
 calibre: open source and cross-platform in design and works well on Linux,
@@ -15,5 +15,5 @@ calibre: solution and thus includes library management, format conversion,
 calibre: news feeds to ebook conversion, as well as e-book reader sync
 calibre: features and an integrated e-book viewer.
 calibre:
-calibre: Homepage: http://calibre-ebook.com
+calibre: Homepage: https://calibre-ebook.com
 calibre:

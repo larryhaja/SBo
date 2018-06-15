@@ -2,7 +2,7 @@
 
 # Slackware build script for radicale
 
-# Copyright 2016  Johannes Schoepfer, Herrenberg, BW, Germany
+# Copyright 2016-2017  Johannes Schoepfer, Germany
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=radicale
-VERSION=${VERSION:-1.1.1}
+VERSION=${VERSION:-1.1.6}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -70,8 +70,8 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 python setup.py install --prefix=/usr --root=$PKG
-install -m0644 -D config $PKG/etc/radicale/config
-install -m0644 logging $PKG/etc/radicale/logging
+install -m0644 -D config $PKG/etc/radicale/config.new
+install -m0644 logging $PKG/etc/radicale/logging.new
 install -m0644 -D radicale.wsgi $PKG/var/lib/radicale/radicale.wsgi
 install -m0644 radicale.fcgi $PKG/var/lib/radicale/radicale.fcgi
 

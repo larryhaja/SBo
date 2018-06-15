@@ -1,7 +1,10 @@
 #!/bin/sh
 
 # Slackware build script for openoffice.org
-# Ryan P.C. McQuen | Everett, WA | ryan.q@linux.com
+# Copyright 2018 Donald Cooley South Haven, Indiana USA
+# With help from Ekin Akoglu to fix missing menu icons and script cleanup,
+# and a diff from Dominik Drobek to remove unnecessary RPM cruft.
+# Ryan P.C. McQuen | Everett, WA | ryanpcmcquen@member.fsf.org
 # Originally written by Niki Kovacs <info@microlinux.fr)
 #
 # Rewritten for slackbuilds.org by Ryan P.C. McQuen
@@ -27,14 +30,14 @@
 
 PRGNAM=openoffice.org
 SRCNAM=openoffice
-VERSION=${VERSION:-4.1.2}
-BUILD=${BUILD:-1}
+VERSION=${VERSION:-4.1.5}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 SRCSHORT=$(echo $VERSION | cut -f1 -d.)
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -80,7 +83,6 @@ mkdir -p $PKG/usr/bin/
 mkdir -p $PKG/usr/share/applications/
 rm -rf $TMP/$SOURCEDIR
 
-# Extract tarball
 tar xvf $CWD/$TARNAME -C $TMP
 
 cd $TMP/$SOURCEDIR/RPMS
@@ -97,12 +99,13 @@ rm -f *onlineupdate*.rpm
 # Extract the files from the *.rpm
 for FILE in *.rpm ; do rpm2cpio < $FILE | cpio -imdv ; done
 
-rm -rf desktop-integration *.rpm
-mv opt $PKG
-cd $PKG
+cd desktop-integration
+rpm2cpio < openoffice$VERSION-freedesktop-menus-$VERSION-9789.noarch.rpm | cpio -imdv
+cd -
 
-## Remove DejaVu fonts - these are included in other packages
-#rm -f $PKG/opt/${SRCNAM}${SRCSHORT}/share/fonts/truetype/DejaVu*.ttf
+mv opt $PKG
+
+cd $PKG
 
 ## Create symlinks in /usr/bin to actual binaries
 cd $PKG/usr/bin/
@@ -125,6 +128,9 @@ for APP in base calc draw impress math writer; do
   cp -av $PKG/opt/${SRCNAM}${SRCSHORT}/share/xdg/$APP.desktop $PKG/usr/share/applications/open-$APP.desktop ;
 done
 
+## menu icons!
+cp -R $TMP/$SOURCEDIR/RPMS/desktop-integration/usr/share/icons $PKG/usr/share/
+
 ## Move docs to their expected locations
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cd $PKG/opt/${SRCNAM}${SRCSHORT}
@@ -138,6 +144,7 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
+rm -rf $TMP/$OOLANG/RPMS
 mv $TMP/$OOLANG $PKG/opt/${SRCNAM}${SRCSHORT}/lang/
 
 # Fix ownership and permissions and make the package
@@ -146,4 +153,3 @@ find . -type d -exec chmod 755 {} \;
 chmod -R u+rw,go+r-w,a-s .
 
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-${VERSION}_${PKG_LANG}-$PKGARCH-$BUILD$TAG.${PKGTYPE:-tgz}
-

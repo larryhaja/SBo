@@ -2,7 +2,7 @@
 
 # Slackware build script for suricata
 
-# Copyright 2014-2016  Dimitris Zlatanidis  Orestiada, Greece
+# Copyright 2014-2018  Dimitris Zlatanidis  Orestiada, Greece
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=suricata
-VERSION=${VERSION:-3.1.1}
+VERSION=${VERSION:-4.0.4}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -81,6 +81,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --enable-shared=yes \
   --enable-static=no \
   --enable-unix-socket \
+  --enable-python \
   --build=$ARCH-slackware-linux
 
 make
@@ -107,6 +108,9 @@ install -D -m644 rules/*.rules $PKG/etc/$PRGNAM
 
 # Create directory for logging
 mkdir -p $PKG/var/log/$PRGNAM
+
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a COPYING ChangeLog LICENSE doc/*.txt $PKG/usr/doc/$PRGNAM-$VERSION

@@ -24,6 +24,12 @@ preserve_perms etc/kafka/server.properties.new
 preserve_perms etc/kafka/consumer.properties.new
 preserve_perms etc/kafka/producer.properties.new
 preserve_perms etc/kafka/log4j.properties.new
-preserve_perms etc/kafka/test-log4j.properties.new
 preserve_perms etc/kafka/tools-log4j.properties.new
 preserve_perms etc/kafka/kafka-env.sh.new
+preserve_perms etc/kafka/connect-console-sink.properties.new
+preserve_perms etc/kafka/connect-console-source.properties.new
+preserve_perms etc/kafka/connect-distributed.properties.new
+preserve_perms etc/kafka/connect-file-sink.properties.new
+preserve_perms etc/kafka/connect-file-source.properties.new
+preserve_perms etc/kafka/connect-log4j.properties.new
+preserve_perms etc/kafka/connect-standalone.properties.new

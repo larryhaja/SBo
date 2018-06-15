@@ -2,7 +2,7 @@
 
 # Slackware build script for pdal
 
-# Copyright 2013 Benjamin Trigona-Harany <slackbuilds@jaxartes.net>
+# Copyright 2013-2018 Benjamin Trigona-Harany <slackbuilds@jaxartes.net>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,15 +23,14 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=pdal
-VERSION=${VERSION:-1.2.0}
+SRCNAM=PDAL
+VERSION=${VERSION:-1.7.2}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
-SRCNAM=PDAL
-
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -42,8 +41,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -62,18 +61,17 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $SRCNAM-$VERSION
-if [ -e $CWD/$VERSION.tar.gz ]; then
- tar xvf $CWD/$VERSION.tar.gz
-else
- tar xvf $CWD/$SRCNAM-$VERSION.tar.gz
-fi
+tar xvf $CWD/$SRCNAM-$VERSION.tar.gz
 cd $SRCNAM-$VERSION
 chown -R root:root .
 find -L . \
- \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
- -exec chmod 755 {} \; -o \
- \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
- -exec chmod 644 {} \;
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+# prevent build failure on warnings
+sed -i "/Werror/d" cmake/unix_compiler_options.cmake
 
 mkdir -p build
 cd build
@@ -83,30 +81,21 @@ cd build
     -DCMAKE_CXX_FLAGS="$SLKCFLAGS" \
     -DCMAKE_BUILD_TYPE="Release" \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DLIB_SUFFIX=$LIBDIRSUFFIX \
-    -DPDAL_BOOST_EMBED=OFF \
-    -DWITH_GDAL=ON \
-    -DWITH_ICONV=ON \
-    -DWITH_GEOTIFF=ON \
-    -DWITH_LIBXML2=ON \
-    -DWITH_LASZIP=ON \
-    -DWITH_ORACLE=OFF \
-    -DWITH_PYTHON=OFF \
-    -DWITH_FLANN=OFF \
-    -DWITH_P2G=OFF \
-    -DWITH_SOCI=OFF \
-    -DWITH_PGPOINTCLOUD=ON \
-    -DLASZIP_LIBRARY=/usr/lib${LIBDIRSUFFIX}/liblaszip.so \
+    -DCMAKE_INSTALL_LIBDIR=lib$LIBDIRSUFFIX \
+    -DBUILD_PGPOINTCLOUD_TESTS=OFF \
+    -DBUILD_PLUGIN_PGPOINTCLOUD=ON \
+    -DBUILD_PLUGIN_SQLITE=ON \
     ..
-  make VERBOSE=1
   make install DESTDIR=$PKG
 cd ..
 
-find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
-  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | \
+  grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a AUTHORS.txt LICENSE.txt $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a \
+  AUTHORS.txt ChangeLog LICENSE.txt README.md RELEASENOTES.rst \
+  $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install

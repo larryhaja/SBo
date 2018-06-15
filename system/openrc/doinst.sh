@@ -13,7 +13,7 @@ config() {
 }
 
 BACKUP_FILE=(inittab rc.conf logrotate.d/openrc)
-BACKUP_CONF=(bootmisc consolefont devfs dmesg fsck hostname hwclock keymaps killprocs localmount modules mtab net-online netmount network staticroute tmpfiles urandom)
+BACKUP_CONF=(bootmisc consolefont devfs dmesg fsck hostname hwclock keymaps killprocs localmount modules mtab net-online netmount network staticroute swap urandom)
 
 for file in "${BACKUP_FILE[@]}"; do
   config "etc/${file}.new"
@@ -22,3 +22,6 @@ done
 for file in "${BACKUP_CONF[@]}"; do
   config "etc/conf.d/${file}.new"
 done
+
+# enable cgroups service as required by openrc 0.35+
+[ ! -e etc/runlevels/sysinit/cgroups ] && /sbin/rc-update add cgroups sysinit

@@ -23,8 +23,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -64,7 +64,8 @@ mkdir -p $PKG/usr/share/applications
 cat $CWD/$PRGNAM.desktop > $PKG/usr/share/applications/$PRGNAM.desktop
 
 # er, no.
-rm -rf $PKG/root
+rm -rf $PKG/${HOME:-root}/Desktop
+rmdir -p --ignore-fail-on-non-empty $PKG/${HOME:-root}
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \

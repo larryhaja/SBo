@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# Slackware build script for blender
+# Slackware build script for Blender
 
-# Copyright 2015-16 Christoph Willing Brisbane, Australia
+# Copyright 2015-2018 Christoph Willing Brisbane, Australia
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -24,14 +24,15 @@
 
 SRCNAM=blender
 PKGNAM=Blender
-VERSION=${VERSION:-2.77a}
+VERSION=${VERSION:-2.79b}
+BASE_VERSION=${BASE_VERSION:-$( echo $VERSION | sed -e 's/[^0-9.]*//g')}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PYTHON_VERSION=$(python3 -c "import sys; print(sys.version[:3])")
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -42,8 +43,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$SRCNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -80,6 +81,7 @@ cd build
     -DCMAKE_C_FLAGS:STRING="$SLKCFLAGS" \
     -DCMAKE_CXX_FLAGS:STRING="$SLKCFLAGS" \
     -DCMAKE_INSTALL_PREFIX=/usr \
+    -DWITH_CXX11=ON \
     -DWITH_INSTALL_PORTABLE:BOOL=OFF \
     -DWITH_BUILDINFO:BOOL=ON \
     -DWITH_OPENCOLLADA:BOOL=ON \
@@ -96,9 +98,9 @@ cd build
     -DWITH_FFTW3:BOOL=ON \
     -DWITH_GAMEENGINE:BOOL=ON \
     -DWITH_PLAYER:BOOL=ON \
-    -DWITH_IMAGE_REDCODE:BOOL=ON \
     -DWITH_IMAGE_OPENJPEG:BOOL=ON \
     -DWITH_SYSTEM_OPENJPEG:BOOL=ON \
+    -DWITH_SYSTEM_LZO:BOOL=ON \
     -DWITH_MEM_JEMALLOC:BOOL=ON \
     -DWITH_MEM_VALGRIND:BOOL=ON \
     -DWITH_MOD_OCEANSIM:BOOL=ON \
@@ -118,9 +120,9 @@ for bin in $BLENDERBINS ; do
   mv $PKG/usr/bin/$bin $PKG/usr/bin/$bin.bin
   cat <<EOF >$PKG/usr/bin/$bin
 #!/bin/sh
-export PYTHONPATH=/usr/share/$SRCNAM/$VERSION/python/lib$LIBDIRSUFFIX/python$PYTHON_VERSION
+export PYTHONPATH=/usr/share/$SRCNAM/$BASE_VERSION/python/lib$LIBDIRSUFFIX/python$PYTHON_VERSION
 export LD_LIBRARY_PATH=/usr/lib$LIBDIRSUFFIX/opencollada
-exec $bin.bin
+exec $bin.bin "\$@"
 EOF
   chmod 0755 $PKG/usr/bin/$bin
 done

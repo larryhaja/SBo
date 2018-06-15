@@ -2,7 +2,7 @@
 
 # Slackware build script for wmweather+
 #
-# Copyright 2015 Gethyn ThomasQuail <gethyn@bloodbathsoftworks.com>
+# Copyright 2015 Gethyn ThomasQuail <email removed>
 # All rights reserved.
 #
 # Based on:
@@ -25,14 +25,30 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Now maintained by B. Watson <yalhcru@gmail.com>
+
+# 20170324 bkw: update for v2.17.
+
+# 20170121 bkw:
+# - update for v2.16.
+# - use xmore as default viewer
+
+# 20160816 bkw:
+# - take over maintenance
+# - BUILD=2
+# - re-word README, hopefully it's clearer now
+# - actually use SLKCFLAGS
+# - install binary stripped
+# - i486 => i586
+
 PRGNAM=wmweather+
-VERSION=${VERSION:-2.15}
+VERSION=${VERSION:-2.17}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -43,8 +59,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -72,7 +88,13 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# Let's compile!
+# Default viewer needs to be something that Slack actually has.
+# Note that "xterm -e less" doesn't work: it doesn't read from the
+# xterm's stdin.
+sed -i 's,xless,xmore,g' $PRGNAM.1.in $PRGNAM.c
+
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
@@ -82,10 +104,9 @@ find -L . \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --build=$ARCH-slackware-linux
 make
-make install DESTDIR=$PKG
+make install-strip DESTDIR=$PKG
 
-# Compresses man page
-gzip -9 $PKG/usr/man/man1/wmweather+.1
+gzip -9 $PKG/usr/man/man1/$PRGNAM.1
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a ChangeLog COPYING example.conf HINTS README $PKG/usr/doc/$PRGNAM-$VERSION

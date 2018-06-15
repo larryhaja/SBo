@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
          |-----handy-ruler------------------------------------------------------|
-sloccount: SLOCCount  (Source Lines of Code Counter)
+sloccount: sloccount (Source Lines of Code Counter)
 sloccount:
 sloccount: SLOCCount is a set of tools for counting physical Source
 sloccount: Lines of Code (SLOC) in a large number of languages. It can
@@ -14,6 +14,6 @@ sloccount: measure 19 different languages, including C, C++, Perl,
 sloccount: LISP/Scheme, and Python (A complete list is available on the
 sloccount: home page).
 sloccount:
-sloccount: SLOCcount home page is: http://www.dwheeler.com/sloccount/
+sloccount: SLOCcount home page is: https://www.dwheeler.com/sloccount/
 sloccount:
 sloccount:

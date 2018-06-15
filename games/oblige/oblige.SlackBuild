@@ -6,6 +6,19 @@
 
 # Licensed under the WTFPL. See http://www.wtfpl.net/txt/copying/ for details.
 
+# 20171220 bkw:
+# - update for 7.70. Upstream calls this the final release :(
+
+# 20170817 bkw:
+# - update for 7.666. Sadly this might be the last update, upstream is
+#   tired of working on oblige :(
+
+# 20161016 bkw:
+# - update for 7.50
+# - get rid of CRLF endings in docs
+# - allow script to build both 6.20 and 7.50, see README for why
+# - reword short description in slack-desc (was too vague)
+
 # 20150510 bkw:
 # - version bump to 6.20
 # - use upstream's .desktop and icon
@@ -25,13 +38,13 @@
 # in /usr/share.
 
 PRGNAM=oblige
-VERSION=${VERSION:-6.20}
+VERSION=${VERSION:-7.70}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -42,8 +55,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -65,7 +78,15 @@ rm -rf $PKG
 mkdir -p $TMP $PKG/usr/bin $PKG/usr/share/$PRGNAM $OUTPUT
 cd $TMP
 rm -rf ${SRCNAM}-${VERSION}-source
-tar xvf $CWD/$PRGNAM-$SRCVER-source.tar.gz
+
+# script supports 6.x and 7.x. author switched from .tar.gz to .zip
+# for 7.x, so check for both.
+if [ -e $CWD/$PRGNAM-$SRCVER-source.zip ]; then
+  unzip $CWD/$PRGNAM-$SRCVER-source.zip
+else
+  tar xvf $CWD/$PRGNAM-$SRCVER-source.tar.gz
+fi
+
 cd ${SRCNAM}-${VERSION}-source
 chown -R root:root .
 find -L . \
@@ -76,6 +97,12 @@ find -L . \
 
 # 'make install' would install the .desktop and icon to /usr, not PREFIX.
 sed -i '/xdg-/d' Makefile
+
+# if there's no prefabs/ dir, don't try to install it. doing it this
+# way allows this script to still build oblige 7.666, if needed.
+if [ ! -d prefabs ]; then
+  sed -i '/\/prefabs/d' Makefile
+fi
 
 make PREFIX=/usr OPTIMISE="$SLKCFLAGS"
 make install PREFIX=$PKG/usr
@@ -90,7 +117,14 @@ cat misc/icon_128x128.png > $PKG/usr/share/pixmaps/$PRGNAM.png
 cat misc/$PRGNAM.desktop > $PKG/usr/share/applications/$PRGNAM.desktop
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp *.txt doc/*.txt $PKG/usr/doc/$PRGNAM-$VERSION
+rm -f INSTALL.txt # don't need compile instruction in bin package
+sed -i 's,\r,,' *.txt
+cp -a *.txt $PKG/usr/doc/$PRGNAM-$VERSION
+# 6.x and 7.50 have extra docs, 7.666 doesn't:
+if [ -d doc ]; then
+  sed -i 's,\r,,' doc/*.txt
+  cp doc/*.txt $PKG/usr/doc/$PRGNAM-$VERSION
+fi
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install

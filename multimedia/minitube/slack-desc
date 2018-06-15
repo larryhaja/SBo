@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
         |-----handy-ruler------------------------------------------------------|
-minitube: Minitube (YouTube desktop client)
+minitube: minitube (YouTube desktop client)
 minitube:
 minitube: Minitube is a YouTube desktop client. With it you can watch
 minitube: YouTube videos in a new way: you type a keyword, Minitube
@@ -15,5 +15,5 @@ minitube: the Flash Player.  Minitube is not about cloning the original
 minitube: YouTube web interface, it aims to create a new TV-like
 minitube: experience.
 minitube:
-minitube: http://flavio.tordini.org/minitube
+minitube: https://flavio.tordini.org/minitube
 minitube:

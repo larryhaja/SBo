@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
     |-----handy-ruler------------------------------------------------------|
-mrtg: MRTG (multi router traffic grapher)
+mrtg: mrtg (multi router traffic grapher)
 mrtg:
 mrtg: MRTG monitors the traffic load on network links such as routers and
 mrtg: interfaces. It supports SNMP and generates HTML pages with PNG images
@@ -14,6 +14,6 @@ mrtg: showing how much traffic has passed through each interface. MRTG can
 mrtg: also be used to graph everything else like disk space, temperatures,
 mrtg: and so on.
 mrtg:
-mrtg: See Tobi Oetiker's homepage at http://oss.oetiker.ch/mrtg/
+mrtg: See Tobi Oetiker's homepage at https://oss.oetiker.ch/mrtg/
 mrtg:
 mrtg:

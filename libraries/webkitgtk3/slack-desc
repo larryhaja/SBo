@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
           |-----handy-ruler------------------------------------------------------|
-webkitgtk3: WebKitGTK+ (GTK+ port of the WebKit)
+webkitgtk3: webkitgtk3 (GTK+ port of the WebKit)
 webkitgtk3:
 webkitgtk3: WebKit/GTK+ is the new GTK+ port of the WebKit, an open-source web
 webkitgtk3: content engine that powers numerous applications such as web
@@ -15,5 +15,5 @@ webkitgtk3: whole lot more.
 webkitgtk3:
 webkitgtk3: This builds the GTK3 interface.
 webkitgtk3:
-webkitgtk3: http://webkitgtk.org/
+webkitgtk3: https://www.webkitgtk.org/
 webkitgtk3:

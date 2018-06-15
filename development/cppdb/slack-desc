@@ -8,11 +8,11 @@
      |-----handy-ruler------------------------------------------------------|
 cppdb: cppdb (stand alone connectivity library)
 cppdb:
-cppdb: stand alone C++ connectivity library that supports MySQL, 
+cppdb: stand alone C++ connectivity library that supports MySQL,
 cppdb: PostgreSQL, Sqlite3 databases and generic ODBC drivers.
 cppdb:
 cppdb:
-cppdb: Project URL: http://cppcms.com
+cppdb: Homepage: http://cppcms.com
 cppdb:
 cppdb:
 cppdb:

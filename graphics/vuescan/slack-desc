@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
        |-----handy-ruler------------------------------------------------------|
-vuescan: vuescan - Ed Hamrick's scanner software
+vuescan: vuescan (Ed Hamrick's scanner software)
 vuescan:
 vuescan: vuescan is an application for Windows, Mac OS X and Linux that is
 vuescan: compatible with over 2100 scanners from 35 scanner manufacturers.
@@ -14,6 +14,6 @@ vuescan: vuescan is commercial software but free to try indefinitly.
 vuescan: (watermarking the saved images)
 vuescan: vuescan supports many special scanners such as film scanners.
 vuescan:
-vuescan: homepage: http://www.hamrick.com
+vuescan: homepage: https://www.hamrick.com
 vuescan:
 vuescan:

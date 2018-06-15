@@ -2,7 +2,7 @@
 
 # Slackware build script for letsencrypt
 
-# Copyright 2015-2016 Willy Sudiarto Raharjo <willysr@slackbuilds.org>
+# Copyright 2015-2018 Willy Sudiarto Raharjo <willysr@slackbuilds.org>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -24,7 +24,7 @@
 
 PRGNAM=letsencrypt
 SRCNAM=certbot
-VERSION=${VERSION:-0.8.1}
+VERSION=${VERSION:-0.24.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -70,24 +70,39 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
+sed -i "/'argparse',/d" setup.py
+sed -i "/'argparse',/d" acme/setup.py
+sed -i 's/apache2ctl/apachectl/' certbot-apache/certbot_apache/constants.py
+patch -p1 < $CWD/configurator.patch
+
+for i in $(grep -ri /apache2 * | cut -d: -f1 | sort -u)
+do
+  sed -i 's/\/apache2/\/httpd/' $i
+done
+
 # install acme-protocol first
 cd acme
 python setup.py install --root=$PKG
 
 # install letsencrypt client
 cd ..
-
 python setup.py install --root=$PKG
 
 # this plugins are not working for Slackware yet, but we will keep it here
 
 # install apache plugin
-#cd letsencrypt-apache
-#python setup.py install --root=$PKG
+cd certbot-apache
+python setup.py install --root=$PKG
+cd ..
 
 # install nginx plugin
-#cd ../letsencrypt-nginx
+#cd ../certbot-nginx
 #python setup.py install --root=$PKG
+
+# We include default options for Apache
+mkdir -p $PKG/etc/letsencrypt/
+cp $PKG/usr/lib${LIBDIRSUFFIX}/python2.7/site-packages/certbot_apache/options-ssl-apache.conf \
+   $PKG/etc/letsencrypt/options-ssl-apache.conf
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true

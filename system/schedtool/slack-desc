@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
          |-----handy-ruler------------------------------------------------------|
-schedtool: schedtool - query or alter a process' scheduling policy.
+schedtool: schedtool (query or alter a process' scheduling policy)
 schedtool:
 schedtool: schedtool interfaces with the Linux CPU scheduler.
 schedtool: It allows the user to set and query the CPU-affinity and nice-levels
@@ -15,5 +15,5 @@ schedtool: like batch or real-time (RR/FIFO) classes and their priorities.
 schedtool: All special scheduling classes of the -ck kernel patchset
 schedtool: are also supported.
 schedtool:
-schedtool: Homepage:  http://freequaos.host.sk/schedtool/
+schedtool: Homepage:  http://bit.ly/2p5Gunx
 schedtool:

@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
          |-----handy-ruler------------------------------------------------------|
-zuluCrypt: zuluCrypt (CLI and GUI frontend to cryptsetup).
+zuluCrypt: zuluCrypt (CLI and GUI frontend to cryptsetup)
 zuluCrypt:
-zuluCrypt: zuluCrypt is a simple, feature rich and powerful solution for 
+zuluCrypt: zuluCrypt is a simple, feature rich and powerful solution for
 zuluCrypt: hard drives encryption.
 zuluCrypt:
+zuluCrypt: zuluCrypt is a front end to cryptsetup and tcplay and it allows easy
+zuluCrypt: management of encrypted block devices.
+zuluCrypt:
 zuluCrypt: Home page: http://mhogomchungu.github.io/zuluCrypt/
-zuluCrypt:
-zuluCrypt:
-zuluCrypt:
 zuluCrypt:
 zuluCrypt:

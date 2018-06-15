@@ -6,13 +6,13 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
          |-----handy-ruler------------------------------------------------------|
-cssselect: cssselect
+cssselect: cssselect (python library)
 cssselect:
 cssselect: cssselect parses CSS3 Selectors and translate them to XPath 1.0
 cssselect: expressions. Such expressions can be used in lxml or another XPath
 cssselect: engine to find the matching elements in an XML or HTML document.
 cssselect:
-cssselect: Homepage: http://packages.python.org/cssselect/
+cssselect: Homepage: https://cssselect.readthedocs.io/en/latest/
 cssselect:
 cssselect:
 cssselect:

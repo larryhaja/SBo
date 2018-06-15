@@ -2,7 +2,7 @@
 
 # Slackware build script for ioquake3
 
-# Copyright 2016 Matt Dinslage, Springfield, MO
+# Copyright 2017 Matt Dinslage, Springfield, MO
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=ioquake3
-VERSION=${VERSION:-r20160627}
+VERSION=${VERSION:-r20180602}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -31,12 +31,14 @@ TAG=${TAG:-_SBo}
 # arch setting which causes the build to fail
 # on 32bit machines, so we change this to BARCH
 # here and let the Makefile set the ARCH.
-if [ -z "$BARCH" ]; then
+if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) export BARCH=i486 ;;
+    i?86) export BARCH=i586 ;;
     arm*) export BARCH=arm ;;
        *) export BARCH=$( uname -m ) ;;
   esac
+else
+  BARCH="$ARCH"
 fi
 
 CWD=$(pwd)
@@ -44,18 +46,22 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$BARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$BARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
+  ARCH="x86"
 elif [ "$BARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
   LIBDIRSUFFIX=""
+  ARCH="x86"
 elif [ "$BARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2 -fPIC"
   LIBDIRSUFFIX="64"
+  ARCH="x86_64"
 else
   SLKCFLAGS="-O2"
   LIBDIRSUFFIX=""
+  ARCH="$BARCH"
 fi
 
 set -e
@@ -64,7 +70,7 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar -xvf $CWD/$PRGNAM-$VERSION.tar.xz
+tar -xvf $CWD/$PRGNAM-$VERSION.tar.gz
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
@@ -76,6 +82,7 @@ find -L . \
 make \
    release \
    copyfiles \
+   ARCH="$ARCH" \
    COPYDIR="$PKG"/usr/share/games/quake3 \
    CFLAGS="$SLKCFLAGS" \
    USE_CODEC_VORBIS=1 \
@@ -83,6 +90,7 @@ make \
    USE_CURL_DLOPEN=0 \
    USE_FREETYPE=1 \
    BUILD_RENDERER_OPENGL2=1 \
+   USE_MUMBLE=1 \
    USE_VOIP=1 \
    USE_OPENAL=1 \
    USE_OPENAL_DLOPEN=0 \
@@ -105,7 +113,7 @@ install -m 644 missionpack/*.pk3 $PKG/usr/share/games/quake3/missionpack
 
 mkdir -p $PKG/usr/share/{applications,pixmaps}
 cat $CWD/$PRGNAM.desktop > $PKG/usr/share/applications/$PRGNAM.desktop
-install -m 644 $CWD/quake3.png $PKG/usr/share/pixmaps/quake3.png
+install -m 644 $TMP/$PRGNAM-$VERSION/misc/quake3_flat.iconset/icon_512x512.png $PKG/usr/share/pixmaps/quake3.png
 
 # Add launcher
 mkdir $PKG/usr/games
@@ -113,7 +121,7 @@ cat $CWD/launcher.ioquake3 > $PKG/usr/games/ioquake3
 chmod 0755 $PKG/usr/games/ioquake3
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a COPYING.txt README.md NOTTODO BUGS ChangeLog \
+cp -a COPYING.txt README.md ChangeLog \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 

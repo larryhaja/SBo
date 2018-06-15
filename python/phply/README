@@ -1,15 +1,12 @@
-phply is a lexer and parser for the PHP programming language written in
-Python.
+phply is a parser for the PHP programming language written using PLY, a
+Lex/YACC-style parser generator toolkit for Python.
 
-Included tools installed to /usr/bin:
+See README.Slackware for some usage notes.
 
-phpshell.py - PHP interactive interpreter written in Python
+A Note on Dependencies:
 
-php2json.py - Converts PHP to a JSON-based abstract syntax tree
-Usage: php2json.py < input.php > output.json
+Nose is only required to run the python test suite.  It is not a
+run-time dependency and can be safely removed after phply is built.
 
-php2python.py - Converts PHP to Python using unparse.py
-Usage: php2python.py < input.php > output.py
-
-php2jinja.py - Converts PHP to Jinja2 templates (experimental)
-Usage: php2jinja.py < input.php > output.html
+The python library simplejson is an optional dependency.  phply ships with a
+script php2json.py in /usr/doc/phply-$VERSION/tools that requires it.

@@ -12,6 +12,16 @@ information can be found at the following URLs:
   http://manual.snort.org/             (user manual)
 
 
+Running the SlackBuild
+----------------------
+
+By default, non-Ethernet decoders (for example, venet0) are enabled. If
+you need to disable this for performance reasons, use the option
+'NON_ETHER=no':
+
+  NON_ETHER=no ./snort.SlackBuild
+
+
 Starting snort
 --------------
 
@@ -22,7 +32,7 @@ or start it as:
 
   IFACE=xxxx /etc/rc.d/rc.snort start|stop|restart
 
-As an example, you can put this in your /etc/rc.d/rc.local script:
+As an example, for eth1 you can put this in your /etc/rc.d/rc.local script:
 
   if [ -x /etc/rc.d/rc.snort ]; then
     IFACE=eth1 /etc/rc.d/rc.snort start
@@ -31,7 +41,7 @@ As an example, you can put this in your /etc/rc.d/rc.local script:
 and put this in your /etc/rc.d/rc.local_shutdown:
 
   if [ -x /etc/rc.d/rc.snort ]; then
-    IFACE=xxxx /etc/rc.d/rc.snort stop
+    IFACE=eth1 /etc/rc.d/rc.snort stop
   fi
 
 

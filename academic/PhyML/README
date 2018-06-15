@@ -9,7 +9,10 @@ It also implements two methods to evaluate branch supports in a sound
 statistical framework (the non-parametric bootstrap and the
 approximate likelihood ratio test).
 
-The script also builds the additional program PhyTime.
+This also builds MPI (using multiple processors) version of PhyML, which
+requires 'openmpi'. Other additional programs built by the script are
+Phyrex and PhyTime. If you do not want them to be built in the package,
+check the SlackBuild script.
 
 For details and citation
 New Algorithms and Methods to Estimate Maximum-Likelihood

@@ -26,8 +26,8 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=OpenPHT
-VERSION=${VERSION:-1.6.2.123}
-REV=${REV:-e23a7eef}
+VERSION=${VERSION:-1.8.0.148}
+REV=${REV:-573b6d73}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -73,9 +73,6 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# Fix 32bit build
-# patch -p1 < $CWD/fix32bit.patch
-
 # Find fribidi-0.19.7
 # https://raw.githubusercontent.com/foux/fouxlay/master/media-tv/plex-home-theater/files/fribidi.patch
 patch -p1 < $CWD/fribidi.patch
@@ -94,6 +91,7 @@ cmake \
   -DUSE_INTERNAL_FFMPEG='TRUE' \
   -DCREATE_BUNDLE='FALSE' \
   -DENABLE_SHAIRPLAY=off \
+  -DENABLE_CEC=off \
   ..
 
 # internal ffmpeg version doesn't build with multiple jobs
@@ -121,6 +119,7 @@ cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}

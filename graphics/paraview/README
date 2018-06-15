@@ -4,14 +4,15 @@ data using qualitative and quantitative techniques. The data exploration can be
 done interactively in 3D or programmatically using ParaView's batch
 processing capabilities.
 
+This SlackBuild, in line with official Paraview releases,
+is intended only for 64bit systems.
+
 Although not recommended, building without MPI (mpich) and/or Matplotlib support
 is possible by setting the relevant variables in the build environment:
   MPICH=no
   MATPLOTLIB=no
 
-This build incorporates the ParaView "Getting Started" and "Tutorial"
-documentation. In addition, the official ParaView Guide is available from:
-    http://www.paraview.org/files/v5.1/ParaViewGuide-5.1.0.pdf
-For access to the Guide directly from the ParaView graphical interface
-(using Help menu or F1 key), it should be stored as
-    /usr/doc/paraview-5.1.2/Guide.pdf
+Optional embedding with PythonQt may be enabled by setting
+  PYTHONQT=yes
+in the build environment. This requires the SBo PythonQt package to be
+installed at build time.

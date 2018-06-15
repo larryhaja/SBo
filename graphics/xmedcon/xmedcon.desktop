@@ -1,9 +1,7 @@
 [Desktop Entry]
-Version=1.0
 Type=Application
 Name=(X)MedCon
-GenericName=Medical Image Conversion 
-Comment=Medical Image Conversion 
+GenericName=Medical Image Conversion
 Exec=xmedcon
-Icon=xmedcon.png
-Categories=Graphics;
+Icon=xmedcon
+Categories=Graphics;Utility;

@@ -1,5 +1,3 @@
-bunsen-themes (GTK2|GTK3 Themes).
+bunsen-themes (BunsenLabs Theme Collection)
 
-GTK, Openbox, and Li themes for Bunsen and Debian Jessie Made by hhh from the Crunchbang forums.
-
-Optional dependencies: gtk-engines, murrine.
+GTK and Openbox themes for BunsenLabs "Helium" and Debian "Stretch".

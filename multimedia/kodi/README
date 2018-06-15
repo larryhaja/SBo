@@ -5,11 +5,10 @@ viewing and playing a vast library of audio, video and image formats.
 Kodi has a sophisticated library management system that allows you to
 organize all your media to give you quick and immediate access.
 
-Optional dependencies: libcec, libbluray, libnfs, libva, libdvdcss, 
-lirc, cwiid, pybluez, id3lib, libvdpau, rtmpdump, afpfs-ng, avahi, 
-lame, SDL2, libmodplug and openjdk
+Optional dependencies: libcec, libbluray, libnfs, lirc, cwiid, pybluez,
+avahi, shairplay and openjdk
 
-Optional: libcrystalhd and libshairport (not available at slackbuilds.org)
+Optional: libcrystalhd (not available at slackbuilds.org)
 
 Below are some paramaters that can be passed to the slackbuild to turn
 on some optional components.
@@ -23,5 +22,7 @@ Kodi can be compiled with openjdk instead of jdk.
 Please remove or rename /etc/oss.conf if it exists on your system
 prior to building this package or it will fail to build.
 
-ffmpeg on SBo is too old to build with kodi. Use ffmepg that is built
-by default with kodi.
+Using the system ffmpeg in the Kodi slackbuild is currently not
+supported. The option to build Kodi with system ffmpeg is still
+available in the slackbuild but it won't be supported by the
+maintainer.

@@ -3,6 +3,8 @@
 # Slackware build script for JMRI
 
 # Copyright 2011 David Spencer, Baildon, West Yorkshire, U.K.
+# Copyright 2016-2017 Heiko Rosemann, Germany
+
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,10 +25,16 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=jmri
-VERSION=${VERSION:-2.14}
-REVISION=${REVISION:-r19563}
+VERSION=${VERSION:-4.10}
+REVISION=${REVISION:-R419243e}
 
-ARCH=i486   # some embedded libraries are 32 bit only, see lib/linux/*
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i586 ;;
+    arm*) ARCH=arm ;;
+    *) ARCH=$( uname -m ) ;;
+  esac
+fi
 
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -44,7 +52,7 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $TARNAM
-tar xvf $CWD/$TARNAM.$VERSION-$REVISION.tgz
+tar xvf $CWD/$TARNAM.$VERSION.$REVISION.tgz
 cd $TARNAM
 chown -R root:root .
 find -L . \
@@ -55,8 +63,7 @@ find -L . \
 
 mkdir -p $PKG/usr/bin
 cp -a \
-  DecoderPro DispatcherPro PanelPro SignalPro SoundPro \
-  InstallTest JmriDemo LocoTools cornwall \
+  DecoderPro PanelPro SoundPro JmriFaceless InstallTest \
   $PKG/usr/bin
 chmod 755 $PKG/usr/bin/*
 
@@ -91,14 +98,6 @@ cp -a \
   COPYING \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
-
-mkdir -p $PKG/usr/share/applications
-install -m 0644 -t $PKG/usr/share/applications \
-  $CWD/DecoderPro.desktop \
-  $CWD/DispatcherPro.desktop \
-  $CWD/PanelPro.desktop \
-  $CWD/SignalPro.desktop \
-  $CWD/SoundPro.desktop
 
 mkdir -p $PKG/usr/share/pixmaps
 install -m 0644 -t $PKG/usr/share/pixmaps \

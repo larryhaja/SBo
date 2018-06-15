@@ -1,7 +1,9 @@
 #!/bin/sh
 # Slackware build script for freeciv
 
-# Ryan P.C. McQuen | Everett, WA | ryan.q@linux.com
+# Yth | Pont-en-Royans, France | yth@ythogtha.org
+
+# Ryan P.C. McQuen | Everett, WA | ryanpcmcquen@member.fsf.org
 
 # Original version written by Iskar Enev <iskar.enev[@]gmail.com>
 
@@ -26,7 +28,8 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=freeciv
-VERSION=${VERSION:-2.5.4}
+VERSION=${VERSION:-2.6.0_beta3}
+SRCVERSION=${SRCVERSION:-2.6.0-beta3}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -62,9 +65,9 @@ set -e
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tar.bz2
-cd $PRGNAM-$VERSION
+rm -rf $PRGNAM-$SRCVERSION
+tar xvf $CWD/$PRGNAM-$SRCVERSION.tar.bz2
+cd $PRGNAM-$SRCVERSION
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
@@ -81,9 +84,10 @@ CXXFLAGS="$SLKCFLAGS" \
   --localstatedir=/var \
   --mandir=/usr/man \
   --without-ggz-client \
-  --enable-client=gtk \
+  --enable-client=gtk3 \
   --enable-static=no \
   --enable-shared=yes \
+  --with-readline \
   --build=$ARCH-slackware-linux
 
 make V=1

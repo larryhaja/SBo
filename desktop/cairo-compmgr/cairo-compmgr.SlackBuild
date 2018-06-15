@@ -56,6 +56,7 @@ if pkg-config --exists libgtop-2.0 ; then
   perf_flags="--enable-perf-plugin"
 else
   perf_flags="--disable-perf-plugin"
+  sed -i -e '/schema_install ccm-perf.schemas/d' $CWD/doinst.sh
 fi
 
 # If vala changes the name of the pkgconfig file from libvala-0.12.pc,
@@ -104,9 +105,7 @@ sed -i -e 's/Icon=.*/Icon=cairo-compmgr/' \
     $PKG/usr/share/applications/cairo-compmgr.desktop
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a \
-  AUTHORS COPYING ChangeLog INSTALL NEWS README \
-  $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a AUTHORS COPYING ChangeLog INSTALL NEWS $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install

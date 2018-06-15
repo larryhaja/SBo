@@ -4,15 +4,15 @@
 # Written by powtrix (@gmail.com)
 
 PRGNAM=tbb
-VERSION=${VERSION-4.3u5}
+VERSION=${VERSION:-2018u3}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
-SRCVERSION=${SRCVERSION:-43_20150424oss}
+SRCVERSION=$( echo ${VERSION} | sed 's,u,_U,' )
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -23,8 +23,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -39,17 +39,17 @@ fi
 
 set -e
 
-rm -rf $PKG $TMP/$PRGNAM${SRCVERSION}
+rm -rf $PKG $TMP/$PRGNAM-${SRCVERSION}
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-tar xvf $CWD/$PRGNAM${SRCVERSION}_src.tgz
-cd $PRGNAM${SRCVERSION}
+tar xvf $CWD/$PRGNAM-${SRCVERSION}.tar.gz
+cd $PRGNAM-${SRCVERSION}
 chown -R root:root .
 find -L . \
- \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
- -exec chmod 755 {} \; -o \
- \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
- -exec chmod 644 {} \;
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 make
 
@@ -67,7 +67,8 @@ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" \
  | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2>/dev/null || true
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a CHANGES COPYING README doc $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a CHANGES LICENSE README{,.md} doc/Release_Notes.txt \
+ $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install

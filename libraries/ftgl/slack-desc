@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
     |-----handy-ruler------------------------------------------------------|
-ftgl: FTGL (font rendering library for OpenGL applications)
+ftgl: ftgl (font rendering library for OpenGL applications)
 ftgl:
 ftgl: FTGL is a free, open source library to enable developers to use
 ftgl: arbitrary fonts in their OpenGL (www.opengl.org) applications.
@@ -16,4 +16,4 @@ ftgl: quality font data into a lesser quality, proprietary format.
 ftgl: FTGL uses the Freetype (www.freetype.org) font library to open and
 ftgl: 'decode' the fonts. It then takes that output and stores it in a
 ftgl: format most efficient for OpenGL rendering.
-ftgl: Homepage: http://ftgl.wiki.sourceforge.net/
+ftgl: Homepage: https://sourceforge.net/projects/ftgl/

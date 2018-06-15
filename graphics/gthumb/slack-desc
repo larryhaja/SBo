@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
       |-----handy-ruler------------------------------------------------------|
-gthumb: gThumb ( An image viewer )
+gthumb: gthumb (An image viewer)
 gthumb:
 gthumb: gThumb is an image viewer and browser for the GNOME desktop. It also
 gthumb: includes an importer tool for transferring photos from cameras.
@@ -15,5 +15,5 @@ gthumb: gThumb supports printing multiple images on a single page using
 gthumb: a printer while many other image viewers don't support it.
 gthumb: Thus, it comes handy.
 gthumb:
-gthumb: Website: http://live.gnome.org/gthumb
+gthumb: Website: https://wiki.gnome.org/Apps/Gthumb
 gthumb:

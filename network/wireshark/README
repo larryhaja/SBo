@@ -22,3 +22,13 @@ You will need to remove any already-installed wireshark package before
 building this one or else the new one will not work (the new build will
 link libraries present in the old package, which will then be removed 
 when upgrading).
+
+Optional dependencies:
+- c-ares
+- portaudio
+- krb5
+- spandsp
+- snappy
+- lz4
+
+NOTE: Wireshark 2.6 is the last release to support the legacy GTK-based UI.

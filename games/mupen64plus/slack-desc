@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
            |-----handy-ruler------------------------------------------------------|
-mupen64plus: Mupen64Plus (N64 emulator)
+mupen64plus: mupen64plus (N64 emulator)
 mupen64plus:
 mupen64plus: Mupen64Plus is a plugin-based N64 emulator for Linux which is capable
 mupen64plus: of accurately playing many games. Included are four MIPS R4300 CPU
@@ -14,6 +14,6 @@ mupen64plus: emulators, with dynamic recompilers for 32-bit x86 and 64-bit amd64
 mupen64plus: systems, and necessary plugins for audio, graphical rendering (RDP),
 mupen64plus: signal co-processor (RSP), and input.
 mupen64plus:
-mupen64plus: Homepage: http://code.google.com/p/mupen64plus/
+mupen64plus: Homepage: https://github.com/mupen64plus/mupen64plus-core
 mupen64plus:
 mupen64plus:

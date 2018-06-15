@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for eclipse-cpp
+# Slackware build script for eclipse-java
 
 # Copyright (c) 2008-2010, Antonio Hernández Blas <hba.nihilismus@gmail.com>
 # All rights reserved.
@@ -22,12 +22,13 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Update by: Andre Barboza <bmg.andre@gmail.com>
+# Update by: Andrew Clemons <andrew.clemons@gmail.com>
 # Modified from classical eclipse slackbuild
 # This script is just a binary repackaging.
 
 PRGNAM=eclipse-java
-VERSION=${VERSION:-4.5.2}
-SRCVERSION="mars-2"
+VERSION=${VERSION:-4.7.3a}
+SRCVERSION=${SRCVERSION:-oxygen-3a}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -53,10 +54,11 @@ cd $PKG/opt/$PRGNAM
 # ARCH can be 'i586' or 'x86_64'
 if [ "$ARCH" = "x86_64" ]; then
   tar --strip-components=1 -xvf $CWD/$PRGNAM-$SRCVERSION-linux-gtk-$ARCH.tar.gz
-elif [ "$ARCH" = "i586" ]; then
+elif case "$ARCH" in i?86) true ;; *) false ;; esac ; then
   tar --strip-components=1 -xvf $CWD/$PRGNAM-$SRCVERSION-linux-gtk.tar.gz
 else
-  printf "$ARCH is not supported...\n" ; exit 1
+  printf "$ARCH is not supported...\n"
+  exit 1
 fi
 
 chown -R root:root .
@@ -64,7 +66,7 @@ find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
   -o -perm 511 \) -exec chmod 755 {} \; -o \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
- -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 # Add a wrapper to run eclipse in /usr/bin
 # Its going to change the working directory to $HOME, so when you import/export
@@ -82,16 +84,14 @@ chmod 0755 $PKG/usr/bin/$PRGNAM
 install -D -m 0644 $CWD/$PRGNAM.desktop $PKG/usr/share/applications/$PRGNAM.desktop
 ECLIPSE_ICON=$(find . -name "*eclipse48.png" | grep "org.eclipse.platform")
 install -D -m 0644 "$PKG/opt/$PRGNAM/${ECLIPSE_ICON}" \
-	$PKG/usr/share/pixmaps/$PRGNAM.png
+  $PKG/usr/share/pixmaps/$PRGNAM.png
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
 # Don't clobber any existing config file
-mv $PKG/opt/$PRGNAM/configuration/config.ini \
-  $PKG/opt/$PRGNAM/configuration/config.ini.new
-mv $PKG/opt/$PRGNAM/eclipse.ini \
-  $PKG/opt/$PRGNAM/eclipse.ini.new
+mv $PKG/opt/$PRGNAM/configuration/config.ini $PKG/opt/$PRGNAM/configuration/config.ini.new
+mv $PKG/opt/$PRGNAM/eclipse.ini $PKG/opt/$PRGNAM/eclipse.ini.new
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cd $PKG/opt/$PRGNAM

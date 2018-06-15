@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
         |-----handy-ruler------------------------------------------------------|
-avogadro: Avogadro (An advanced molecular editor based on Qt 4.)
+avogadro: avogadro (An advanced molecular editor based on Qt 4.)
 avogadro:
 avogadro: Avogadro is a molecular graphics and modelling system targetted at
 avogadro: molecules and biomolecules. It can visualize properties like
 avogadro: molecular orbitals or electrostatic potentials and features an
 avogadro: intuitive molecular builder.
 avogadro:
-avogadro: Homepage: http://avogadro.openmolecules.net/wiki/Main_Page
+avogadro: Homepage: http://avogadro.cc/
 avogadro:
 avogadro:
 avogadro:

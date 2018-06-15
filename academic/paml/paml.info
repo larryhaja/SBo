@@ -1,10 +1,10 @@
 PRGNAM="paml"
-VERSION="4.9a"
+VERSION="4.9g"
 HOMEPAGE="http://abacus.gene.ucl.ac.uk/software/paml.html"
-DOWNLOAD="http://abacus.gene.ucl.ac.uk/software/paml4.9a.tgz \
-	http://abacus.gene.ucl.ac.uk/software/MCMCtree.Tutorials.pdf"
-MD5SUM="e1c421f3642e2770949ddafcd17a7173 \
-	29c851d887eea56b949c01ab42cc48fb"
+DOWNLOAD="http://abacus.gene.ucl.ac.uk/software/paml4.9g.tgz \
+          http://ponce.cc/slackware/sources/repo/MCMCtree.Tutorials.pdf"
+MD5SUM="083b7451f56c25e9ffdb32afcc8fee42 \
+        29c851d887eea56b949c01ab42cc48fb"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
 REQUIRES=""

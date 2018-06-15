@@ -1,15 +1,12 @@
-diff -Naur surf-0.6/surf.c surf-0.6.patched/surf.c
---- surf-0.6/surf.c	2013-02-10 13:40:14.000000000 -0500
-+++ surf-0.6.patched/surf.c	2013-07-03 16:48:40.000000000 -0400
-@@ -1218,8 +1218,11 @@
- 	default:
- 		usage();
- 	} ARGEND;
-+#define HOMEPAGE "@HOMEPAGE@"
- 	if(argc > 0)
+diff -Naur surf-2.0/surf.c surf-2.0.patched/surf.c
+--- surf-2.0/surf.c	2017-03-28 12:17:45.000000000 -0400
++++ surf-2.0.patched/surf.c	2017-06-25 01:33:34.501169322 -0400
+@@ -1751,7 +1751,7 @@
+ 	if (argc > 0)
  		arg.v = argv[0];
-+	else
-+		arg.v = HOMEPAGE;
+ 	else
+-		arg.v = "about:blank";
++		arg.v = "@HOMEPAGE@";
  
  	setup();
- 	newclient();
+ 	c = newclient(NULL);

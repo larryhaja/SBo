@@ -23,15 +23,15 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=gambas3
-VERSION=${VERSION:-3.8.4}
-BUILD=${BUILD:-1}
+VERSION=${VERSION:-3.9.1}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 
 SHORT_PRGNAM=${PRGNAM%$(cut -d . -f 1 <<< $VERSION)}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -42,8 +42,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -66,6 +66,12 @@ tar xvf $CWD/$PRGNAM-$VERSION.tar.bz2
 cd $PRGNAM-$VERSION
 chown -R root:root .
 
+# Fix building against qt5 >= 5.7.0
+# https://sourceforge.net/p/gambas/mailman/message/35618038/
+patch -p3 < $CWD/qt5-ext-5.7.patch
+patch -p3 < $CWD/qt5-5.7.patch
+patch -p3 < $CWD/qt5-webkit-5.7.patch
+
 ./reconf-all
 
 CFLAGS="$SLKCFLAGS" \
@@ -73,7 +79,8 @@ CXXFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
-  --build=$ARCH-slackware-linux
+  --build=$ARCH-slackware-linux \
+  $qt5
 
 make
 make -j1 install-strip DESTDIR=$PKG XDG_UTILS=""

@@ -6,6 +6,35 @@
 
 # Licensed under the WTFPL. See http://www.wtfpl.net/txt/copying/ for details.
 
+# 20180611 bkw:
+# - update for v2.8.3, to match what Pat has in -current.
+
+# 20180208 bkw: update for man-db 2.8.0, libpipeline 1.5.0.
+# This may be the last SBo update, since Pat has imported man-db
+# into Slackware-current. Depends on how long it is from now until
+# the next release: I'll maintain this until SBo stops accepting
+# submissions for 14.2.
+
+# 20170305 bkw:
+# - BUILD=2
+# - get rid of systemd-specific /usr/lib/tmpfiles.d from package.
+# - patch configure so it doesn't write to /usr/lib.
+
+# 20170215 bkw:
+# - update for 2.7.6.1 (whoops, last update wasn't for the latest version
+# - only update the cache in doinst.sh if it's over an hour old. this
+#   takes several minutes, and happens twice (uselessly) if the package
+#   is upgraded (since upgradepkg runs doinst.sh twice). waiting an hour
+#   also makes my life easier when I'm testing this script.
+# - fix man-db.cron so it works even if USR=yes (whoops), and stop trying
+#   to chown the cache to the nonexistent 'man' user.
+
+# 20170125 bkw:
+# - update for 2.7.6.
+# - add --disable-cache-owner. TODO: revisit this at some
+#   point. Maybe create a dedicated 'man' user, or use one of the existing
+#   users like 'bin' or 'operator'.
+
 # 20160726 bkw:
 # - update for 2.7.5.
 
@@ -20,13 +49,13 @@
 # - update README and README.Slackware slightly.
 
 PRGNAM=man-db
-VERSION=${VERSION:-2.7.5}
+VERSION=${VERSION:-2.8.3}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -37,8 +66,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -77,7 +106,7 @@ mkdir -p $TMP $PKG $OUTPUT
 # Instead of making it a separate build and external dep, we'll just
 # bundle it here.
 LIBNAM=libpipeline
-LIBVER=1.4.1
+LIBVER=1.5.0
 
 cd $TMP
 rm -rf $LIBNAM-$LIBVER
@@ -120,6 +149,13 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
+# The 'checking for long filenames' test in the configure script writes to
+# /usr/lib, which is bad behaviour for a configure script. Not to mention
+# wrong (it assumes configure is always being run as root). We already
+# know we have long filename support, because we live in the 21st century
+# now, so this patch gets rid of the test and force-enables it.
+patch -p1 < $CWD/dont_write_in_usr.diff
+
 # The circumlocutions below are needed because doing it the sane way:
 # libpipeline_LIBS="-L$PKG/usr/lib$LIBDIRSUFFIX -lpipeline"
 # gets broken by libtool (it *insists* on replacing -lpipeline with
@@ -132,6 +168,7 @@ CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
   --disable-setuid \
+  --disable-cache-owner \
   --prefix=/usr \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
   --sysconfdir=/etc \
@@ -144,6 +181,10 @@ CXXFLAGS="$SLKCFLAGS" \
 
 make
 make install-strip DESTDIR=$PKG
+
+# This stuff is for systemd, we don't need it (and it might confuse
+# people coming from systemd distros):
+rm -rf $PKG/usr/lib/tmpfiles.d/
 
 # There will always be man pages here, regardless of USR=yes or no.
 find $PKG/usr/man -type f -exec gzip -9 {} \;

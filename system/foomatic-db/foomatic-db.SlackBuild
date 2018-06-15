@@ -23,9 +23,11 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=foomatic-db
-VERSION=${VERSION:-20160724}
+VERSION=${VERSION:-20170729}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
+
+ARCH=noarch
 
 CWD=$(pwd)
 TMP=${TMP:-/tmp/SBo}
@@ -38,7 +40,7 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-4.0-$VERSION.tar.gz
+tar xvf $CWD/$PRGNAM-4.0-$VERSION.tar.xz
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
@@ -53,13 +55,11 @@ find -L . \
 make install DESTDIR=$PKG
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a \
-  COPYING ChangeLog README USAGE \
-  $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a COPYING ChangeLog README USAGE $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-noarch-$BUILD$TAG.${PKGTYPE:-tgz}
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}

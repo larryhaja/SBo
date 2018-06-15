@@ -3,7 +3,7 @@
 # Slackware Package Build Script for ArgyllCMS
 # Home Page http://www.argyllcms.com/
 
-# Copyright (c) 2015, Nishant Limbachia, Hoffman Estates, IL, USA
+# Copyright (c) 2015-2016, Nishant Limbachia, Hoffman Estates, IL, USA 
 # [nishant _AT_ mnspace _DOT_ net]
 # All rights reserved.
 #
@@ -27,14 +27,14 @@
 
 PRGNAM="argyllcms"
 SRCNAM="Argyll"
-VERSION=${VERSION:-1.8.2}
-SRCVERSION=${SRCVERSION:-V1.8.2}
+VERSION=${VERSION:-1.9.2}
+SRCVERSION=${SRCVERSION:-V1.9.2}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -45,8 +45,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -61,13 +61,11 @@ fi
 
 set -e
 
-rm -rf $PKG
+rm -rf $TMP/$SRCNAM-$SRCVERSION $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf ${SRCNAM}_${SRCVERSION}
 unzip $CWD/${SRCNAM}_${SRCVERSION}_src.zip
 cd $TMP/${SRCNAM}_${SRCVERSION}
-
 chown -R root.root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 750 -o -perm 555 \
@@ -75,8 +73,7 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 640 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# Patch for gcc-5 thanks to Debian
-patch -p1 < $CWD/argyllcms-1.8.0-gcc5.patch
+patch -p1 < $CWD/patches/argyllcms-1.8.0-gcc5.patch
 
 ### install steps have been shamelessly copied from Arch Linux PKGBUILD
 ### https://projects.archlinux.org/svntogit/community.git/tree/trunk/PKGBUILD?h=packages/argyllcms

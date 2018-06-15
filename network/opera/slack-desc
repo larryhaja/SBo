@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
      |-----handy-ruler------------------------------------------------------|
-opera: opera (Fast and secure web browser and Internet suite)
+opera: opera (A fast and secure web browser)
 opera:
-opera: Opera is a small, fast, customizable, powerful, and user-friendly web
-opera: browser, as well as an Internet suite, including an email client, an
-opera: IRC client, web developer tools (Opera Dragonfly).
+opera: Opera is a graphical Web browser available on several platforms.
+opera: The desktop version runs on GNU/Linux and FreeBSD. Versions for
+opera: Macintosh and Windows are also available.
 opera:
+opera: Home page: https://www.opera.com/
 opera:
-opera: http://www.opera.com/browser/
 opera:
 opera:
 opera:

@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
            |-----handy-ruler------------------------------------------------------|
-eiskaltdcpp: EiskaltDC++ (QT4 File Sharing)
+eiskaltdcpp: eiskaltdcpp (QT4 File Sharing)
 eiskaltdcpp:
 eiskaltdcpp: EiskaltDC++ is a cross-platform program that uses the Direct
 eiskaltdcpp: Connect and ADC protocols. It is compatible with other DC clients,
@@ -15,5 +15,5 @@ eiskaltdcpp: EiskaltDC++ also interoperates with all common DC hub software.
 eiskaltdcpp:
 eiskaltdcpp:
 eiskaltdcpp:
-eiskaltdcpp: Homepage: http://code.google.com/p/eiskaltdc
+eiskaltdcpp: Homepage: https://github.com/eiskaltdcpp/eiskaltdcpp
 eiskaltdcpp:

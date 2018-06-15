@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
           |-----handy-ruler------------------------------------------------------|
-postgresql: PostgreSQL (object-relational database management system)
+postgresql: postgresql (object-relational database management system)
 postgresql:
 postgresql: PostgreSQL is an advanced object-relational database management
 postgresql: system (ORDBMS) based on POSTGRES. With more than 15 years of
 postgresql: development history, it is quickly becoming the de facto
 postgresql: database for enterprise level open source solutions.
 postgresql:
-postgresql: Homepage: http://www.postgresql.org
+postgresql: Homepage: https://www.postgresql.org
 postgresql:
 postgresql:
 postgresql:

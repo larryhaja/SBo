@@ -3,6 +3,7 @@
 # Slackware build script for Telegram
 
 # Marco Ferraioli marcoferraioli@live.com
+# Willy Sudiarto Raharjo <willysr@slackbuilds.org>
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,12 +28,12 @@
 PRGNAM=telegram
 SRCNAM=tsetup
 SRCDIR=Telegram
-VERSION=${VERSION:-0.9.56}
+VERSION=${VERSION:-1.3.7}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 case "$( uname -m )" in
-  i?86) ARCH=i486 ;;
+  i?86) ARCH=i586 ;;
   arm*) ARCH=arm ;;
      *) ARCH=$( uname -m ) ;;
 esac
@@ -47,7 +48,7 @@ case "$ARCH" in
     SRC="${SRCNAM}"
     LIBDIRSUFFIX="64"
     ;;
-  i486)
+  i586)
     SRC="${SRCNAM}32"
     LIBDIRSUFFIX=""
     ;;

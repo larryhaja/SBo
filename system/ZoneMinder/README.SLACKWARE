@@ -7,7 +7,7 @@ You can revert back to the shm method by removing --enable-mmap from the build.
 To use ZoneMinder, you need to have Apache, PHP and MySQL.
 
 CONFIGURATION
-# Be sure to follow the dircetions in /etc/rc.d/rc.mysqld before you try and 
+# Be sure to follow the directions in /etc/rc.d/rc.mysqld before you try and
   setup your database.
 
 1) Database setup:
@@ -22,7 +22,7 @@ Reload the mysql server with "mysqladmin reload -u root -p".
 2) Apache configuration:
 Uncomment mod_php at the end of /etc/httpd/httpd.conf.
 Add this line to httpd.conf:
-	Include /etc/zm/zm_apache.conf
+        Include /etc/zm/zm_apache.conf
 
 # You may need to chmod +x /etc/rc.d/rc.httpd first
 Restart apache with "/etc/rc.d/rc.httpd restart".

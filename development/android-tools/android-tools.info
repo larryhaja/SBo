@@ -1,16 +1,18 @@
 PRGNAM="android-tools"
-VERSION="6.0.1_r43"
+VERSION="8.0.0_r24"
 HOMEPAGE="http://developer.android.com/sdk/"
-DOWNLOAD="https://sourceforge.net/projects/slackbuildsdirectlinks/files/android-tools/6.0.1_r43/core-ad54cfed4516292654c997910839153264ae00a0.tar.gz \
-          https://sourceforge.net/projects/slackbuildsdirectlinks/files/android-tools/6.0.1_r43/extras-83eeed92430fc3f14c21cfc43d11fcecef6e8285.tar.gz \
-          https://sourceforge.net/projects/slackbuildsdirectlinks/files/android-tools/6.0.1_r43/libselinux-943ed44a46ed95d557bf552b57fe61280a77489c.tar.gz \
-          https://sourceforge.net/projects/slackbuildsdirectlinks/files/android-tools/6.0.1_r43/f2fs-tools-3686eecd8c8511ae7ecd7611a2f065b48b484b13.tar.gz"
-MD5SUM="311b52e7376744b761109d3426413e38 \
-	9e85d7a739d8f0d3efe9d1e755b55e21 \
-	699ebcb55aa01f3664e84cc4ccfe2d8a \
-	bb8565b0617c7552ed272592d44ae2e4"
+DOWNLOAD="https://sourceforge.net/projects/slackbuildsdirectlinks/files/android-tools/8.0.0_r24/core-6cd85e2a89347e0a107f59e38ece61fa19e6da78.tar.gz \
+          https://sourceforge.net/projects/slackbuildsdirectlinks/files/android-tools/8.0.0_r24/extras-af2dce5151ad478673401211dd71ae1579d2b5be.tar.gz \
+          https://sourceforge.net/projects/slackbuildsdirectlinks/files/android-tools/8.0.0_r24/f2fs-tools-b8baf1712d991541141bb0bdddd625f527e6d41f.tar.gz \
+          https://sourceforge.net/projects/slackbuildsdirectlinks/files/android-tools/8.0.0_r24/selinux-be29c2550c3ff6551a56048c075a88da01b46cab.tar.gz \
+          https://sourceforge.net/projects/slackbuildsdirectlinks/files/android-tools/8.0.0_r24/boringssl-58e449904e248f34bdfc2be7a609c58bcb0257b7.tar.gz"
+MD5SUM="b5b3857b5edae7305f5348e1db148b61 \
+        19bdc27835ed340fdbb4205d6af8e721 \
+        2ebe16bb82a5b24706d78d9e16d66f6e \
+        0599c72a1ff3142ad6baed8886d074a3 \
+        83ed1371eee7769f29b767c217e865e7"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
-REQUIRES=""
+REQUIRES="gtest ninja pcre2"
 MAINTAINER="Philip van der Hoeven"
 EMAIL="philip@vd-hoeven.nl"

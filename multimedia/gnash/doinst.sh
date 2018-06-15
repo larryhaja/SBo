@@ -11,20 +11,9 @@ config() {
   # Otherwise, we leave the .new copy for the admin to consider...
 }
 
-preserve_perms() {
-  NEW="$1"
-  OLD="$(dirname $NEW)/$(basename $NEW .new)"
-  if [ -e $OLD ]; then
-    cp -a $OLD ${NEW}.incoming
-    cat $NEW > ${NEW}.incoming
-    mv ${NEW}.incoming $NEW
-  fi
-  config $NEW
-}
-
-preserve_perms etc/gnashpluginrc.new
-preserve_perms etc/gnashthumbnailrc.new
-preserve_perms etc/gnashrc.new
+config etc/gnashpluginrc.new
+config etc/gnashthumbnailrc.new
+config etc/gnashrc.new
 
 if [ -x /usr/bin/update-desktop-database ]; then
   /usr/bin/update-desktop-database -q usr/share/applications >/dev/null 2>&1
@@ -32,6 +21,6 @@ fi
 
 if [ -e usr/share/icons/hicolor/icon-theme.cache ]; then
   if [ -x /usr/bin/gtk-update-icon-cache ]; then
-    /usr/bin/gtk-update-icon-cache usr/share/icons/hicolor >/dev/null 2>&1
+    /usr/bin/gtk-update-icon-cache -f usr/share/icons/hicolor >/dev/null 2>&1
   fi
 fi

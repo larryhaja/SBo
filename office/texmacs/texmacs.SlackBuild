@@ -23,8 +23,8 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=texmacs
-VERSION=${VERSION:-1.99.2}
-BUILD=${BUILD:-2}
+VERSION=${VERSION:-1.99.6}
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 SRCNAM=TeXmacs
@@ -86,8 +86,10 @@ sed -i \
   -e '/gnome 2/d' \
   Makefile.in
 
+# force to use g++, clang++ will cause compile error
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
+CXX="g++" \
 ./configure \
   --prefix=/usr \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
@@ -111,6 +113,7 @@ cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}

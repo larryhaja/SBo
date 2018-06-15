@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# Slackware build script for ToME
+# Slackware build script for tome
 
-# Copyright 2013, SlackBuilds.org Project, David Melik, Spokane, WA, USA
+# Copyright 2014-2018  Dimitris Zlatanidis  Orestiada, Greece
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,15 +23,14 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=tome
-VERSION=${VERSION:-v2.3.11_ah}
-BUILD=${BUILD:-2}
+SRCNAM=t-engine4-src
+VERSION=${VERSION:-1.5.8}
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
-
-SRCVER=$(echo $VERSION | tr _ -)
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -42,8 +41,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -61,48 +60,47 @@ set -e
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf tome2-tome2
-tar xvf $CWD/tome2-tome2-$SRCVER.tar.gz
-cd tome2-tome2
+rm -rf $SRCNAM-$VERSION
+tar xvf $CWD/$SRCNAM-$VERSION.tar.bz2
+cd $SRCNAM-$VERSION
+# extract icons
+unzip -oj -qq game/engines/te4-${VERSION}.teae -d icons
 chown -R root:root .
 find -L . \
- \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
- -exec chmod 755 {} \; -o \
- \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
- -exec chmod 644 {} \;
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-mkdir -p build
-cd build
-  cmake \
-    -DCMAKE_C_FLAGS:STRING="$SLKCFLAGS" \
-    -DCMAKE_CXX_FLAGS:STRING="$SLKCFLAGS" \
-    -DCMAKE_INSTALL_PREFIX=/usr/share/games/$PRGNAM \
-    -DLIB_SUFFIX=/var/games/$PRGNAM \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DSYSTEM_INSTALL:BOOL=true ..
-  make
-  make install DESTDIR=$PKG
-cd -
+# correction of SDL2 headers directory
+sed -i "s/opt\/SDL-2.0/usr/" premake4.lua
+
+# build game
+premake4 gmake
+env -u ARCH make
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
-  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-install -m 0755 $CWD/$PRGNAM.sh $PKG/usr/share/games/$PRGNAM/bin/$PRGNAM.sh
-mkdir -p $PKG/usr/games
-ln -fs /usr/share/games/$PRGNAM/bin/$PRGNAM.sh $PKG/usr/games/$PRGNAM
+# copy the data game
+mkdir -p $PKG/usr/share/games/$PRGNAM $PKG/usr/bin
+cp -rf game $PKG/usr/share/games/$PRGNAM
+cp -rf bootstrap $PKG/usr/share/games/$PRGNAM
 
-find $PKG -name "delete.me" | xargs rm -f
-find $PKG -name ".cvsignore" | xargs rm -f
+# install the game executable and the launcher
+install -D -m0755 t-engine $PKG/usr/share/games/$PRGNAM
+install -D -m0755 $CWD/$PRGNAM.sh $PKG/usr/bin/$PRGNAM
 
-install -m 0644 -D $CWD/$PRGNAM.png \
-  $PKG/usr/share/pixmaps/$PRGNAM.png
-install -m 0644 -D $CWD/$PRGNAM.desktop \
-  $PKG/usr/share/applications/$PRGNAM.desktop
+# install .desktop
+mkdir -p $PKG/usr/share/applications
+install -D -m644 $CWD/$PRGNAM.desktop $PKG/usr/share/applications/$PRGNAM.desktop
+
+# install icon game
+mkdir -p $PKG/usr/share/pixmaps/
+install -D -m644 icons/te4-icon.png $PKG/usr/share/pixmaps/$PRGNAM.png
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a BUGS.txt changes.txt credits.txt \
-  $PKG/usr/share/games/$PRGNAM/lib/$PRGNAM/help \
-  $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a  CONTRIBUTING COPYING* CREDITS $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install

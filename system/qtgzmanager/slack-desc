@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
            |-----handy-ruler------------------------------------------------------|
-qtgzmanager: QTGZManager (TGZ/TXZ package management)
+qtgzmanager: qtgzmanager (TGZ/TXZ package management)
 qtgzmanager:
 qtgzmanager: QTGZManager is a T?Z package  management  application that uses
 qtgzmanager: standard  pkgtools  (present in any Slackware based system)  to
@@ -15,5 +15,5 @@ qtgzmanager: pane view (directories, packages in the selected dir, installed
 qtgzmanager: packages in the system  and package actions), drag and drop and
 qtgzmanager: context menu support.
 qtgzmanager:
-qtgzmanager: Homepage: http://qtgzmanager.wordpress.com
+qtgzmanager: Homepage: https://qtgzmanager.wordpress.com
 qtgzmanager:

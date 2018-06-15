@@ -23,13 +23,13 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=svxlink
-VERSION=${VERSION:-14.08.2}
+VERSION=${VERSION:-17.12.2}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -40,8 +40,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -107,7 +107,6 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# Compile the application and install it into the $PKG directory
 mkdir -p build
 cd build
   cmake \
@@ -120,6 +119,7 @@ cd build
     -DLIB_SUFFIX=${LIBDIRSUFFIX} \
     ..
   make
+  make doc
   make install DESTDIR=$PKG
 
 cd ..
@@ -131,7 +131,7 @@ mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a ../COPYRIGHT doc/README* doc/*.txt doc/qteluserdocs/*.pdf doc/qteluserdocs/*.tex \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
-rm -rf $PKG/usr/share/man
+mv $PKG/usr/share/man $PKG/usr/
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
@@ -139,6 +139,9 @@ cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 mkdir -p $PKG/etc/rc.d
 cat $CWD/rc.svxlink > $PKG/etc/rc.d/rc.svxlink.new
+
+mkdir -p $PKG/etc/logrotate.d
+cat $CWD/svxlink > $PKG/etc/logrotate.d/svxlink
 
 # Rename .conf to .new to be processed by doinst.sh
 rename .conf .conf.new $PKG/etc/svxlink/*

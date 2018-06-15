@@ -4,7 +4,8 @@
 
 # Originally by Jockey S. Kyd (jockey dot kyd at gmail dot com)
 #
-# Modified by Ryan P.C. McQuen, WA, ryan.q@linux.com
+# Modified by Ryan P.C. McQuen, WA, ryanpcmcquen@member.fsf.org
+# 2017 | Dhaby Xiloj | slack.dhabyx@gmail.com
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,13 +26,13 @@
 # not, see <http://www.gnu.org/licenses/>.
 
 PRGNAM=groovy
-VERSION=${VERSION:-2.4.4}
+VERSION=${VERSION:-2.4.10}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$(uname -m)" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$(uname -m) ;;
   esac
@@ -63,22 +64,34 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 mkdir -p $PKG/usr/lib$LIBDIRSUFFIX/$PRGNAM
-mv * $PKG/usr/lib$LIBDIRSUFFIX/$PRGNAM
-cd ..
-rmdir $PRGNAM-$VERSION
+mv {bin,conf,embeddable,grooid,indy,lib} \
+  $PKG/usr/lib$LIBDIRSUFFIX/$PRGNAM
+
+# clean .bat files
+rm $PKG/usr/lib$LIBDIRSUFFIX/$PRGNAM/bin/*.bat
+
+mkdir -p $PKG/usr/bin/
+pushd $PKG/usr/lib$LIBDIRSUFFIX/$PRGNAM/bin
+for file in *; do
+  ln -sf /usr/lib$LIBDIRSUFFIX/$PRGNAM/bin/$file $PKG/usr/bin/$file
+done
+popd
 
 # no need to install these with a .new extension
 mkdir -p $PKG/etc/profile.d
-cp -a $CWD/profile.d/$PRGNAM.*sh $PKG/etc/profile.d
-sed -i "s|@LIBDIR@|/usr/lib$LIBDIRSUFFIX|" $PKG/etc/profile.d/$PRGNAM.*sh
-chmod 0755 $PKG/etc/profile.d/$PRGNAM.*sh
-chown root:root $PKG/etc/profile.d/$PRGNAM.*sh
+cp $CWD/profile.d/$PRGNAM.*sh.new $PKG/etc/profile.d
+sed -i "s|@LIBDIR@|/usr/lib$LIBDIRSUFFIX|" $PKG/etc/profile.d/$PRGNAM.*sh.new
+chmod 0755 $PKG/etc/profile.d/$PRGNAM.*sh.new
+chown root:root $PKG/etc/profile.d/$PRGNAM.*sh.new
 
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM
+unzip $CWD/apache-$PRGNAM-docs-$VERSION.zip -d $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM
+cp -r LICENSE licenses NOTICE $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}

@@ -2,7 +2,7 @@
 #
 # Slackware build script for faba-icon-theme.
 #
-# Copyright 2015 Edinaldo P. Silva, Rio de Janeiro, Brazil.
+# Copyright 2015-2017  Edinaldo P. Silva, Rio de Janeiro, Brazil.
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM="faba-icon-theme"
-VERSION=${VERSION:-4.1.2}
+VERSION=${VERSION:-20170712}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -34,15 +34,16 @@ PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 CWD=$(pwd)
 
-set -e
+SRCVER=${SRCVER:-cab0d6bd57bf0fb30918b68e2396f87d9484db31}
 
-SRCVER="v4.1.2"
+set -e
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$SRCVER.tar.gz || tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
+tar xvf $CWD/$PRGNAM-$SRCVER.tar.gz
+mv $PRGNAM-$SRCVER $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
@@ -51,8 +52,9 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-mkdir -p $PKG/usr/share/icons
-cp -a Faba $PKG/usr/share/icons
+bash autogen.sh
+make
+make DESTDIR=$PKG install
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp AUTHORS COPYING INSTALL LICENSE README.md $PKG/usr/doc/$PRGNAM-$VERSION

@@ -2,7 +2,7 @@
 
 # Slackware build script for DavMail
 
-# Copyright (c) 2015 Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
+# Copyright (c) 2015-2017 Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -26,7 +26,7 @@
 # Modified by Mario Preksavec <mario@slackware.hr>
 
 PRGNAM=davmail
-VERSION=${VERSION:-4.7.1}
+VERSION=${VERSION:-4.8.1.1}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -37,12 +37,12 @@ OUTPUT=${OUTPUT:-/tmp}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
        *) ARCH=$( uname -m ) ;;
   esac
 fi
 
-if [ "$ARCH" = "i486" ]; then
+if [ "$ARCH" = "i586" ]; then
   SRCARCH="x86"
 elif [ "$ARCH" = "i686" ]; then
   SRCARCH="x86"
@@ -92,6 +92,7 @@ install -Dm755 $CWD/davmail.sh $PKG/usr/share/davmail
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-${VERSION}-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}

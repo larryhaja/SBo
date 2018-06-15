@@ -1,10 +1,9 @@
-menutray (An extensible lyrics fetcher, with daemon support for cmus and mocp.)
+clyrics (An extensible lyrics fetcher)
 
-Main features include:
-- support for plugins
-- cmus and mocp daemon mode
+clyrics is an extensible lyrics fetcher with daemon support for cmus
+and mocp. Just copy folder /etc/xdg/clyrics to your $HOME/.config.
 
-Copy folder /etc/xdg/clyrics/plugins to your $HOME/.config/clyrics folder.
+For usage:
 
-Open mocp or cmus and run:
-$ clyrics -m -P ~/.config/clyrics/plugins/
+ MOC : $ clyrics -m -P ~/.config/clyrics/plugins/
+ CMUS: $ clyrics -c -P ~/.config/clyrics/plugins/

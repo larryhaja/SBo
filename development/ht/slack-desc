@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
   |-----handy-ruler------------------------------------------------------|
-ht: ht (Hex editor and debugger)
+ht: ht (file viewer, analyzer for text, binary and executable files)
 ht:
-ht: HT is a file editor/viewer/analyzer for executables. The goal is to
-ht: combine the low-level functionality of a debugger and the usability
-ht: of IDEs. We plan to implement all (hex-)editing features and support
-ht: of the most important file formats.
+ht: HT is a file viewer, editor and analyzer for text, binary, and
+ht: (especially) executable files.
 ht:
-ht: HT is distributed under the terms of the GPL.
+ht: Homepage: http://hte.sourceforge.net/index.html
 ht:
-ht: Homepage: http://hte.sourceforge.net
+ht:
+ht:
+ht:
 ht:

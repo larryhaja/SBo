@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
         |-----handy-ruler------------------------------------------------------|
-kdenlive: Kdenlive (KDE Non Linear Video Editor)
+kdenlive: kdenlive (KDE Non Linear Video Editor)
 kdenlive:
 kdenlive: Using the MLT video  framework. It is  currently  under  development
 kdenlive: Kdenlive  provides dual  video  monitors, a multi-track timeline and
@@ -14,6 +14,6 @@ kdenlive: clip list. Other features include customizable layout support, basic
 kdenlive: effects and transition, direct  import from online resources such as
 kdenlive: Freesound, Archive.org, and Open Clip Art. Integrated DVD authoring.
 kdenlive:
-kdenlive:                    http://kdenlive.sourceforge.net
+kdenlive: http://kdenlive.sourceforge.net
 kdenlive:
 kdenlive:

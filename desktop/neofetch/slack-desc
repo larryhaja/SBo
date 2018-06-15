@@ -13,7 +13,7 @@ neofetch: to generate any information about your system, it will auto-detect
 neofetch: your system and print it to the terminal next to an image, a distro
 neofetch: logo or an ASCII art of your choice.
 neofetch:
-neofetch: Homepage: https://github.com/dylanaraps/neofetch
+neofetch: Home page: https://github.com/dylanaraps/neofetch
 neofetch:
-neofetch: Report Bugs: https://github.com/dylanaraps/neofetch/issues
+neofetch: Bugs? Report to: https://github.com/dylanaraps/neofetch/issues
 neofetch:

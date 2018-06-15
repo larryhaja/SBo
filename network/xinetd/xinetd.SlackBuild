@@ -3,7 +3,8 @@
 # Slackware build script for xinetd
 
 # Copyright 2012 Chris Abela, Malta
-# Copyright 2014  Ryan P.C. McQuen, WA, ryan.q@linux.com
+# Copyright 2014  Ryan P.C. McQuen, WA, ryanpcmcquen@member.fsf.org
+# Copyright 2017  Aaditya Bagga <aaditya_gnulinux@zoho.com>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -25,12 +26,15 @@
 
 PRGNAM=xinetd
 VERSION=${VERSION:-2.3.15}
-BUILD=${BUILD:-1}
+BUILD=${BUILD:-3}
 TAG=${TAG:-_SBo}
+
+DL_PRGNAM=$PRGNAM-$PRGNAM
+DL_VERSION=${DL_VERSION:-2-3-15}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -41,8 +45,8 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
@@ -60,9 +64,9 @@ set -e
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
-cd $PRGNAM-$VERSION
+rm -rf $DL_PRGNAM-$DL_VERSION
+tar xvf $CWD/$PRGNAM-$DL_VERSION.tar.gz || tar xvf $CWD/$DL_PRGNAM-$DL_VERSION.tar.gz
+cd $DL_PRGNAM-$DL_VERSION
 chown -R root:root .
 
 find -L . \

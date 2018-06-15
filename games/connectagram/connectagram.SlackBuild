@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (c) 2013-2014 LEVAI Daniel
+# Copyright (c) 2013-2016 LEVAI Daniel
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -28,7 +28,7 @@
 # Build script for connectagram
 
 PRGNAM=connectagram
-VERSION=${VERSION:-1.1.2}
+VERSION=${VERSION:-1.2.4}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -76,10 +76,17 @@ find -L . \
 
 mkdir build
 cd build
-qmake PREFIX=$PKG/usr ../
+qmake-qt5 PREFIX=$PKG/usr ../
 CFLAGS="$SLKCFLAGS" make
 make install
 cd ..
+
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+mv $PKG/usr/share/man $PKG/usr/man
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION/
 cp -a ChangeLog COPYING CREDITS INSTALL \

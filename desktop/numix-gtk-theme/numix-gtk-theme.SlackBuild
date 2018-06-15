@@ -2,7 +2,7 @@
 #
 # Slackware build script for numix-gtk-theme.
 #
-# Copyright 2015 Edinaldo P. Silva, Rio de Janeiro, Brazil.
+# Copyright 2016-2018  Edinaldo P. Silva, Rio de Janeiro, Brazil.
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM="numix-gtk-theme"
-VERSION=${VERSION:-2.4.20141208}
+VERSION=${VERSION:-20171027}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -34,28 +34,31 @@ PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 CWD=$(pwd)
 
-set -e
+SRCVER=${SRCVER:-2.6.7+670~201710270712~ubuntu17.10.1}
 
-SRCVER="2.4"
+set -e
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/${PRGNAM}_${SRCVER}.orig.tar.gz
-mv $PRGNAM-$SRCVER $PRGNAM-$VERSION
-cd $PRGNAM-$VERSION
+rm -rf $PRGNAM-$SRCVER
+tar xvf $CWD/${PRGNAM}_${SRCVER}.tar.xz
+cd $PRGNAM-$SRCVER
 chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-patch -p0 gtk-3.0/gtk-widgets.css < $CWD/fix_overlay_scrollbar.patch
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
 
-mkdir -p $PKG/usr/share/themes/Numix
-
-THEMES="gtk-2.0 gtk-3.0 metacity-1 openbox-3 xfce-notify-4.0 xfwm4"
-cp -a $THEMES $PKG/usr/share/themes/Numix
+make
+make DESTDIR=$PKG install
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a CREDITS LICENSE README.md $PKG/usr/doc/$PRGNAM-$VERSION
+cp CHANGES CREDITS LICENSE README.md $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install

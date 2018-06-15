@@ -6,12 +6,12 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
         |-----handy-ruler------------------------------------------------------|
-cups-pdf: cups-pdf (print to a PDF file)
+cups-pdf: cups-pdf (PDF printer for cups)
 cups-pdf:
 cups-pdf: This software is designed to produce PDF files by providing a PDF
 cups-pdf: printer.
 cups-pdf:
-cups-pdf: Homepage: http://www.cups-pdf.de/
+cups-pdf: Homepage: https://www.cups-pdf.de/
 cups-pdf:
 cups-pdf:
 cups-pdf:

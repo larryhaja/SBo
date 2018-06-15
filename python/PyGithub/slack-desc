@@ -9,8 +9,8 @@
 PyGithub: PyGithub (Library to use Github API v3)
 PyGithub:
 PyGithub: PyGithub is a Python library to access the full Github API v3.
-PyGithub: 
-PyGithub: Homepage: http://jacquev6.github.io/PyGithub/v1/index.html
+PyGithub:
+PyGithub: Homepage: http://pygithub.readthedocs.io/en/latest/
 PyGithub:
 PyGithub:
 PyGithub:

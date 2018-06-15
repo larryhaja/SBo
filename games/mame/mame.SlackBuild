@@ -9,14 +9,57 @@
 
 # Licensed under the WTFPL. See http://www.wtfpl.net/txt/copying/ for details.
 
-# 20151112 bkw:
-# - Updated for v0.167, after missing several releases (sorry!)
-# - Get rid of MESS and UME options, mame has basically turned
-#   into UME at this point (includes old mame + mess in one binary)
-# - Use shipped man pages from the source, instead of our own
-# - Add new tools: castool floptool imgtool nlwav
-# - Use icon extracted from mame.ico in the source
-# - Update .ini file slightly (sound=sdl, not sound=1)
+# 20180130 bkw: Updated for v0.194.
+# 20180101 bkw: Updated for v0.193.
+# 20171210 bkw: Updated for v0.192.
+# 20170927 bkw: Updated for v0.190.
+
+# 20170902 bkw: Updated for v0.189.
+# - Fix complay.py build error. Turns out that the build would fail
+#   only on systems where PyXML is installed, so add -S to python
+#   command line so 'import xml.sax' imports the xml stuff that ships
+#   with core python, instead of the (outdated, deprecated) 3rd-party
+#   stuff from PyXML.
+# - Stop installing useless junk in /usr/doc.
+# - Install swlist docs.
+# - Compacted log entries.
+
+# 20170726 bkw: Updated for v0.188.
+# 20170702 bkw: Updated for v0.187.
+
+# 20170607 bkw: Updated for v0.186.
+# - Link with ld.gold instead of the default ld, which saves *2 hours* of
+#   build time on my test box (build is 3x as fast as it was).
+
+# 20170428 bkw: Updated for v0.185.
+
+# 20170404 bkw:
+# - mame.ini: get rid of $HOME in bgfx_path. Thanks to Doogster for
+# reporting this.
+
+# 20170330 bkw: Updated for v0.184.
+
+# 20170301 bkw:
+# - Use long-form github URL.
+# - Fix changelog so newer entries are at the top.
+
+# 20170223 bkw: Updated for v0.183.
+# 20170214 bkw: Add support for GroovyMAME patch.
+# 20170128 bkw: Updated for v0.182.
+# 20170111 bkw: Updated for v0.181. Missed a month again.
+# 20161101 bkw: Updated for v0.179.
+
+# 20160928 bkw:
+# - Updated for v0.178. Sorry, missed a month.
+# - Install artwork/ and bgfx/ so the new bgfx shader stuff will work.
+# - Set bgfx_path in mame.ini. The default is still 'video opengl' but
+#   now it's easy to enable bgfx, just by changing to 'video bgfx'.
+#   Thanks to Doogster for pointing this out.
+
+# 20160728 bkw:
+# - Updated for v0.176. Upstream does a release on the last Wednesday
+#   of every month. I doubt I'm going to find time to update this
+#   script 12 times a year, but maybe...
 
 # 20160721 bkw:
 # - Updated for v0.175 (again, after missing several releases)
@@ -32,19 +75,23 @@
 #   make slack-desc say whether or not it's enabled.
 # - Upstream removed 'testkeys', stop trying to install it.
 
-# 20160728 bkw:
-# - Updated for v0.176. Upstream does a release on the last Wednesday
-#   of every month. I doubt I'm going to find time to update this
-#   script 12 times a year, but maybe...
+# 20151112 bkw:
+# - Updated for v0.167, after missing several releases (sorry!)
+# - Get rid of MESS and UME options, mame has basically turned
+#   into UME at this point (includes old mame + mess in one binary)
+# - Use shipped man pages from the source, instead of our own
+# - Add new tools: castool floptool imgtool nlwav
+# - Use icon extracted from mame.ico in the source
+# - Update .ini file slightly (sound=sdl, not sound=1)
 
 PRGNAM=mame
-VERSION=${VERSION:-0.176}
+VERSION=${VERSION:-0.194}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
-    i?86) ARCH=i486 ;;
+    i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
@@ -81,7 +128,7 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $DIRNAME
-tar xvf $CWD/$DIRNAME.tar.gz || tar xvf $CWD/$SHORTNAME.tar.gz
+tar xvf $CWD/$DIRNAME.tar.gz
 cd $DIRNAME
 chown -R root:root .
 
@@ -90,11 +137,11 @@ chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
   -o -perm 511 \) -print0 | \
-  xargs -0 chmod 755
+  xargs -r -0 chmod 755
 find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -print0 | \
-  xargs -0 chmod 644
+  xargs -r -0 chmod 644
 
 # OK, building modern mame is a bit of a PITA. It uses genie (written
 # in lua, a fork of premake), but you don't get to run genie directly,
@@ -148,14 +195,36 @@ else
   WITHQT="without"
 fi
 
-# Having ARCH set in the env will break the build, hence ARCH=""
+# Now, let's check for GroovyMAME. All the user has to do is place
+# the .diff in the SlackBuild's directory. The filename always starts
+# with the MAME version number, minus its dots. If we find multiple
+# files matching this, sort them lexically and use the last (hopefully
+# this is the one with the highest version number).
+GROOVYDIFF="$( ls $CWD/${VERSION/./}_groovymame_*.diff 2>/dev/null | tail -1 )"
+if [ -e "$GROOVYDIFF" ]; then
+  GROOVYVER="$( basename $GROOVYDIFF .diff | cut -d_ -f3- | sed 's,-,_,g' )"
+
+  # .diffs are shipped with CRLF endings, fix:
+  sed 's,\r,,g' "$GROOVYDIFF" > groovy.diff
+
+  patch -p0 < groovy.diff
+
+  echo "GROOVYDIFF $GROOVYDIFF"
+  echo "GROOVYVER $GROOVYVER"
+fi
+
+
+# Having ARCH set in the env will break the build, hence ARCH="".
+# Using ld.gold is *much* faster, and I see no disadvantage to it.
 
 make USE_QTDEBUG=$QTOPT \
      USE_SYSTEM_LIB_EXPAT=1 \
      USE_SYSTEM_LIB_ZLIB=1 \
      USE_SYSTEM_LIB_JPEG=1 \
      USE_SYSTEM_LIB_FLAC=1 \
+     PYTHON_EXECUTABLE="/usr/bin/python -S" \
      OPT_FLAGS="$SLKCFLAGS" \
+	  LDOPTS="-fuse-ld=gold" \
      OVERRIDE_CC="$( which gcc )" \
      OVERRIDE_CXX="$( which g++ )" \
      ARCH="" \
@@ -195,17 +264,29 @@ install -m0644 -oroot -groot docs/man/*.6 $PKG/usr/man/man6
 gzip -9 $PKG/usr/man/man?/*.?
 
 # Create empty dirs for the user to populate with ROMs and such.
-for i in roms samples artwork ctrlr font cheat; do
-  mkdir -p $PKG/usr/share/games/mame/$i
+for i in roms samples ctrlr font cheat; do
+  mkdir -p $PKG/usr/share/games/$PRGNAM/$i
 done
+
+# Install the artwork and bgfx stuff (needed for 'video bgfx' in mame.ini).
+cp -a artwork bgfx $PKG/usr/share/games/$PRGNAM
+
+# CONTRIBUTING.md is a 1-byte placeholder, and we don't need a shell script.
+rm -f docs/CONTRIBUTING.md docs/update.sh
 
 mkdir -p $PKG/usr/doc/${PRGNAM}-$VERSION
 # can't just "cp docs/* ..." because man/ is a dir, set -e kills the script
 cp docs/L* docs/*.* $PKG/usr/doc/${PRGNAM}-$VERSION
+cp -a docs/swlist $PKG/usr/doc/${PRGNAM}-$VERSION
 cat $CWD/${PRGNAM}.SlackBuild > $PKG/usr/doc/${PRGNAM}-$VERSION/${PRGNAM}.SlackBuild
 
 mkdir -p $PKG/install
 sed "s,@WITHQT@,$WITHQT," $CWD/slack-desc > $PKG/install/slack-desc
+
+[ -n "$GROOVYVER" ] && \
+  sed -i "19s,\$, This package was patched with GroovyMAME $GROOVYVER.," \
+  $PKG/install/slack-desc
+
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG

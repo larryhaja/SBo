@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
         |-----handy-ruler------------------------------------------------------|
-verbiste: Verbiste (a French conjugation system)
+verbiste: verbiste (a French conjugation system)
 verbiste:
 verbiste: Verbiste Contains a C++ library and two command line programs to
 verbiste: conjugate and analyze conjugated verbs and can be run from the
@@ -16,4 +16,4 @@ verbiste: XML and contains over 7000 verbs.  There is also a small Italian
 verbiste: dictionary of 120 verbs.  The graphicalinterface lets the user look
 verbiste: up a verb in one or both languages.
 verbiste:
-verbiste: Webpage : http://sarrazip.com/dev/verbiste.html
+verbiste: Webpage : https://perso.b2b2c.ca/~sarrazip/dev/verbiste.html
